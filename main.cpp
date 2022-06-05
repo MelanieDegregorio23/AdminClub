@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <cstdio>
 #include <string.h>
 
 using namespace std;
@@ -10,6 +11,8 @@ using namespace std;
 #include "deportes.h"
 #include "instructores.h"
 #include "funcionesgenerales.h"
+#include "Fecha.h"
+#include "persona.h"
 
 int main()
 {
