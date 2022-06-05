@@ -32,7 +32,15 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="articulos.h" />
+		<Unit filename="deportes.h" />
+		<Unit filename="fecha.h" />
+		<Unit filename="funcionesgenerales.h" />
+		<Unit filename="instructores.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="persona.h" />
+		<Unit filename="reportes.h" />
+		<Unit filename="socios.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

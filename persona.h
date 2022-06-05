@@ -35,19 +35,19 @@ public:
 
 
 void persona:Cargar(){
-cout<<"INGRESAR NOMBRE : ";
-cin>> Nombre;
-cout<<"INGRESAR APELLIDO : ";
-cin>> Apellido;
-cout<<"INGRESAR DNI : ";
-cin>> DNI;
-cout<<"INGRESAR EDAD : ";
-cin>>edad;
-cout<<"INGRESAR CORREO : ";
-cin>>Correo;
-cout<<"INGRESE NUMERO DE TELEFONO :  ";
-cin>>Telefono;
-fechaDeNacimiento.cargar();
+    cout<<"INGRESAR NOMBRE : ";
+    cargarCadena(Nombre, 19);
+    cout<<"INGRESAR APELLIDO : ";
+    cargarCadena(Apellido, 19);
+    cout<<"INGRESAR DNI : ";
+    cin>> DNI;
+    cout<<"INGRESAR EDAD : ";
+    cin>>edad;
+    cout<<"INGRESAR CORREO : ";
+    cargarCadena(Correo, 34);
+    cout<<"INGRESE NUMERO DE TELEFONO :  ";
+    cargarCadena(Telefono, 14);
+    fechaDeNacimiento.cargar();
 }
 
 void persona:Mostrar(){
