@@ -7,14 +7,22 @@ protected:
     int Id;
     Fecha Fechaingreso;
     int IdDeporte;
-
+    bool Estado=true;
 public:
+    socio(int i=0, int d=0, bool e=true){
+        Id=i;
+        IdDeporte=d;
+        Estado=e;
+
+    }
      void setId (int i){Id=i;}
      void setFechaingreso(Fecha f){Fechaingreso=f;}
      void setIdDeporte (int d){IdDeporte=d;}
+     void serEstado (int e){Estado=e};
      Fecha getFechaingreso(){return Fechaingreso;}
      int getId(){return Id;}
      int getIdDeporte(){return IdDeporte;}
+     bool getEstado () {return Estado}
      void Cargar();
      void Mostrar();
 
