@@ -53,20 +53,11 @@ void Articulo::Mostrar(){
 
 ///PROTOTIPOS
 void menuArticulos();
-void cargarCadena(char *pal, int tam);
+
 
 ///FUNCIONES
 
-void cargarCadena(char *pal, int tam){
-  int i;
-  fflush(stdin);
-  for(i=0;i<tam;i++){
-      pal[i]=cin.get();
-	  if(pal[i]=='\n') break;
-	  }
-  pal[i]='\0';
-  fflush(stdin);
-}
+
 
 
 void menuArticulos(){
@@ -74,17 +65,21 @@ void menuArticulos(){
     int opc;
     bool estado = true;
        while (estado==true){
-        cout<<"1.AGREGAR ARTICULO"<<endl;
-        cout<<"2.LISTAR ARTICULOS"<<endl;
-        cout<<"3.LISTAR ATICULOS POR ID"<<endl;
-        cout<<"4.LISTAR ARTICULOS POR PRECIO"<<endl;
-        cout<<"5.REGISTRAR VENTA"<<endl;
-        cout<<"6.ACTUALIZAR STOCK"<<endl;
-        cout<<"7.ELIMINAR ARTICULO"<<endl;
-        cout<<"8.CONFIGURACION"<<endl;
-        cout<<"0. VOLVER AL MENU PRINCIPAL"<<endl;
+        cout<<" ________________________"<<endl<<endl;
+        cout<<"      MENU ARTICULOS"<<endl;
+        cout<<" ________________________"<<endl<<endl;
+
+        cout<<" 1.AGREGAR ARTICULO"<<endl;
+        cout<<" 2.LISTAR ARTICULOS"<<endl;
+        cout<<" 3.LISTAR ATICULOS POR ID"<<endl;
+        cout<<" 4.LISTAR ARTICULOS POR PRECIO"<<endl;
+        cout<<" 5.REGISTRAR VENTA"<<endl;
+        cout<<" 6.ACTUALIZAR STOCK"<<endl;
+        cout<<" 7.ELIMINAR ARTICULO"<<endl;
+        cout<<" 8.CONFIGURACION"<<endl;
+        cout<<" 0. VOLVER AL MENU PRINCIPAL"<<endl;
         cout<<endl;
-        cout<<"INGRESE LA OPCION DESEADA: "<<endl;
+        cout<<" INGRESE LA OPCION DESEADA: ";
         cin>>opc;
         switch(opc){
     case 1:
@@ -109,6 +104,7 @@ void menuArticulos(){
         }
 
        }
+       system("cls");
 }
 
 #endif // ARTICULOS_H_INCLUDED

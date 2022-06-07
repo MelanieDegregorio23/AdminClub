@@ -1,11 +1,11 @@
 #ifndef FUNCIONESGENERALES_H_INCLUDED
 #define FUNCIONESGENERALES_H_INCLUDED
 ///PROTOTIPOS
-void cargarCadena(char *pal, int tam);
+void cargarCadena(  char *pal, int tam);
 
 ///FUNCIONES
 
-void cargarCadena(char *pal, int tam){
+void cargarCadena( char *pal, int tam){
   int i;
   fflush(stdin);
   for(i=0;i<tam;i++){

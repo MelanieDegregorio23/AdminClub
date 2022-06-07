@@ -23,7 +23,7 @@ public:
 }
 
     void Cargar();
-    void Mostar();
+    void Mostrar();
     void setdni(int d){DNI=d;}
     void setEdad(int e){Edad=e;}
     void setfechaDeNacimiento(Fecha f){fechaDeNacimiento=f;}
@@ -43,7 +43,7 @@ public:
 };
 
 
-void persona:Cargar(){
+void persona::Cargar(){
     cout<<"INGRESAR NOMBRE : ";
     cargarCadena(Nombre, 19);
     cout<<"INGRESAR APELLIDO : ";
@@ -51,15 +51,15 @@ void persona:Cargar(){
     cout<<"INGRESAR DNI : ";
     cin>> DNI;
     cout<<"INGRESAR EDAD : ";
-    cin>>edad;
+    cin>>Edad;
     cout<<"INGRESAR CORREO : ";
     cargarCadena(Correo, 34);
     cout<<"INGRESE NUMERO DE TELEFONO :  ";
     cargarCadena(Telefono, 14);
-    fechaDeNacimiento.cargar();
+    fechaDeNacimiento.Cargar();
 }
 
-void persona:Mostrar(){
+void persona::Mostrar(){
 
 cout<<"NOMBRE :  "<<Nombre<<endl;
 cout<<"APELLIDO :  "<<Nombre<<endl;
@@ -67,7 +67,7 @@ cout<<"DNI :  "<<Nombre<<endl;
 cout<<"EDAD :  "<<Nombre<<endl;
 cout<<"CORREO :  "<<Nombre<<endl;
 cout<<"TELEFONO :  "<<Nombre<<endl;
-fechaDeNacimiento.mostrar();
+fechaDeNacimiento.Mostrar();
 
 }
 
