@@ -86,6 +86,7 @@ int Articulo::modificarEnDisco(int pos){
 
 ///PROTOTIPOS
 void menuArticulos();
+
 int agregarArticulo(Articulo aux);
 void listarArticulos();
 int buscarPorCodigo(const char *codigo);
@@ -112,6 +113,7 @@ void listarArticulos(){
         aux.Mostrar();
         cout<<endl<<endl;
         pos++;
+
 
     }
 }
@@ -164,17 +166,22 @@ void menuArticulos(){
     int opc;
     bool estado = true;
        while (estado==true){
-        cout<<"1.AGREGAR ARTICULO"<<endl;
-        cout<<"2.LISTAR ARTICULOS"<<endl;
-        cout<<"3.LISTAR ATICULOS POR CODIGO"<<endl;
-        cout<<"4.LISTAR ARTICULOS POR PRECIO"<<endl;
-        cout<<"5.REGISTRAR VENTA"<<endl;
-        cout<<"6.ACTUALIZAR STOCK"<<endl;
-        cout<<"7.ELIMINAR ARTICULO"<<endl;
-        cout<<"8.CONFIGURACION"<<endl;
-        cout<<"0. VOLVER AL MENU PRINCIPAL"<<endl;
+
+        cout<<" ________________________"<<endl<<endl;
+        cout<<"      MENU ARTICULOS"<<endl;
+        cout<<" ________________________"<<endl<<endl;
+
+        cout<<" 1.AGREGAR ARTICULO"<<endl;
+        cout<<" 2.LISTAR ARTICULOS"<<endl;
+        cout<<" 3.LISTAR ATICULOS POR ID"<<endl;
+        cout<<" 4.LISTAR ARTICULOS POR PRECIO"<<endl;
+        cout<<" 5.REGISTRAR VENTA"<<endl;
+        cout<<" 6.ACTUALIZAR STOCK"<<endl;
+        cout<<" 7.ELIMINAR ARTICULO"<<endl;
+        cout<<" 8.CONFIGURACION"<<endl;
+        cout<<" 0. VOLVER AL MENU PRINCIPAL"<<endl;
         cout<<endl;
-        cout<<"INGRESE LA OPCION DESEADA: "<<endl;
+        cout<<" INGRESE LA OPCION DESEADA: ";
         cin>>opc;
         system("cls");
         switch(opc){
@@ -209,6 +216,7 @@ void menuArticulos(){
         }
 
        }
+       system("cls");
 }
 
 
