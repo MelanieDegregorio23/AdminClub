@@ -1,4 +1,5 @@
 # depslib dependency file v1.0
+
 1654609381 source:c:\users\melin\desktop\adminclub\main.cpp
 	<iostream>
 	<cstdlib>
@@ -12,6 +13,8 @@
 	"socios.h"
 	"deportes.h"
 	"instructores.h"
+
+
 
 1654608568 c:\users\melin\desktop\adminclub\fecha.h
 
@@ -28,4 +31,5 @@
 1654609467 c:\users\melin\desktop\adminclub\deportes.h
 
 1654609573 c:\users\melin\desktop\adminclub\instructores.h
+
 
