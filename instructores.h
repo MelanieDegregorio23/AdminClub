@@ -87,6 +87,28 @@ void listarPorActividad(instructor aux);
 
 ///DESARROLLO
 
+void listarPorActividad(instructor aux){
+    system("cls");
+    int codigo, pos=0, contador=0;
+    ///(IDEA) MOSTRAR LOS DEPORTES ACTUALES Y SUS CODIGOS
+    cout<<"INGRESAR CODIGO DE ACTIVIDAD : "<<endl;
+    cin>>codigo;
+    while(aux.leerEnDisco(pos)==1){
+            if(aux.getCodigoDep()==codigo){
+                cout<<"INSTRUCTOR N"<<(char)167<<contador+1<<endl;
+                cout<<"--------------- "<<endl;
+                aux.Mostrar();
+                cout<<"--------------- "<<endl;
+                cout<<endl;
+                contador++;
+            }
+        pos++;
+    }
+
+
+
+}
+
 void mostrarPorPosicion(int pos, instructor aux){
 
     if(aux.leerEnDisco(pos)==1){
@@ -188,7 +210,7 @@ int listarInstructores(instructor aux){
 }
 
 
-int cargarInstructor(instructor aux){ //HASTA EL MOMENTO NO PERMITE AGREGAR INSTRUCTORES QUE YA FUERON ELIMINADOS
+int cargarInstructor(instructor aux){ ///HASTA EL MOMENTO NO PERMITE AGREGAR INSTRUCTORES QUE YA FUERON ELIMINADOS
     int dni;
     aux.Cargar();
     dni = aux.getDNI();
@@ -205,7 +227,8 @@ int buscarDNI(int dni){
     int pos = 0;
     while(aux.leerEnDisco(pos)==1){
         if(aux.getDNI()==dni){
-            return pos;
+         return pos;
+
         }
 
         pos++;
@@ -261,6 +284,14 @@ void menuInstructores(){
        if( listarInstructores(aux)==0){
         cout<<"NO HAY INSTRUCTORES REGISTRADOS "<<endl;
        }
+        system("pause");
+        break;
+    case 4:
+        //a desarrollar
+        break;
+    case 5:
+        system("cls");
+        listarPorActividad(aux);
         system("pause");
         break;
     case 6:
