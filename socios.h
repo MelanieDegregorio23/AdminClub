@@ -176,7 +176,7 @@ void socio::PagoMes(){
      cout<<"INGRESAR PAGO MENSUAL"<<endl;
      cin>>PagosMes[12];
      ///llamar a deportes mel hace esta funcion.
-     }
+}
 
 
 void listarSocio(){
@@ -261,16 +261,16 @@ void menuSocios(){
         cin>>opc;
         switch(opc){
     case 1: if(agregarSocio(aux)==1){
-                cout<<"EL SOCIO FUE AGREGADO CON EXITO";
+                cout<<"EL SOCIO FUE AGREGADO CON EXITO"<<endl;
         }else{
-                cout<<"EL DNI, YA PERTENECE A UN  SOCIO EXISTENTE";
+                cout<<"EL DNI, YA PERTENECE A UN  SOCIO EXISTENTE"<<endl;
 
         }
             system("pause");
         break;
     case 2: system("cls");
          if(eliminarSocio()>=0){
-            cout<<"SOCIO ELIMINADO";
+            cout<<"SOCIO ELIMINADO"<<endl;
          }else {cout<<"NO SE ENCONTRO CLIENTE CON ESE DNI"<<endl;}
          system("pause");
         break;
@@ -294,7 +294,7 @@ void menuSocios(){
         break;
     case 6:system("cls");
         if(listarSociosPorId()<0){
-                cout<<"NO SE ENCONTRO CLIENTE CON EL DNI INGRESADO"<<endl;
+                cout<<"NO SE ENCONTRO CLIENTE CON EL ID INGRESADO"<<endl;
             }
             system("pause");
 
