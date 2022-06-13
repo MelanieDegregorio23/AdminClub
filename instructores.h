@@ -5,11 +5,9 @@ class instructor: public persona{
 protected:
     int IDinstructor;
     int CodigoDep;
-    bool estado;
     Fecha fechaDeIngreso;
 
 public:
-    instructor(bool e=1 ){ estado =e;}
     void Cargar(){
         persona::Cargar();
         cout<< "INGRESE ID DE INSTRUCTOR : ";
@@ -22,7 +20,7 @@ public:
 
     }
     void Mostrar(){
-        if(estado == 1){
+        if(Estado == true){
         persona::Mostrar();
         cout<<"ID DE INSTRUCTOR :  "<<IDinstructor<<endl;
         cout<<"CODIGO DE DEPORTE :  "<<CodigoDep<<endl;
@@ -63,12 +61,10 @@ public:
     }
 
 
-    ///sets
-    void setEstado(bool e){estado=e;}
+    ///sets()
     ///gets()
     int getIDinstructor(){return IDinstructor;}
     int getCodigoDep(){return CodigoDep;}
-    bool getEstado(){return estado;}
     Fecha getFechaIngreso(){return fechaDeIngreso;}
 
 };
@@ -81,24 +77,75 @@ public:
 void menuInstructores();
 int cargarInstructor();
 int buscarDNI(int dni);
-
 int buscarID(int id);
-int  listarInstructores(instructor aux);
+int listarInstructores(instructor aux);
 int eliminarInstructor(instructor aux);
+void listarPorDNI( instructor aux);
+void listarPorID( instructor aux);
+void mostrarPorPosicion(int pos);
+void listarPorActividad(instructor aux);
 
 ///DESARROLLO
+
+void mostrarPorPosicion(int pos, instructor aux){
+
+    if(aux.leerEnDisco(pos)==1){
+        aux.Mostrar();
+    }
+}
+
+void listarPorID( instructor aux){
+     int id, pos;
+    cout<<"INGRESE EL ID DEL INSTRUCTOR QUE DECIA BUSCAR : ";
+    cin>>id;
+    system("cls");
+    pos = buscarID(id);
+    if(pos>=0){
+        mostrarPorPosicion(pos, aux);
+
+    }else{
+        cout<<"NO SE ENCONTRO INSTRUCTOR CON ESE ID "<<endl;
+    }
+
+}
+
+void  listarPorDNI( instructor aux){
+    int dni, pos;
+    cout<<"INGRESE EL DNI DEL INSTRUCTOR QUE DECIA BUSCAR : ";
+    cin>>dni;
+    system("cls");
+    pos = buscarDNI(dni);
+    if(pos>=0){
+        mostrarPorPosicion(pos, aux);
+
+    }else{
+        cout<<"NO SE ENCONTRO INSTRUCTOR CON ESE DNI "<<endl;
+    }
+
+}
+
 int eliminarInstructor(instructor aux){
     system("cls");
     int id, pos;
+    char confirmo;
     cout<<"INGRESE ID DE INSTRUCTOR :  ";
     cin>>id;
-    // (IDEA ) mostrar el instructor correspondiente a ese id y pedir confirmación
-    system("pause");
     pos = buscarID(id);
     if(pos>=0){
-        aux.setEstado(0);
-        aux.modificarEnDisco(pos);
-        return 1;
+        mostrarPorPosicion(pos, aux);
+        cout<<endl;
+        cout<<"QUIERE ELIMINAR ESTE INSTRUCTOR ?  (s / n) ";
+        cin>> confirmo;
+        switch(confirmo){
+        case 's':
+              aux.setEstado(false);
+            aux.modificarEnDisco(pos);
+            return 1;
+            break;
+        case 'n':  return 2;
+            break;
+        }
+
     } else{
         cout<<"NO HAY INSTRUCTORES CON EL ID INGRESADO"<<endl;
     };
@@ -141,7 +188,7 @@ int listarInstructores(instructor aux){
 }
 
 
-int cargarInstructor(instructor aux){
+int cargarInstructor(instructor aux){ //HASTA EL MOMENTO NO PERMITE AGREGAR INSTRUCTORES QUE YA FUERON ELIMINADOS
     int dni;
     aux.Cargar();
     dni = aux.getDNI();
@@ -163,11 +210,11 @@ int buscarDNI(int dni){
 
         pos++;
     }
+    return -1;
 }
 
 
 void menuInstructores(){
->>>>>>> main
     instructor aux;
     int opc;
     bool estado = true;
@@ -200,7 +247,7 @@ void menuInstructores(){
 
     break;
     case 2:
-        if(eliminarInstructor(aux)==1){
+        if(eliminarInstructor(aux)>0){
             cout<<"INSTRUCTOR ELIMINADO"<<endl;
             system("pause");
         }else{
@@ -214,6 +261,16 @@ void menuInstructores(){
        if( listarInstructores(aux)==0){
         cout<<"NO HAY INSTRUCTORES REGISTRADOS "<<endl;
        }
+        system("pause");
+        break;
+    case 6:
+         system("cls");
+        listarPorID(aux);
+        system("pause");
+        break;
+    case 7:
+        system("cls");
+        listarPorDNI(aux);
         system("pause");
         break;
     case 0:
