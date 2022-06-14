@@ -1,5 +1,7 @@
 #ifndef DEPORTES_H_INCLUDED
 #define DEPORTES_H_INCLUDED
+#include "instructores.h"
+
 class deporte
 {
 private:
@@ -158,9 +160,12 @@ public:
 
 void menuDeportes();
 void listarDeporte();
+int buscarporCod( int cod);
+int listarPorcod(int cod);
 int agregarDeporte(deporte aux);
 int buscarPorCodigo( int codi, bool borrado=false);
 int eliminarDeporte();
+int listarPorInstructor();
 
 
 
@@ -240,6 +245,58 @@ int eliminarDeporte()
     }
     return -1;
 }
+int listarPorcod(int cod){
+    socio aux;
+    int pos;
+    pos = buscarporCod(cod);
+    if(pos>=0){
+        system("cls");
+        aux.LeerEnDisco(pos);
+        aux.Mostrar();
+        return pos;
+    }
+    return -1;
+}
+int buscarporCod( int cod){
+    deporte aux;
+    int contador=0;
+    while(aux.LeerEnDisco(contador)==1){
+        if(aux.getCodDep()==cod){
+            return contador;
+
+        }
+        contador++;
+    }
+
+    return -1;
+}
+int listarPorInstructor(){
+    instructor aux;
+    int pos=0, id, codep;
+    cout<<"INGRESE ID DEL INSTRUCTOR : "<<endl;
+    cin>>id;
+    pos = buscarID(id);
+    while(aux.leerEnDisco(pos)==1)
+    {
+        if(aux.getEstado()==true)
+        {
+            codep=aux.getCodigoDep();
+            listarPorcod(codep);
+            cout<<endl<<endl;
+
+        }
+        pos++;
+
+
+
+    }
+    return -1;
+
+
+
+
+}
+
 void menuDeportes()
 {
     deporte aux;
@@ -273,7 +330,11 @@ void menuDeportes()
             break;
         case 2:
             break;
-        case 3:
+        case 3:system("cls");
+            if (listarPorInstructor()<0){
+                cout<<"NO DEPORTES CON EL INSTRUCTOR INGRESADO"<<endl;
+        }
+            system("pause");
             break;
         case 4:
             system("cls");
