@@ -271,7 +271,7 @@ void menuSocios(){
     case 2: system("cls");
          if(eliminarSocio()>=0){
             cout<<"SOCIO ELIMINADO"<<endl;
-         }else {cout<<"NO SE ENCONTRO CLIENTE CON ESE DNI"<<endl;}
+         }else {cout<<"NO SE ENCONTRO SOCIO CON ESE DNI"<<endl;}
          system("pause");
         break;
     case 3:/*system("cls");
