@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1655080281 source:c:\users\melin\desktop\adminclub\main.cpp
+1655176222 source:c:\users\melin\desktop\adminclub\main.cpp
 	<iostream>
 	<cstdlib>
 	<cstdio>
@@ -13,20 +13,20 @@
 	"deportes.h"
 	"instructores.h"
 
-1655080281 c:\users\melin\desktop\adminclub\fecha.h
+1655176222 c:\users\melin\desktop\adminclub\fecha.h
 
-1655080281 c:\users\melin\desktop\adminclub\funcionesgenerales.h
+1655176222 c:\users\melin\desktop\adminclub\funcionesgenerales.h
 
-1655080975 c:\users\melin\desktop\adminclub\persona.h
+1655176222 c:\users\melin\desktop\adminclub\persona.h
 
-1655090027 c:\users\melin\desktop\adminclub\articulos.h
+1655176257 c:\users\melin\desktop\adminclub\articulos.h
 	"funcionesgenerales.h"
 
-1655080281 c:\users\melin\desktop\adminclub\reportes.h
+1655176222 c:\users\melin\desktop\adminclub\reportes.h
 
-1655080975 c:\users\melin\desktop\adminclub\socios.h
+1655176222 c:\users\melin\desktop\adminclub\socios.h
 
-1655080281 c:\users\melin\desktop\adminclub\deportes.h
+1655176222 c:\users\melin\desktop\adminclub\deportes.h
 
-1655135571 c:\users\melin\desktop\adminclub\instructores.h
+1655177650 c:\users\melin\desktop\adminclub\instructores.h
 

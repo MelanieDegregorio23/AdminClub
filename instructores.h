@@ -75,7 +75,7 @@ public:
 
 ///PROTOTIPOS
 void menuInstructores();
-int cargarInstructor();
+int cargarInstructor(instructor aux);
 int buscarDNI(int dni);
 int buscarID(int id);
 int listarInstructores(instructor aux);
@@ -93,6 +93,7 @@ void listarPorActividad(instructor aux){
     ///(IDEA) MOSTRAR LOS DEPORTES ACTUALES Y SUS CODIGOS
     cout<<"INGRESAR CODIGO DE ACTIVIDAD : "<<endl;
     cin>>codigo;
+    system("cls");
     while(aux.leerEnDisco(pos)==1){
             if(aux.getCodigoDep()==codigo){
                 cout<<"INSTRUCTOR N"<<(char)167<<contador+1<<endl;
@@ -214,7 +215,7 @@ int cargarInstructor(instructor aux){ ///HASTA EL MOMENTO NO PERMITE AGREGAR INS
     int dni;
     aux.Cargar();
     dni = aux.getDNI();
-    if(buscarDNI(dni)>0){
+    if(buscarDNI(dni)<0){
         aux.grabarEnDisco();
         return 1;
     }
@@ -250,11 +251,10 @@ void menuInstructores(){
         cout<<" 1. AGREGAR INSTRUCTOR "<<endl;
         cout<<" 2. DAR DE BAJA INSTRUCTOR"<<endl;
         cout<<" 3. LISTAR INSTRUCTORES"<<endl;
-        cout<<" 4. LISTAR INSTRUCTORES ALFABETICAMENTE"<<endl;
+        cout<<" 4. LISTAR INSTRUCTORES ALFABETICAMENTE"<<endl;///
         cout<<" 5. LISTAR INSCTRUCTORES POR ACTIVIDAD"<<endl;
         cout<<" 6. BUSCAR INSTRUCTOR POR ID  "<<endl;
         cout<<" 7. BUSCAR INSTRUCTOR POR DNI  "<<endl;
-        cout<<" 8. CONFIGURACION  "<<endl;
         cout<<" 0. VOLVER AL MENU PRINCIPAL"<<endl;
         cout<<endl;
         cout<<" INGRESE LA OPCION DESEADA: ";
