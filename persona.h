@@ -11,6 +11,7 @@ protected:
     char Apellido[20];
     char Correo[35];
     char Telefono[15];
+    bool Estado;
     Fecha fechaDeNacimiento;
 public:
     personas(int d=0, int e=0, const char *n="No existe en la base de datos", const char *a="No existe en la base de datos", const char *c="No existe en la base de datos", const char *t="No existe en la base de datos"){
@@ -31,19 +32,25 @@ public:
     void setApellido (const char *a){strcpy(Apellido,a);}
     void setCorreo(const char *c){strcpy(Correo,c);}
     void setTelefono(const char *t){strcpy(Telefono,t);}
+    void setEstado(bool es){Estado=es;}
+
+
 
     Fecha getfechanacimiento(){return fechaDeNacimiento;}
     int getDNI(){return DNI;}
     int getEdad(){return Edad;}
+
     const char *getNombre(){return Nombre;}
     const char *getApellido(){return Apellido;}
     const char *getCorreo(){return Correo;}
     const char *getTelefono(){return Telefono;}
+    bool getEstado() {return Estado;}
 
 };
 
 
 void persona::Cargar(){
+
     cout<<"INGRESAR NOMBRE : ";
     cargarCadena(Nombre, 19);
     cout<<"INGRESAR APELLIDO : ";
@@ -56,19 +63,24 @@ void persona::Cargar(){
     cargarCadena(Correo, 34);
     cout<<"INGRESE NUMERO DE TELEFONO :  ";
     cargarCadena(Telefono, 14);
+    cout<<"INGRESAR FECHA DE NACIMIENTO"<<endl;
     fechaDeNacimiento.Cargar();
+
 }
 
 void persona::Mostrar(){
-
-cout<<"NOMBRE :  "<<Nombre<<endl;
-cout<<"APELLIDO :  "<<Nombre<<endl;
-cout<<"DNI :  "<<Nombre<<endl;
-cout<<"EDAD :  "<<Nombre<<endl;
-cout<<"CORREO :  "<<Nombre<<endl;
-cout<<"TELEFONO :  "<<Nombre<<endl;
-fechaDeNacimiento.Mostrar();
+        if(Estado==true){
+        cout<<"NOMBRE :  "<<Nombre<<endl;
+        cout<<"APELLIDO :  "<<Apellido<<endl;
+        cout<<"DNI :  "<<DNI<<endl;
+        cout<<"EDAD :  "<<Edad<<endl;
+        cout<<"CORREO :  "<<Correo<<endl;
+        cout<<"TELEFONO :  "<<Telefono<<endl;
+        cout<<"FECHA DE NACIMIENTO"<<endl;
+        fechaDeNacimiento.Mostrar();
+        }
 
 }
+
 
 #endif // PERSONA_H_INCLUDED

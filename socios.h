@@ -8,39 +8,227 @@ protected:
     int Id;
     Fecha Fechaingreso;
     int IdDeporte;
-    bool Estado=true;
+    int PagosMes[12];
+
+
 public:
-    socio(int i=0, int d=0, bool e=true){
+
+    socio(int i=0, int d=0,int p={0}){
+
         Id=i;
         IdDeporte=d;
-        Estado=e;
+        PagosMes[12]=p;
+
+
 
     }
+
+
      void setId (int i){Id=i;}
      void setFechaingreso(Fecha f){Fechaingreso=f;}
      void setIdDeporte (int d){IdDeporte=d;}
-     void serEstado (int e){Estado=e;}
+     void setPagosMes (int p){PagosMes[12]=p;}
+
+
+
      Fecha getFechaingreso(){return Fechaingreso;}
      int getId(){return Id;}
      int getIdDeporte(){return IdDeporte;}
-     bool getEstado () {return Estado;}
-     void Cargar();
-     void Mostrar();
+     int getPagosMes(){return PagosMes[12];}
 
 
-
-
+void Cargar(){
+     system("cls");
+     persona::Cargar();
+     cout<<"INGRESAR ID DEL SOCIO"<<endl;
+     cin>>Id;
+     cout<<endl;
+     cout<<"INGRESAR EL ID DEL DEPORTE AL QUE ESTA INSCRIPTO"<<endl;
+     cin>>IdDeporte;
+     cout<<endl;
+     cout<<"CARGAR FECHA DE INGRESO AL CLUB"<<endl;
+     Fechaingreso.Cargar();
 
 
 
 };
-     void Cargar();
-     void Mostrar();
+void MostrarSocio(){
+        if (Estado==true){
+        persona::Mostrar();
+        cout<<"ID DE SOCIO: "<<endl<<Id<<endl;
+        cout<<"ID DE DEPORTE: "<<endl<<IdDeporte<<endl;
+        cout<<"FECHA DE INGRESO: "<<endl;
+        Fechaingreso.Mostrar();
+        }
+
+
+};
+int GrabarEnDisco(){
+    FILE*p;
+    int escribio;
+    p= fopen("Socios.dat", "ab");
+    if(p==NULL) return -1;
+    escribio= fwrite(this, sizeof(socio),1,p);
+    fclose(p);
+    return escribio;
+
+}
+int LeerEnDisco(int pos){
+    FILE*p;
+    int leyo;
+    p = fopen("Socios.dat", "rb");
+    if(p==NULL) return -1;
+
+    fseek(p, pos*sizeof(socio),SEEK_SET);
+    leyo = fread(this, sizeof(socio), 1, p);
+
+    fclose(p);
+    return leyo;
+
+}
+int ModificarEnDisco(int pos){
+    FILE*p;
+    int escribio;
+    p =fopen("Socios.dat", "rb+");
+    if(p==NULL) return -1;
+
+    fseek(p, pos*sizeof(socio), SEEK_CUR);
+    escribio = fwrite(this, sizeof(socio), 1 ,p);
+    fclose(p);
+    return escribio;
+
+
+
+}
+
+
+};
+
+void menuSocios();
+int agregarSocio(socio aux);
+int eliminarSocio();
+int buscarporDNI(int DNI, bool borrado=false);
+void PagoMes();
+void listarSocio();
+int listarSociosPorDNI(socio aux);
+int buscarporId( int Id);
+int listarSociosPorId(socio aux);
+
+
+
+
+
+int agregarSocio(socio aux){
+    int dni;
+    aux.Cargar();
+    dni=aux.getDNI();
+    if(buscarporDNI(dni)<0){///si encuentra que no esta el dni, lo carga y lo agrega
+        aux.GrabarEnDisco();
+        return 1;
+    }
+
+    return -1;
+}
+int eliminarSocio(){
+    socio aux;
+    int dni, pos;
+    cout<<"INGRESAR DNI SOCIO"<<endl;
+    cin>>dni;
+    pos=buscarporDNI(dni);
+    if (pos>=0){
+        aux.LeerEnDisco(pos);
+        aux.setEstado(false);
+        aux.ModificarEnDisco(pos);
+        return pos;
+
+    }
+    return -1;
+}
+int buscarporDNI( int DNI, bool borrado){
+    socio aux;
+
+    int pos=0;
+    while(aux.LeerEnDisco(pos)==1){
+        if(aux.getDNI()==DNI){
+               if(aux.getEstado()==true){
+                    return pos;
+                }
+                else{
+                    if(borrado==false){
+                        return -1;
+                    }
+                    else{
+                        return -2;
+                    }
+                }
+            }
+            pos++;
+    }
+    return -1;
+}
+
+
+
+
+void listarSocio(){
+    socio aux;
+    int pos=0;
+    while(aux.LeerEnDisco(pos)==1){
+        aux.MostrarSocio();
+        cout<<endl<<endl;
+        pos++;
+    }
+}
+
+int listarSociosPorDNI(){
+    socio aux;
+    int dni, pos;
+    cout<<"INGRESE DNI : "<<endl;
+    cin>>dni;
+    pos = buscarporDNI(dni);
+    if(pos>=0){
+        system("cls");
+        aux.LeerEnDisco(pos);
+        aux.MostrarSocio();
+        return pos;
+    }
+    return -1;
+}
+
+int buscarporId( int Id){
+    socio aux;
+    int contador=0;
+    while(aux.LeerEnDisco(contador)==1){
+        if(aux.getId()==Id){
+            return contador;
+
+        }
+        contador++;
+    }
+
+    return -1;
+}
+int listarSociosPorId(){
+    socio aux;
+    int id, pos;
+    cout<<"INGRESE ID : "<<endl;
+    cin>>id;
+    pos = buscarporId(id);
+    if(pos>=0){
+        system("cls");
+        aux.LeerEnDisco(pos);
+        aux.MostrarSocio();
+        return pos;
+    }
+    return -1;
+}
+
 
 
 
 void menuSocios(){
     system("cls");
+    socio aux;
     int opc;
     bool estado = true;
        while (estado==true){
@@ -54,37 +242,55 @@ void menuSocios(){
         cout<<" 2. DAR DE BAJA SOCIO "<<endl;
         cout<<" 3. INGRESAR PAGO DEL MES"<<endl;
         cout<<" 4. LISTAR SOCIOS "<<endl;
-        cout<<" 5. LISTAR SOCIOS ALFABETICAMENTE"<<endl;
-        cout<<" 6. LISTAR SOCIOS POR ACTIVIDAD"<<endl;
-        cout<<" 7. LISTAR SOCIOS POR ID"<<endl;
-        cout<<" 8. LISTAR SOCIOS POR DNI"<<endl;
-        cout<<" 9. CONFIGURAR"<<endl;
+        cout<<" 5. LISTAR SOCIOS POR DNI"<<endl;
+        cout<<" 6. LISTAR SOCIOS POR ID"<<endl;
+        cout<<" 7. LISTAR SOCIOS ALFABETICAMENTE"<<endl;
         cout<<" 0. VOLVER AL MENU PRINCIPAL"<<endl;
         cout<<endl;
         cout<<" INGRESE LA OPCION DESEADA: ";
         cin>>opc;
         switch(opc){
-    case 1:
+    case 1: if(agregarSocio(aux)==1){
+                cout<<"EL SOCIO FUE AGREGADO CON EXITO"<<endl;
+        }else{
+                cout<<"EL DNI, YA PERTENECE A UN  SOCIO EXISTENTE"<<endl;
+
+        }
+            system("pause");
+        break;
+    case 2: system("cls");
+         if(eliminarSocio()>=0){
+            cout<<"SOCIO ELIMINADO"<<endl;
+         }else {cout<<"NO SE ENCONTRO SOCIO CON ESE DNI"<<endl;}
+         system("pause");
+        break;
+    case 3:/*system("cls");
+            socio aux;
+            PagoMes();
+
+            system("pause");*/
 
         break;
-    case 2:
+    case 4: system("cls");
+            listarSocio();
+            system("pause");
         break;
-    case 3:
+    case 5: system("cls");
+            if(listarSociosPorDNI()<0){
+                cout<<"NO SE ENCONTRO CLIENTE CON EL DNI INGRESADO"<<endl;
+            }
+            system("pause");
 
         break;
-    case 4:
-        break;
-    case 5:
+    case 6:system("cls");
+        if(listarSociosPorId()<0){
+                cout<<"NO SE ENCONTRO CLIENTE CON EL ID INGRESADO"<<endl;
+            }
+            system("pause");
 
-        break;
-    case 6:
         break;
     case 7:
 
-        break;
-    case 8:
-        break;
-    case 9:
         break;
     case 0: estado=false;
         break;

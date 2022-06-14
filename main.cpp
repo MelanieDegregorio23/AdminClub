@@ -5,6 +5,7 @@
 
 using namespace std;
 
+#include "configuracion.h"
 #include "fecha.h"
 #include "funcionesgenerales.h"
 #include "persona.h"
@@ -29,6 +30,7 @@ int main()
         cout<<" 3. MENU DE INSTRUCTORES"<<endl;
         cout<<" 4. ARTICULOS A LA VENTA"<<endl;
         cout<<" 5. REPORTES"<<endl;
+        cout<<" 6. CONFIGURACION"<<endl;
         cout<<" 0. SALIR DE MENU PRINCIPAL"<<endl;
         cout<<endl;
         cout<<" INGRESE LA OPCION DESEADA: ";
@@ -51,6 +53,10 @@ int main()
     case 5:
         menuReportes();
         break;
+    case 6:menuConfiguracion();
+
+        break;
+
 
     case 0: estado=false;
         break;
