@@ -246,7 +246,7 @@ int eliminarDeporte()
     return -1;
 }
 int listarPorcod(int cod){
-    socio aux;
+    deporte aux;
     int pos;
     pos = buscarporCod(cod);
     if(pos>=0){
@@ -331,9 +331,9 @@ void menuDeportes()
         case 2:
             break;
         case 3:system("cls");
-            if (listarPorInstructor()<0){
-                cout<<"NO DEPORTES CON EL INSTRUCTOR INGRESADO"<<endl;
-        }
+            listarPorInstructor();
+
+
             system("pause");
             break;
         case 4:
