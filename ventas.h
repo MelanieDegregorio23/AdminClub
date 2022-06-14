@@ -2,50 +2,72 @@
 #define VENTAS_H_INCLUDED
 class Venta{
 private:
-    int ID, Cant, DNI;
+    int cant;
     char CodArt[5];
-    float Importe;
     Fecha FechadeVenta;
-    bool Estado;
+    float importe;
 
 public:
+
+    void cargar(){
+    cout<<"INGRESE CODIGO DE ARTICULO: "<<endl;
+    cargarCadena(CodArt,4);
+    cout<<"INGRESE CANTIDAD VENDIDA: "<<endl;
+    cin>>Cant;
+    cout<<"INGRESE FECHA DE VENTA: "<<endl;
+    FechadeVenta.Cargar();
+    }
+
+
+    void Mostrar(){
+    cout<<" INGRESE ID DE VENTA: "<<ID<<endl;
+    cout<<" DNI DEL CLIENTE: "<<DNI<<endl;
+    cout<<" CODIGO DE ARTICULO: "<<CodArt<<endl;
+    cout<<" CANTIDAD VENDIDA: "<<Cant<<endl;
+    cout<<" IMPORTE: "<<Importe<<endl;
+    cout<<" FECHA DE VENTA: ";
+    FechadeVenta.Mostrar();
+}
+    int grabarEnDisco(){
+            FILE*p;
+            int escribio;
+            p= fopen("Instructores.dat", "ab");
+            if(p==NULL) return -1;
+            escribio= fwrite(this, sizeof(instructor),1,p);
+            fclose(p);
+            return escribio;
+        }
+        int leerEnDisco(int pos){
+             FILE*p;
+            int leyo ;
+            p= fopen("Instructores.dat", "rb");
+            if(p==NULL)return -1;
+            fseek(p, pos*sizeof(instructor),SEEK_SET);
+            leyo = fread(this, sizeof(instructor),1,p);
+            fclose(p);
+            return leyo;
+        }
+        int modificarEnDisco(int pos){
+            FILE*p;
+            int escribio;
+            p = fopen("Instructores.dat" , "rb+");
+            if( p==NULL)return -1;
+            fseek(p, pos*sizeof(instructor),SEEK_SET);
+            escribio= fwrite(this, sizeof(instructor),1, p);
+            fclose(p);
+            return escribio;
+        }
+
     //sets
-    void setDNI (int d){DNI=d;}
-    void setCodArt (const char *c){strcpy(CodArt,c);}
-    void setCant( int x){ Cant=x ; }
-    void setID( int x){ ID=x ; }
-    void setImporte( float x){ Importe = x ;}
-    void setEstado (bool x){ Estado= x;};
+
+
     //gets
-    int getDNI(){return DNI;}
     const char *getCodArt(){return CodArt;}
     int getCant (){ return  Cant;}
-    int getID(){return ID;}
     float getImporte(){return Importe;}
     bool getEstado(){ return Estado;}
 
-    int grabarEnDisco(){
-    FILE*p;
-    int escribio;
-    p= fopen("Ventas.dat", "ab");
-    if(p==NULL) return -1;
-    escribio= fwrite(this, sizeof(Venta),1,p);
-    fclose(p);
-    return escribio;
-}
- int leerEnDisco( int pos){
-    FILE*p;
-    int leyo;
-    p = fopen("Ventas.dat", "rb");
-    if(p==NULL) return -1;
 
-    fseek(p, pos*sizeof(Venta),SEEK_SET);
-    leyo = fread(this, sizeof(Venta), 1, p);
-
-    fclose(p);
-    return leyo;
-}
-int modificarEnDisco(int pos){
     FILE*p;
     int escribio;
     p =fopen("Ventas.dat", "rb+");
@@ -57,28 +79,9 @@ int modificarEnDisco(int pos){
     return escribio;
 
 }
-void cargar(){
-    cout<<"INGRESE ID DE VENTA: "<<endl;
-    cin>>ID;
-    cout<<"INGRESE DNI DEL CLIENTE: "<<endl;
-    cin>>DNI;
-    cout<<"INGRESE CODIGO DE ARTICULO: "<<endl;
-    cargarCadena(CodArt,4);
-    cout<<"INGRESE CANTIDAD VENDIDA: "<<endl;
-    cin>>Cant;
-    cout<<"INGRESE FECHA DE VENTA: "<<endl;
-    FechadeVenta.Cargar();
 
 }
-void Mostrar(){
-    cout<<" INGRESE ID DE VENTA: "<<ID<<endl;
-    cout<<" DNI DEL CLIENTE: "<<DNI<<endl;
-    cout<<" CODIGO DE ARTICULO: "<<CodArt<<endl;
-    cout<<" CANTIDAD VENDIDA: "<<Cant<<endl;
-    cout<<" IMPORTE: "<<Importe<<endl;
-    cout<<" FECHA DE VENTA: ";
-    FechadeVenta.Mostrar();
-}
+
 
 };
 
@@ -89,10 +92,17 @@ int AgregarVentas(Venta aux);
 void ListarVentas();
 int ListarID();
 int buscarporid(int id);
-
+void calcularImporte(int cantidad, const char* codArt[5] );
 
 
 /*FUNCIONES*/
+void calcularImporte(int cantidad, const char* codArt[5] ){
+    Articulo reg;
+    int codigo;
+
+
+}
+
 
 int AgregarVentas(Venta aux){
     int posArt, posDNI;

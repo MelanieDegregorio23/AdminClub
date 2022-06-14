@@ -111,18 +111,7 @@ int listarArticulos(){
     }
     return lectura;
 }
- int buscarPorCodigo(const char *codigo){
-    Articulo aux;
-    int pos=0;
-    while(aux.leerEnDisco(pos)==1){
-        if(strcmp(codigo, aux.getCodigoAr())==0){///si coincide el codigo
-            return pos;
-        }
-        pos++;
 
-    }
-    return -1;
- }
  int buscarPorPrecio(float pu){
   Articulo aux;
   int pos=0;
@@ -219,7 +208,7 @@ void menuArticulos(){
         cout << " ________________________" << endl << endl;
         cout<<"1.AGREGAR ARTICULO"<<endl;
         cout<<"2.LISTAR ARTICULOS"<<endl;
-        cout<<"3.LISTAR ATICULOS POR CODIGO"<<endl;
+        cout<<"3.LISTAR ARTICULOS POR CODIGO"<<endl;
         cout<<"4.LISTAR ARTICULOS POR PRECIO"<<endl;
         cout<<"5.REGISTRAR VENTA"<<endl;
         cout<<"6.ACTUALIZAR STOCK"<<endl;
@@ -259,6 +248,7 @@ void menuArticulos(){
         system("pause");
         break;
     case 5:
+
         break;
     case 6:
         break;

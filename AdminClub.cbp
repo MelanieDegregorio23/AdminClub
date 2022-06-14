@@ -44,6 +44,7 @@
 		<Unit filename="persona.h" />
 		<Unit filename="reportes.h" />
 		<Unit filename="socios.h" />
+		<Unit filename="ventas.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
