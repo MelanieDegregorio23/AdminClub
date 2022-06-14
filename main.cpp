@@ -26,8 +26,8 @@ int main()
         cout<<" ________________________"<<endl<<endl;
 
         cout<<" 1. DEPORTES"<<endl;
-        cout<<" 2. MENU DE SOCIOS"<<endl;
-        cout<<" 3. MENU DE INSTRUCTORES"<<endl;
+        cout<<" 2. SOCIOS"<<endl;
+        cout<<" 3. INSTRUCTORES"<<endl;
         cout<<" 4. ARTICULOS A LA VENTA"<<endl;
         cout<<" 5. REPORTES"<<endl;
         cout<<" 6. CONFIGURACION"<<endl;
