@@ -164,6 +164,7 @@ int eliminarArticulo(){
 void menuArticulos(){
     system("cls");
     int opc;
+    Articulo aux;
     bool estado = true;
        while (estado==true){
 
