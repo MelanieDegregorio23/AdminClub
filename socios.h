@@ -22,12 +22,7 @@ public:
 
 
     }
-     void Cargar();
-     void MostrarSocio();
-     int GrabarEnDisco();
-     int LeerEnDisco(int pos);
-     int ModificarEnDisco(int pos);
-     void PagoMes();
+
 
      void setId (int i){Id=i;}
      void setFechaingreso(Fecha f){Fechaingreso=f;}
@@ -42,11 +37,7 @@ public:
      int getPagosMes(){return PagosMes[12];}
 
 
-
-
-
-};
-void socio::Cargar(){
+void Cargar(){
      system("cls");
      persona::Cargar();
      cout<<"INGRESAR ID DEL SOCIO"<<endl;
@@ -61,7 +52,7 @@ void socio::Cargar(){
 
 
 };
-void socio::MostrarSocio(){
+void MostrarSocio(){
         if (Estado==true){
         persona::Mostrar();
         cout<<"ID DE SOCIO: "<<endl<<Id<<endl;
@@ -72,7 +63,7 @@ void socio::MostrarSocio(){
 
 
 };
-int socio::GrabarEnDisco(){
+int GrabarEnDisco(){
     FILE*p;
     int escribio;
     p= fopen("Socios.dat", "ab");
@@ -82,7 +73,7 @@ int socio::GrabarEnDisco(){
     return escribio;
 
 }
-int socio::LeerEnDisco(int pos){
+int LeerEnDisco(int pos){
     FILE*p;
     int leyo;
     p = fopen("Socios.dat", "rb");
@@ -95,7 +86,7 @@ int socio::LeerEnDisco(int pos){
     return leyo;
 
 }
-int socio::ModificarEnDisco(int pos){
+int ModificarEnDisco(int pos){
     FILE*p;
     int escribio;
     p =fopen("Socios.dat", "rb+");
@@ -109,6 +100,10 @@ int socio::ModificarEnDisco(int pos){
 
 
 }
+
+
+};
+
 void menuSocios();
 int agregarSocio(socio aux);
 int eliminarSocio();
@@ -172,11 +167,7 @@ int buscarporDNI( int DNI, bool borrado){
     return -1;
 }
 
-void socio::PagoMes(){
-     cout<<"INGRESAR PAGO MENSUAL"<<endl;
-     cin>>PagosMes[12];
-     ///llamar a deportes mel hace esta funcion.
-}
+
 
 
 void listarSocio(){
@@ -254,7 +245,6 @@ void menuSocios(){
         cout<<" 5. LISTAR SOCIOS POR DNI"<<endl;
         cout<<" 6. LISTAR SOCIOS POR ID"<<endl;
         cout<<" 7. LISTAR SOCIOS ALFABETICAMENTE"<<endl;
-        cout<<" 8. CONFIGURAR"<<endl;
         cout<<" 0. VOLVER AL MENU PRINCIPAL"<<endl;
         cout<<endl;
         cout<<" INGRESE LA OPCION DESEADA: ";
@@ -271,7 +261,7 @@ void menuSocios(){
     case 2: system("cls");
          if(eliminarSocio()>=0){
             cout<<"SOCIO ELIMINADO"<<endl;
-         }else {cout<<"NO SE ENCONTRO CLIENTE CON ESE DNI"<<endl;}
+         }else {cout<<"NO SE ENCONTRO SOCIO CON ESE DNI"<<endl;}
          system("pause");
         break;
     case 3:/*system("cls");
@@ -302,9 +292,6 @@ void menuSocios(){
     case 7:
 
         break;
-    case 8:
-        break;
-
     case 0: estado=false;
         break;
         }

@@ -33,6 +33,9 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="articulos.h" />
+		<Unit filename="configuracion.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="deportes.h" />
 		<Unit filename="fecha.h" />
 		<Unit filename="funcionesgenerales.h" />
