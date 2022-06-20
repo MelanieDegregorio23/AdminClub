@@ -4,7 +4,7 @@
 
 class deporte
 {
-private:
+protected:
     int CodDep;
     int CantCupos;
     float ValorCuota;

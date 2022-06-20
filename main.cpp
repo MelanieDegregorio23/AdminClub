@@ -14,6 +14,8 @@ using namespace std;
 #include "socios.h"
 #include "deportes.h"
 #include "instructores.h"
+#include "pagosMes.h"
+
 
 
 int main()
@@ -29,8 +31,9 @@ int main()
         cout<<" 2. SOCIOS"<<endl;
         cout<<" 3. INSTRUCTORES"<<endl;
         cout<<" 4. ARTICULOS A LA VENTA"<<endl;
-        cout<<" 5. REPORTES"<<endl;
-        cout<<" 6. CONFIGURACION"<<endl;
+        cout<<" 5. AGREGAR PAGOS DEL MES"<<endl;
+        cout<<" 6. REPORTES"<<endl;
+        cout<<" 7. CONFIGURACION"<<endl;
         cout<<" 0. SALIR DE MENU PRINCIPAL"<<endl;
         cout<<endl;
         cout<<" INGRESE LA OPCION DESEADA: ";
@@ -50,10 +53,13 @@ int main()
     case 4:
         menuArticulos();
         break;
-    case 5:
+    case 5:menuPagoMes();
+
+        break;
+    case 6:
         menuReportes();
         break;
-    case 6:menuConfiguracion();
+    case 7:menuConfiguracion();
 
         break;
 

@@ -41,6 +41,7 @@
 		<Unit filename="funcionesgenerales.h" />
 		<Unit filename="instructores.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="pagosMes.h" />
 		<Unit filename="persona.h" />
 		<Unit filename="reportes.h" />
 		<Unit filename="socios.h" />
