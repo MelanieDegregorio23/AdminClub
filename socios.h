@@ -8,7 +8,7 @@ protected:
     int Id;
     Fecha Fechaingreso;
     int IdDeporte;
-    int PagosMes[12];
+
 
 
 public:
@@ -17,7 +17,7 @@ public:
 
         Id=i;
         IdDeporte=d;
-        PagosMes[12]=p;
+
 
 
 
@@ -27,14 +27,13 @@ public:
      void setId (int i){Id=i;}
      void setFechaingreso(Fecha f){Fechaingreso=f;}
      void setIdDeporte (int d){IdDeporte=d;}
-     void setPagosMes (int p){PagosMes[12]=p;}
 
 
 
      Fecha getFechaingreso(){return Fechaingreso;}
      int getId(){return Id;}
      int getIdDeporte(){return IdDeporte;}
-     int getPagosMes(){return PagosMes[12];}
+
 
 
 void Cargar(){
@@ -113,7 +112,11 @@ void listarSocio();
 int listarSociosPorDNI(socio aux);
 int buscarporId( int Id);
 int listarSociosPorId(socio aux);
-
+int contarRegistrosSocio();
+void cargarArchivosocioEnVector(socio *v, int cant);
+void mostrarVectorSocio(persona *v, int cant);
+void listarSocioDinamico();
+void ordenarSocios(persona *v, int);
 
 
 
@@ -222,7 +225,65 @@ int listarSociosPorId(){
     }
     return -1;
 }
+int contarRegistrosSocio(){
+    int pos=0;
+    socio reg;
+    while(reg.LeerEnDisco(pos))pos++;
+    return pos;
+}
+int contarRegistrosSocioBis(){
+    FILE *p;
+    p=fopen("Socios.dat","rb");
+    if(p==NULL) return -1;
+    fseek(p,0,2);
+    int cant=ftell(p)/sizeof(socio);
+    fclose(p);
+    return cant;
+}
 
+
+
+void cargarArchivosocioEnVector(socio *v, int cant){
+    for(int pos=0;pos<cant;pos++){
+        v[pos].LeerEnDisco(pos);
+    }
+}
+
+void mostrarVectorSocio(persona *v, int cant){
+    for(int pos=0;pos<cant;pos++){
+        v[pos].Mostrar();
+        cout<<endl;
+    }
+}
+
+void listarSocioDinamico(){
+    int cant=contarRegistrosSocioBis();
+    if(cant<=0) exit(1);
+    socio*vec;
+    vec=new socio[cant];
+    if(vec==NULL) exit(2);
+    cargarArchivosocioEnVector(vec,cant);
+    ordenarSocios(vec, cant);
+    mostrarVectorSocio(vec,cant);
+    delete vec;
+}
+
+void ordenarSocios(persona *vec, int cantReg){
+    int i, j, posMin=0;
+    persona aux;
+    for(i=0;i<cantReg-1;i++){
+        posMin=i;
+        for(j=i+1;j<cantReg;j++){
+            if(strcmp(vec[j].getApellido(), vec[posMin].getApellido())<0){
+               posMin=j;
+               }
+        }
+        aux=vec[i];
+        vec[i]=vec[posMin];
+        vec[posMin]=aux;
+    }
+
+}
 
 
 
@@ -240,11 +301,10 @@ void menuSocios(){
         cout<<endl;
         cout<<" 1. AGREGAR SOCIO"<<endl;
         cout<<" 2. DAR DE BAJA SOCIO "<<endl;
-        cout<<" 3. INGRESAR PAGO DEL MES"<<endl;
-        cout<<" 4. LISTAR SOCIOS "<<endl;
-        cout<<" 5. LISTAR SOCIOS POR DNI"<<endl;
-        cout<<" 6. LISTAR SOCIOS POR ID"<<endl;
-        cout<<" 7. LISTAR SOCIOS ALFABETICAMENTE"<<endl;
+        cout<<" 3. LISTAR SOCIOS "<<endl;
+        cout<<" 4. LISTAR SOCIOS POR DNI"<<endl;
+        cout<<" 5. LISTAR SOCIOS POR ID"<<endl;
+        cout<<" 6. LISTAR SOCIOS ALFABETICAMENTE"<<endl;
         cout<<" 0. VOLVER AL MENU PRINCIPAL"<<endl;
         cout<<endl;
         cout<<" INGRESE LA OPCION DESEADA: ";
@@ -264,32 +324,27 @@ void menuSocios(){
          }else {cout<<"NO SE ENCONTRO SOCIO CON ESE DNI"<<endl;}
          system("pause");
         break;
-    case 3:/*system("cls");
-            socio aux;
-            PagoMes();
-
-            system("pause");*/
+    case 3: system("cls");
+            listarSocio();
+            system("pause");
 
         break;
     case 4: system("cls");
-            listarSocio();
-            system("pause");
-        break;
-    case 5: system("cls");
             if(listarSociosPorDNI()<0){
                 cout<<"NO SE ENCONTRO CLIENTE CON EL DNI INGRESADO"<<endl;
             }
             system("pause");
-
         break;
-    case 6:system("cls");
+    case 5:system("cls");
         if(listarSociosPorId()<0){
                 cout<<"NO SE ENCONTRO CLIENTE CON EL ID INGRESADO"<<endl;
             }
             system("pause");
 
         break;
-    case 7:
+    case 6:system("cls");
+        listarSocioDinamico();
+        system("pause");
 
         break;
     case 0: estado=false;
