@@ -221,10 +221,9 @@ void menuArticulos(){
         cout<<"2.LISTAR ARTICULOS"<<endl;
         cout<<"3.LISTAR ATICULOS POR CODIGO"<<endl;
         cout<<"4.LISTAR ARTICULOS POR PRECIO"<<endl;
-        cout<<"5.REGISTRAR VENTA"<<endl;
-        cout<<"6.ACTUALIZAR STOCK"<<endl;
-        cout<<"7.ELIMINAR ARTICULO"<<endl;
-        cout<<"8.MODIFICAR PRECIO"<<endl;
+        cout<<"5.ACTUALIZAR STOCK"<<endl;
+        cout<<"6.ELIMINAR ARTICULO"<<endl;
+        cout<<"7.MODIFICAR PRECIO"<<endl;
         cout<<"0. VOLVER AL MENU PRINCIPAL"<<endl;
         cout<<endl;
         cout<<"INGRESE LA OPCION DESEADA: "<<endl;
@@ -258,18 +257,17 @@ void menuArticulos(){
         }
         system("pause");
         break;
+
     case 5:
         break;
-    case 6:
-        break;
-    case 7: system("cls");
+    case 6: system("cls");
          if(eliminarArticulo()>0){
             cout<<"ARTICULO ELIMINADO "<<endl;
             }
         else{ cout<<"NO SE ENCONTRO ARTICULO CON ESE CODIGO"<<endl;}
         system("pause");
         break;
-    case 8:if(cambiarPrecio()>=0){
+    case 7:if(cambiarPrecio()>=0){
             cout<<"CAMBIO EXITOSO"<<endl;
         }else{ cout<<"NO HAY ARTICULO CON ESE CODIGO"<<endl; }
         system("pause");
