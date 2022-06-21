@@ -30,11 +30,12 @@ int main()
         cout<<" 1. DEPORTES"<<endl;
         cout<<" 2. SOCIOS"<<endl;
         cout<<" 3. INSTRUCTORES"<<endl;
-        cout<<" 4. ARTICULOS A LA VENTA"<<endl;
-        cout<<" 5. AGREGAR PAGOS DEL MES"<<endl;
-        cout<<" 6. REPORTES"<<endl;
-        cout<<" 7. CONFIGURACION"<<endl;
-        cout<<" 0. SALIR DE MENU PRINCIPAL"<<endl;
+        cout<<" 4. ARTICULOS"<<endl;
+        cout<<" 5. REGISTRAR PAGO"<<endl;
+        cout<<" 6. REGISTRAR VENTA"<<endl;
+        cout<<" 7. REPORTES"<<endl;
+        cout<<" 8. CONFIGURACION"<<endl;
+        cout<<" 9. SALIR DE MENU PRINCIPAL"<<endl;
         cout<<endl;
         cout<<" INGRESE LA OPCION DESEADA: ";
         cin>>opc;
@@ -53,13 +54,16 @@ int main()
     case 4:
         menuArticulos();
         break;
+
     case 5:menuPagoMes();
 
-        break;
     case 6:
+        MenuVentas();
+        break;
+    case 7:
         menuReportes();
         break;
-    case 7:menuConfiguracion();
+    case 8:menuConfiguracion();
 
         break;
 
