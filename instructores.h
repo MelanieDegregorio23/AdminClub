@@ -74,6 +74,11 @@ public:
 
 
 ///PROTOTIPOS
+void mostrarVectorInstructor( instructor *v, int cant);
+void ordenarInstructor(instructor *vec, int cantReg);
+void cargarArchivoInstructorVector(instructor *v, int cant);
+int CantidadRegistrosInstructores();
+void listarInstrucDinamico();
 void menuInstructores();
 int cargarInstructor(instructor aux);
 int buscarDNI(int dni);
@@ -85,7 +90,59 @@ void listarPorID( instructor aux);
 void mostrarPorPosicion(int pos);
 void listarPorActividad(instructor aux);
 
+
 ///DESARROLLO
+
+void mostrarVectorInstructor( instructor *v, int cant){
+    for(int pos=0;pos<cant;pos++){
+        v[pos].Mostrar();
+        cout<<endl;
+    }
+}
+
+void ordenarInstructor(instructor *vec, int cantReg){
+    int i, j, posMin=0;
+    instructor aux;
+    for(i=0;i<cantReg-1;i++){
+        posMin=i;
+        for(j=i+1;j<cantReg;j++){
+            if(strcmp(vec[j].getApellido(), vec[posMin].getApellido())<0){
+               posMin=j;
+               }
+        }
+        aux=vec[i];
+        vec[i]=vec[posMin];
+        vec[posMin]=aux;
+    }
+
+}
+
+
+void cargarArchivoInstructorVector(instructor *v, int cant){
+    for(int pos=0;pos<cant;pos++){
+        v[pos].leerEnDisco(pos);
+    }
+}
+
+
+int CantidadRegistrosInstructores(){
+    int pos=0;
+    instructor reg;
+    while(reg.leerEnDisco(pos))pos++;
+    return pos;
+}
+
+void listarInstrucDinamico(){
+    int cant = CantidadRegistrosInstructores();
+    if(cant<=0) exit(1);
+    instructor *vec;
+    vec=new instructor[cant];
+    if(vec==NULL) exit(2);
+    cargarArchivoInstructorVector(vec,cant);
+    ordenarInstructor(vec, cant);
+    mostrarVectorInstructor(vec,cant);
+    delete vec;
+}
 
 void listarPorActividad(instructor aux){
     system("cls");
@@ -287,7 +344,9 @@ void menuInstructores(){
         system("pause");
         break;
     case 4:
-        //a desarrollar
+        system("cls");
+        listarInstrucDinamico();
+        system("pause");
         break;
     case 5:
         system("cls");

@@ -165,7 +165,6 @@ void menuArticulos(){
     system("cls");
     Articulo aux;
     int opc;
-    Articulo aux;
     bool estado = true;
        while (estado==true){
 
