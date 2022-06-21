@@ -200,6 +200,7 @@ void menuArticulos(){
 
     int opc;
     bool estado = true;
+    Articulo aux;
        while (estado==true){
         system("cls");
         cout << " ________________________" << endl << endl;

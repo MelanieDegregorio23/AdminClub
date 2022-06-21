@@ -160,7 +160,6 @@ bool estado=true;
         cout<<"1. AGREGAR VENTAS"<<endl;
         cout<<"2. LISTAR VENTAS POR ID"<<endl;
         cout<<"3. LISTAR TODAS LAS VENTAS"<<endl;
-        cout<<"4. MODIFICAR CANTIDAD"<<endl;
         cout<<"------------------"<<endl;
         cout<<"0. VOLVER AL MENU PRINCIPAL"<<endl;
         cout<<endl;
@@ -170,7 +169,7 @@ bool estado=true;
     case 1: system("cls");
             if(AgregarVentas(aux)==1){
             cout<<"VENTA REGISTRADA"<<endl;
-            }else{cout<<"error de archivo"<<endl;}
+            }else{cout<<"NO SE PUDO REGISTRAR LA VENTA"<<endl;}
             system("pause");
         break;
     case 2:
