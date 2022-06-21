@@ -197,7 +197,7 @@ int cambiarPrecio(){
 
 void menuArticulos(){
 
-    Articulo aux;
+
     int opc;
     bool estado = true;
        while (estado==true){
