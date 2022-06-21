@@ -92,12 +92,15 @@ int ModificarEnDisco(int pos){
 ///PROTOTIPOS
 
 void menuPagoMes();
-int buscarpordep();
 int agregarPagos(pagos aux);
 float buscarValordeCuota(int depo);
 void listarPagoporDNI();
 
+
 ///DESARROLLO
+
+
+
 void listarPagoporDNI(){
     pagos aux;
     int dni,pos=0;
@@ -166,7 +169,6 @@ void menuPagoMes()
         cout<<endl;
         cout<<" 1. AGREGAR PAGOS"<<endl;
         cout<<" 2. LISTAR PAGOS POR DNI DE SOCIO"<<endl;
-        cout<<" 3. LISTAR VALOR DE CUOTA"<<endl;
         cout<<" 0. VOLVER AL MENU PRINCIPAL"<<endl;
         cout<<endl;
         cout<<" INGRESE LA OPCION DESEADA: ";
@@ -185,11 +187,7 @@ void menuPagoMes()
             listarPagoporDNI();
          system("pause");
         break;
-    case 3: system("cls");
 
-            system("pause");
-
-        break;
     case 0: estado=false;
         break;
         }

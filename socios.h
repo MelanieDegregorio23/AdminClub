@@ -103,6 +103,8 @@ int ModificarEnDisco(int pos){
 
 };
 
+///PROTOTIPOS
+
 void menuSocios();
 int agregarSocio(socio aux);
 int eliminarSocio();
@@ -114,11 +116,11 @@ int buscarporId( int Id);
 int listarSociosPorId(socio aux);
 int contarRegistrosSocio();
 void cargarArchivosocioEnVector(socio *v, int cant);
-void mostrarVectorSocio(persona *v, int cant);
+void mostrarVectorSocio(socio *v, int cant);
 void listarSocioDinamico();
-void ordenarSocios(persona *v, int);
+void ordenarSocios(socio *v, int);
 
-
+///DESARROLLO
 
 
 int agregarSocio(socio aux){
@@ -249,7 +251,7 @@ void cargarArchivosocioEnVector(socio *v, int cant){
     }
 }
 
-void mostrarVectorSocio(persona *v, int cant){
+void mostrarVectorSocio(socio *v, int cant){
     for(int pos=0;pos<cant;pos++){
         v[pos].Mostrar();
         cout<<endl;
@@ -259,7 +261,7 @@ void mostrarVectorSocio(persona *v, int cant){
 void listarSocioDinamico(){
     int cant=contarRegistrosSocioBis();
     if(cant<=0) exit(1);
-    socio*vec;
+    socio *vec;
     vec=new socio[cant];
     if(vec==NULL) exit(2);
     cargarArchivosocioEnVector(vec,cant);
@@ -268,9 +270,9 @@ void listarSocioDinamico(){
     delete vec;
 }
 
-void ordenarSocios(persona *vec, int cantReg){
+void ordenarSocios(socio *vec, int cantReg){
     int i, j, posMin=0;
-    persona aux;
+    socio aux;
     for(i=0;i<cantReg-1;i++){
         posMin=i;
         for(j=i+1;j<cantReg;j++){
