@@ -32,6 +32,7 @@ public:
      cin>>Pu;
      cout<<"Ingrese la Cantidad en Stock :  "<<endl;
      cin>>Stock;
+     Estado=true;
  }
   void Mostrar(){
     if(Estado==true){
@@ -78,9 +79,9 @@ int modificarEnDisco(int pos){
 
 ///PROTOTIPOS
 void menuArticulos();
+int buscarporCodigoArt(const char *cod);
 int agregarArticulo(Articulo aux);
 int listarArticulos();
-int buscarPorCodigo(const char *codigo);
 int buscarPorPrecio(float *Pu);
 int listarArticuloCod();
  int listarArticuloPrecio();
@@ -88,11 +89,23 @@ int eliminarArticulo();
 int cambiarPrecio();
 ///FUNCIONES
 
+int buscarporCodigoArt(const char* cod){
+    Articulo reg;
+    int pos=0;
+    while(reg.leerEnDisco(pos)){
+        if(strcmp(reg.getCodigoAr(), cod)==0){
+            return pos;
+        }
+        pos++;
+    }
+    return -1;
+}
+
 int agregarArticulo(Articulo aux){///NO PERMITE INGRESAR CODIGOS QUE FUERON ELIMINADOS
     char codigo[5];
     aux.Cargar();
     strcpy(codigo, aux.getCodigoAr());
-    if(buscarPorCodigo(codigo)<0){ ///NO SE ENCONTRO NADA CON ESE CODIGO
+    if(buscarporCodigoArt(codigo)<0){ ///NO SE ENCONTRO NADA CON ESE CODIGO
         aux.grabarEnDisco();
             return 1;
     }
@@ -101,7 +114,7 @@ int agregarArticulo(Articulo aux){///NO PERMITE INGRESAR CODIGOS QUE FUERON ELIM
 }
 int listarArticulos(){
     Articulo aux;
-    int pos =0, lectura=0;
+    int pos=0, lectura=0;
     while(aux.leerEnDisco(pos)==1){
         lectura=1;
         aux.Mostrar();
@@ -146,11 +159,15 @@ int listarArticulos(){
     char codigo[5];
     cout<<"Ingresar Codigo:  ";
     cin>>codigo;
-    pos = buscarPorCodigo(codigo);
+    pos = buscarporCodigoArt(codigo);
     if(pos>=0){
         system("cls");
         aux.leerEnDisco(pos);
-        aux.Mostrar();
+
+             aux.Mostrar();
+
+
+
         return pos;
     }
     return -1;
@@ -162,7 +179,7 @@ int eliminarArticulo(){
     int pos;
     cout<<"INGRESE EL CODIGO DEL ARTICULO : ";
     cin>>codigo;
-    pos = buscarPorCodigo(codigo);
+    pos = buscarporCodigoArt(codigo);
     if(pos>=0){
         aux.leerEnDisco(pos);
         aux.setEstado(false);
@@ -178,7 +195,7 @@ int cambiarPrecio(){
     char codigo[5];
     cout<<"Ingrese el codigo del Articulo  : ";
     cin>>codigo;
-    pos=buscarPorCodigo(codigo);
+    pos=buscarporCodigoArt(codigo);
 
     if(pos>=0){
         cout<<"Ingresar el nuevo Precio Unitario (PU):  ";
@@ -249,9 +266,8 @@ void menuArticulos(){
         system("pause");
         break;
 
-    case 5:
-        break;
-    case 6: system("cls");
+
+    case 5: system("cls");
 
          if(eliminarArticulo()>0){
             cout<<"ARTICULO ELIMINADO "<<endl;
@@ -259,7 +275,7 @@ void menuArticulos(){
         else{ cout<<"NO SE ENCONTRO ARTICULO CON ESE CODIGO"<<endl;}
         system("pause");
         break;
-    case 7:if(cambiarPrecio()>=0){
+    case 6:if(cambiarPrecio()>=0){
 
             cout<<"CAMBIO EXITOSO"<<endl;
         }else{ cout<<"NO HAY ARTICULO CON ESE CODIGO"<<endl; }

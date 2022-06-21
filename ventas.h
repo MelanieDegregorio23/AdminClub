@@ -133,7 +133,9 @@ int AgregarVentas(Venta aux){
     posArt = buscarPorCodigo( aux.getCodArt());
     posDNI = buscarporDNI( aux.getDNI());
     if( posDNI>=0 && posArt>=0){
+            cout<<"existen los articulos y socios "<<endl;
         float importe=generarImpor(cantV, posArt);
+        cout<<"importe : "<<importe<<endl;
         aux.setImporte(importe);
         actualizarStockVendido(cantV, posArt);
         aux.grabarEnDisco();
