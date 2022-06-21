@@ -210,8 +210,11 @@ void menuArticulos(){
         cout<<"2.LISTAR ARTICULOS"<<endl;
         cout<<"3.LISTAR ARTICULOS POR CODIGO"<<endl;
         cout<<"4.LISTAR ARTICULOS POR PRECIO"<<endl;
+
         cout<<"5.ELIMINAR ARTICULO"<<endl;
         cout<<"6.MODIFICAR PRECIO"<<endl;
+
+
         cout<<"0. VOLVER AL MENU PRINCIPAL"<<endl;
         cout<<endl;
         cout<<"INGRESE LA OPCION DESEADA: "<<endl;
@@ -246,14 +249,24 @@ void menuArticulos(){
         system("pause");
         break;
 
+<<<<<<< HEAD
     case 5: system("cls");
+=======
+    case 5:
+        break;
+    case 6: system("cls");
+>>>>>>> 1ba9835914a4d1901633b50272d6f21e41964f9c
          if(eliminarArticulo()>0){
             cout<<"ARTICULO ELIMINADO "<<endl;
             }
         else{ cout<<"NO SE ENCONTRO ARTICULO CON ESE CODIGO"<<endl;}
         system("pause");
         break;
+<<<<<<< HEAD
     case 6:if(cambiarPrecio()>=0){
+=======
+    case 7:if(cambiarPrecio()>=0){
+>>>>>>> 1ba9835914a4d1901633b50272d6f21e41964f9c
             cout<<"CAMBIO EXITOSO"<<endl;
         }else{ cout<<"NO HAY ARTICULO CON ESE CODIGO"<<endl; }
         system("pause");
