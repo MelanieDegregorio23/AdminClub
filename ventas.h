@@ -1,5 +1,7 @@
 #ifndef VENTAS_H_INCLUDED
 #define VENTAS_H_INCLUDED
+
+#include "socios.h"
 class Venta{
 private:
     int ID, Cant, DNI;
@@ -85,37 +87,71 @@ void Mostrar(){
 
 /*PROTOTIPO*/
 void MenuVentas();
+int buscarPorCodigo(const char *v);
 int AgregarVentas(Venta aux);
-void ListarVentas();
+int ListarVentas();
 int ListarID();
 int buscarporid(int id);
-
+float generarImpor( int Cant, int pos);
+void actualizarStockVendido(int cant, int pos);
 
 
 /*FUNCIONES*/
+void actualizarStockVendido(int cant, int pos){
+    Articulo reg;
+    int stock;
+    reg.leerEnDisco(pos);
+    stock = reg.getstock()-cant;
+    reg.setStock(stock);
+    reg.modificarEnDisco(pos);
+}
+
+float generarImpor( int Cant, int pos){
+    float importe;
+    Articulo reg;
+    reg.leerEnDisco(pos);
+    importe = reg.getPu()*Cant;
+    return importe;
+}
+
+int buscarPorCodigo(const char *cod){
+    Venta aux;
+    int pos=0;
+    while(aux.leerEnDisco(pos)==1){
+        if(strcmp(aux.getCodArt(), cod)==0){
+            return pos;
+        }
+        pos++;
+    }
+    return -1;
+}
 
 int AgregarVentas(Venta aux){
-    int posArt, posDNI;
+    int posArt, posDNI, cantV;
     aux.cargar();
+     cantV = aux.getCant();
     posArt = buscarPorCodigo( aux.getCodArt());
-    posDNI = buscarPorDNI( aux.getDNI() );
+    posDNI = buscarporDNI( aux.getDNI());
     if( posDNI>=0 && posArt>=0){
-        float importe=generarImpor(aux, posArt);
+        float importe=generarImpor(cantV, posArt);
         aux.setImporte(importe);
+        actualizarStockVendido(cantV, posArt);
         aux.grabarEnDisco();
         return 1;}
   return -1;
 }
 
-void ListarVentas(){
+int  ListarVentas(){
     Venta aux;
-    int pos =0;
+    int pos =0,contador=0;
     while(aux.leerEnDisco(pos)==1){
+        contador++;
         aux.Mostrar();
         cout<<endl<<endl;
         pos++;
 
     }
+    return contador;
 
 
 }
@@ -138,12 +174,14 @@ int ListarID(){
     cout<<"INGRESE ID : "<<endl;
     cin>>id;
     pos = buscarporid(id);
-    if(pos>=0){
-        system("cls");
-        aux.leerEnDisco(pos);
+    system("cls");
+    while(aux.leerEnDisco(pos)){
         aux.Mostrar();
-        return pos;
+        cout<<endl;
+        pos++;
     }
+
+
     return -1;
 
 
@@ -154,8 +192,9 @@ Venta aux;
 bool estado=true;
     while(estado==true){
         system("cls");
-        cout<<"MENU VENTAS"<<endl;
-        cout<<"------------------"<<endl;
+        cout<<" ________________________"<<endl<<endl;
+        cout<<"       MENU VENTAS"<<endl;
+        cout<<" ________________________"<<endl<<endl;
         cout<<endl;
         cout<<"1. AGREGAR VENTAS"<<endl;
         cout<<"2. LISTAR VENTAS POR ID"<<endl;
@@ -176,14 +215,16 @@ bool estado=true;
             system("cls");
 
             if(ListarID()<0){
-                cout<<"EL ID NO CORRESPONDE A UNA VENTA: "<<endl;
+                cout<<"EL ID NO CORRESPONDE A UNA VENTA "<<endl;
             }
             system("pause");
             break;
     case 3:
             system("cls");
 
-            ListarVentas();
+            if(ListarVentas()==0){
+                cout<<"NO HAY VENTAS REGISTRADAS"<<endl;
+            }
             system("pause");
         break;
     case 4:

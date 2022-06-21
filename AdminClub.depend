@@ -1,0 +1,45 @@
+# depslib dependency file v1.0
+1655793301 source:c:\users\melin\desktop\adminclub\main.cpp
+	<iostream>
+	<cstdlib>
+	<cstdio>
+	<string.h>
+	"configuracion.h"
+	"fecha.h"
+	"funcionesgenerales.h"
+	"persona.h"
+	"articulos.h"
+	"reportes.h"
+	"socios.h"
+	"deportes.h"
+	"instructores.h"
+	"pagosMes.h"
+	"ventas.h"
+
+1655179997 c:\users\melin\desktop\adminclub\configuracion.h
+
+1655176222 c:\users\melin\desktop\adminclub\fecha.h
+
+1655176222 c:\users\melin\desktop\adminclub\funcionesgenerales.h
+
+1655179997 c:\users\melin\desktop\adminclub\persona.h
+
+1655791625 c:\users\melin\desktop\adminclub\articulos.h
+	"funcionesgenerales.h"
+
+1655176222 c:\users\melin\desktop\adminclub\reportes.h
+
+1655791458 c:\users\melin\desktop\adminclub\socios.h
+
+1655791458 c:\users\melin\desktop\adminclub\deportes.h
+	"instructores.h"
+
+1655791075 c:\users\melin\desktop\adminclub\instructores.h
+
+1655791458 c:\users\melin\desktop\adminclub\pagosmes.h
+	"deportes.h"
+	"socios.h"
+
+1655794966 c:\users\melin\desktop\adminclub\ventas.h
+	"socios.h"
+
