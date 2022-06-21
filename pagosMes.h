@@ -14,11 +14,13 @@ public:
     void setidpagos(int i){idpagos=i;}
     void setdni(int d){dni=d;}
     void setfechadePago(Fecha f){fechadePago=f;}
+    void setValorCuota(float x){valorCuota=x;}
 
 
     int getidpagos(){return idpagos;}
     int getdni(){return dni;}
     Fecha getfechadePago(){return fechadePago;}
+    float getValorCuota(){return valorCuota;}
 
 
     void Cargar(){
@@ -87,10 +89,26 @@ int ModificarEnDisco(int pos){
 
 };
 
+///PROTOTIPOS
+
 int buscarpordep();
 int agregarPagos(pagos aux);
+float buscarValordeCuota(int depo);
 
-int agregarPagos(pagos aux){
+///DESARROLLO
+
+float buscarValordeCuota(int depo){
+    int pos;
+    float valor;
+    deporte reg;
+    pos = buscarporCod(depo);
+    if(reg.LeerEnDisco(pos)==1){
+        valor= reg.getValorCuota();
+    }
+
+    return valor;
+}
+/*int agregarPagos(pagos aux){
     int dni,pos=0;
     socio obj;
     deporte reg;
@@ -104,35 +122,29 @@ int agregarPagos(pagos aux){
 
     return -1;
 }
+*/
 
-int buscarpordep(){
-    socio aux;
-    deporte reg;
-    pagos obj;
-    int contador=0;
-    int pago;
-    while(aux.LeerEnDisco(contador)==1){
-        if(aux.getIdDeporte()==reg.getCodDep()){
-            obj.GrabarEnDisco();
-            return contador;
-
+int agregarPagos(pagos aux){
+    int dni, pos;
+    socio obj;
+    aux.Cargar();
+    dni = aux.getdni();
+    pos = buscarporDNI(dni);
+    cout<<"posicion de dni ingresado"<<pos<<endl;
+    if(pos>=0){ //encontro dni en el registro
+        if(obj.LeerEnDisco(pos)==1){
+            int deporte = obj.getIdDeporte();
+            cout<<"encontre el codigo de deporte"<<endl;
+            float valorCuota = buscarValordeCuota(deporte);
+            cout<<"VALOR DE CUOTA ENCONTRADO POR EL CODIGO: "<<valorCuota<<endl;
+            aux.setValorCuota(valorCuota);
+            aux.GrabarEnDisco();
+            return 1;
         }
-        contador++;
-    }
 
+    }
     return -1;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -151,7 +163,7 @@ void menuPagoMes()
        while (estado==true){
         system("cls");
         cout<<" ________________________"<<endl<<endl;
-        cout<<"      MENU PAGOS MENSUALES "<<endl;
+        cout<<"   MENU PAGOS MENSUALES "<<endl;
         cout<<" ________________________"<<endl<<endl;
 
         cout<<endl;
