@@ -38,9 +38,9 @@ public:
 
 };
 void Mostrar(){
-        cout<<"ID DE PAGOS: "<<endl<<idpagos<<endl;
-        cout<<"DNI DE SOCIO: "<<endl<<dni<<endl;
-        cout<<"FECHA DE PAGO: "<<endl;
+        cout<<"ID DE PAGOS: "<<idpagos<<endl;
+        cout<<"DNI DE SOCIO: "<<dni<<endl;
+        cout<<"FECHA DE PAGO: ";
         fechadePago.Mostrar();
 
 
@@ -91,11 +91,31 @@ int ModificarEnDisco(int pos){
 
 ///PROTOTIPOS
 
+void menuPagoMes();
 int buscarpordep();
 int agregarPagos(pagos aux);
 float buscarValordeCuota(int depo);
+void listarPagoporDNI();
 
 ///DESARROLLO
+void listarPagoporDNI(){
+    pagos aux;
+    int dni,pos=0;
+    cout<<"INGRESE DNI DE SOCIO : "<<endl;
+    cin>>dni;
+    system("cls");
+    if(buscarporDNI(dni)>=0){
+        while(aux.LeerEnDisco(pos)==1){
+        if(aux.getdni()==dni){
+            aux.Mostrar();
+            cout<<endl;
+        }
+        pos++;
+    }
+
+    }
+
+}
 
 float buscarValordeCuota(int depo){
     int pos;
@@ -108,21 +128,7 @@ float buscarValordeCuota(int depo){
 
     return valor;
 }
-/*int agregarPagos(pagos aux){
-    int dni,pos=0;
-    socio obj;
-    deporte reg;
-    aux.Cargar();
-    dni=obj.getDNI();
-    if(buscarporDNI(dni)>0){
 
-        aux.GrabarEnDisco();
-        return 1;
-    }
-
-    return -1;
-}
-*/
 
 int agregarPagos(pagos aux){
     int dni, pos;
@@ -130,13 +136,10 @@ int agregarPagos(pagos aux){
     aux.Cargar();
     dni = aux.getdni();
     pos = buscarporDNI(dni);
-    cout<<"posicion de dni ingresado"<<pos<<endl;
     if(pos>=0){ //encontro dni en el registro
         if(obj.LeerEnDisco(pos)==1){
             int deporte = obj.getIdDeporte();
-            cout<<"encontre el codigo de deporte"<<endl;
             float valorCuota = buscarValordeCuota(deporte);
-            cout<<"VALOR DE CUOTA ENCONTRADO POR EL CODIGO: "<<valorCuota<<endl;
             aux.setValorCuota(valorCuota);
             aux.GrabarEnDisco();
             return 1;
@@ -145,12 +148,6 @@ int agregarPagos(pagos aux){
     }
     return -1;
 }
-
-
-
-
-
-
 
 
 
@@ -185,7 +182,7 @@ void menuPagoMes()
             system("pause");
         break;
     case 2: system("cls");
-
+            listarPagoporDNI();
          system("pause");
         break;
     case 3: system("cls");
