@@ -27,6 +27,7 @@ public:
      void setId (int i){Id=i;}
      void setFechaingreso(Fecha f){Fechaingreso=f;}
      void setIdDeporte (int d){IdDeporte=d;}
+     void setNombre(const char *v){strcpy(Nombre, v);}
 
 
 
@@ -111,7 +112,7 @@ int eliminarSocio();
 int buscarporDNI(int DNI, bool borrado=false);
 void PagoMes();
 void listarSocio();
-int listarSociosPorDNI(socio aux);
+int listarSociosPorDNI();
 int buscarporId( int Id);
 int listarSociosPorId(socio aux);
 int contarRegistrosSocio();
@@ -119,15 +120,66 @@ void cargarArchivosocioEnVector(socio *v, int cant);
 void mostrarVectorSocio(socio *v, int cant);
 void listarSocioDinamico();
 void ordenarSocios(socio *v, int);
+void menuSociosMod();
+int modificarNombreSocios();
 
 ///DESARROLLO
+int modificarNombreSocios(){
+    socio aux;
+    int dni, pos;
+    char nombre[20];
+
+    pos = listarSociosPorDNI();
+    if(pos>=0){
+
+         cout<<"INGRESAR NUEVO NOMBRE : "<<endl;
+         cin>>nombre;
+         aux.LeerEnDisco(pos);
+         aux.setNombre(nombre);
+         aux.ModificarEnDisco(pos);
+         return pos;
 
 
+    }
+return -1;
+}
+
+void menuSociosMod(){
+    system("cls");
+    socio aux;
+    int opc;
+    bool estado = true;
+       while (estado==true){
+        system("cls");
+        cout<<" ___________________________________"<<endl<<endl;
+        cout<<"      MENU MODIFICACION SOCIOS"<<endl;
+        cout<<" ____________________________________"<<endl<<endl;
+
+        cout<<endl;
+        cout<<" 1. MODIFICAR NOMBRE"<<endl;
+        cout<<" 0. VOLVER AL MENU ANTERIOR"<<endl;
+        cout<<endl;
+        cout<<" INGRESE LA OPCION DESEADA: ";
+        cin>>opc;
+        switch(opc){
+    case 1:
+        system("cls");
+       if( modificarNombreSocios()>=0){cout<<"MODIFICACION EXITOSA "<<endl;}else{
+        cout<<"NO SE PUDO REALIZAR LA MODIFICACION "<<endl;
+       }
+        system("pause");
+        break;
+    case 0: estado =false;
+    break;
+
+        }
+}
+}
 int agregarSocio(socio aux){
     int dni;
     aux.Cargar();
     dni=aux.getDNI();
-    if(buscarporDNI(dni)<0){///si encuentra que no esta el dni, lo carga y lo agrega
+    if(buscarporDNI(dni)<=0){///si encuentra que no esta el dni, lo carga y lo agrega
         aux.GrabarEnDisco();
         return 1;
     }
@@ -307,6 +359,7 @@ void menuSocios(){
         cout<<" 4. LISTAR SOCIOS POR DNI"<<endl;
         cout<<" 5. LISTAR SOCIOS POR ID"<<endl;
         cout<<" 6. LISTAR SOCIOS ALFABETICAMENTE"<<endl;
+        cout<<" 7. MODIFICAR CAMPOS"<<endl;
         cout<<" 0. VOLVER AL MENU PRINCIPAL"<<endl;
         cout<<endl;
         cout<<" INGRESE LA OPCION DESEADA: ";
@@ -348,6 +401,11 @@ void menuSocios(){
         listarSocioDinamico();
         system("pause");
 
+        break;
+    case 7:
+        system("cls");
+        menuSociosMod();
+        system("pause");
         break;
     case 0: estado=false;
         break;

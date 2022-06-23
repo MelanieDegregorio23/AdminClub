@@ -115,10 +115,10 @@ float generarImpor( int Cant, int pos){
 }
 
 int buscarPorCodigo(const char *cod){
-    Venta aux;
+    Articulo aux;
     int pos=0;
     while(aux.leerEnDisco(pos)==1){
-        if(strcmp(aux.getCodArt(), cod)==0){
+        if(strcmp(aux.getCodigoAr(), cod)==0){
             return pos;
         }
         pos++;
@@ -129,17 +129,17 @@ int buscarPorCodigo(const char *cod){
 int AgregarVentas(Venta aux){
     int posArt, posDNI, cantV;
     aux.cargar();
-     cantV = aux.getCant();
-    posArt = buscarPorCodigo( aux.getCodArt());
-    posDNI = buscarporDNI( aux.getDNI());
+    cantV = aux.getCant();
+    posArt = buscarPorCodigo(aux.getCodArt());
+    posDNI = buscarporDNI(aux.getDNI());
     if( posDNI>=0 && posArt>=0){
-            cout<<"existen los articulos y socios "<<endl;
-        float importe=generarImpor(cantV, posArt);
-        cout<<"importe : "<<importe<<endl;
-        aux.setImporte(importe);
-        actualizarStockVendido(cantV, posArt);
-        aux.grabarEnDisco();
-        return 1;}
+            float importe=generarImpor(cantV, posArt);
+            cout<<"IMPORTE: "<<importe<<endl;
+            aux.setImporte(importe);
+            actualizarStockVendido(cantV, posArt);
+            aux.grabarEnDisco();
+        return 1;
+        }
   return -1;
 }
 
