@@ -32,7 +32,7 @@ int main()
         cout<<" 2. SOCIOS"<<endl;
         cout<<" 3. INSTRUCTORES"<<endl;
         cout<<" 4. ARTICULOS"<<endl;
-        cout<<" 5. REGISTRAR PAGO"<<endl;
+        cout<<" 5. REGISTRAR PAGO DE LA CUOTA"<<endl;
         cout<<" 6. VENTAS"<<endl;
         cout<<" 7. REPORTES"<<endl;
         cout<<" 8. CONFIGURACION"<<endl;

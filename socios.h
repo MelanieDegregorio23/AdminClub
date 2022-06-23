@@ -341,6 +341,63 @@ void ordenarSocios(socio *vec, int cantReg){
 
 
 
+
+void submenuListar(){
+
+    system("cls");
+    socio aux;
+    int opc;
+    bool estado = true;
+       while (estado==true){
+        system("cls");
+        cout<<" ___________________________________"<<endl<<endl;
+        cout<<"      MENU DE LISTADOS"<<endl;
+        cout<<" ____________________________________"<<endl<<endl;
+
+        cout<<endl;
+        cout<<" 1. LISTAR SOCIOS "<<endl;
+        cout<<" 2. LISTAR SOCIOS POR DNI"<<endl;
+        cout<<" 3. LISTAR SOCIOS POR ID"<<endl;
+        cout<<" 4. LISTAR SOCIOS ALFABETICAMENTE"<<endl;
+        cout<<" 0. VOLVER AL MENU ANTERIOR"<<endl;
+        cout<<endl;
+        cout<<" INGRESE LA OPCION DESEADA: ";
+        cin>>opc;
+        switch(opc){
+    case 1:
+        system("cls");
+        listarSocio();
+        system("pause");
+        break;
+         case 2:
+        system("cls");
+        if(listarSociosPorDNI()<0){
+            cout<<"NO SE ENCONTRO CLIENTE CON EL DNI INGRESADO"<<endl;
+            }
+        system("pause");
+        break;
+            case 3:
+        system("cls");
+                if(listarSociosPorId()<0){
+                cout<<"NO SE ENCONTRO CLIENTE CON EL ID INGRESADO"<<endl;
+            }
+        system("pause");
+        break;
+         case 4:
+        system("cls");
+           listarSocioDinamico();
+        system("pause");
+        break;
+    case 0: estado =false;
+    break;
+
+        }
+}
+}
+
+
+
+
 void menuSocios(){
     system("cls");
     socio aux;
@@ -354,12 +411,9 @@ void menuSocios(){
 
         cout<<endl;
         cout<<" 1. AGREGAR SOCIO"<<endl;
-        cout<<" 2. DAR DE BAJA SOCIO "<<endl;
-        cout<<" 3. LISTAR SOCIOS "<<endl;
-        cout<<" 4. LISTAR SOCIOS POR DNI"<<endl;
-        cout<<" 5. LISTAR SOCIOS POR ID"<<endl;
-        cout<<" 6. LISTAR SOCIOS ALFABETICAMENTE"<<endl;
-        cout<<" 7. MODIFICAR CAMPOS"<<endl;
+        cout<<" 2. DAR DE BAJA SOCIO"<<endl;
+        cout<<" 3. MENU DE LISTADOS"<<endl;
+        cout<<" 4. MODIFICAR CAMPOS"<<endl;
         cout<<" 0. VOLVER AL MENU PRINCIPAL"<<endl;
         cout<<endl;
         cout<<" INGRESE LA OPCION DESEADA: ";
@@ -380,29 +434,11 @@ void menuSocios(){
          system("pause");
         break;
     case 3: system("cls");
-            listarSocio();
+            submenuListar();
             system("pause");
 
         break;
-    case 4: system("cls");
-            if(listarSociosPorDNI()<0){
-                cout<<"NO SE ENCONTRO CLIENTE CON EL DNI INGRESADO"<<endl;
-            }
-            system("pause");
-        break;
-    case 5:system("cls");
-        if(listarSociosPorId()<0){
-                cout<<"NO SE ENCONTRO CLIENTE CON EL ID INGRESADO"<<endl;
-            }
-            system("pause");
-
-        break;
-    case 6:system("cls");
-        listarSocioDinamico();
-        system("pause");
-
-        break;
-    case 7:
+    case 4:
         system("cls");
         menuSociosMod();
         system("pause");

@@ -151,7 +151,37 @@ int agregarPagos(pagos aux){
     }
     return -1;
 }
+void submenuListarPagos(){
 
+    system("cls");
+    Articulo aux;
+    int opc;
+    bool estado = true;
+       while (estado==true){
+        system("cls");
+        cout<<" ___________________________________"<<endl<<endl;
+        cout<<"      MENU DE LISTADOS"<<endl;
+        cout<<" ____________________________________"<<endl<<endl;
+
+        cout<<endl;
+        cout<<" 1. LISTAR PAGOS POR DNI DE SOCIO"<<endl;
+        cout<<" 0. VOLVER AL MENU ANTERIOR"<<endl;
+        cout<<endl;
+        cout<<" INGRESE LA OPCION DESEADA: ";
+        cin>>opc;
+        switch(opc){
+    case 1:
+          system("cls");
+            listarPagoporDNI();
+        system("pause");
+        break;
+
+    case 0: estado =false;
+    break;
+
+        }
+}
+}
 
 
 void menuPagoMes()
@@ -167,8 +197,8 @@ void menuPagoMes()
         cout<<" ________________________"<<endl<<endl;
 
         cout<<endl;
-        cout<<" 1. AGREGAR PAGOS"<<endl;
-        cout<<" 2. LISTAR PAGOS POR DNI DE SOCIO"<<endl;
+        cout<<" 1. INGRESAR VALOR DE CUOTA"<<endl;
+        cout<<" 2. MENU DE LISTADOS"<<endl;
         cout<<" 0. VOLVER AL MENU PRINCIPAL"<<endl;
         cout<<endl;
         cout<<" INGRESE LA OPCION DESEADA: ";
@@ -183,9 +213,9 @@ void menuPagoMes()
         }
             system("pause");
         break;
-    case 2: system("cls");
-            listarPagoporDNI();
-         system("pause");
+        case 2: system("cls");
+            submenuListarPagos();
+            system("pause");
         break;
 
     case 0: estado=false;
