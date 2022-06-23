@@ -211,10 +211,55 @@ int cambiarPrecio(){
     }
     return -1;
 }
+void submenuListarArticulos(){
+
+    system("cls");
+    Articulo aux;
+    int opc;
+    bool estado = true;
+       while (estado==true){
+        system("cls");
+        cout<<" ___________________________________"<<endl<<endl;
+        cout<<"      MENU DE LISTADOS"<<endl;
+        cout<<" ____________________________________"<<endl<<endl;
+
+        cout<<endl;
+        cout<<"1. LISTAR ARTICULOS"<<endl;
+        cout<<"2. LISTAR ARTICULOS POR CODIGO"<<endl;
+        cout<<"3. LISTAR ARTICULOS POR PRECIO"<<endl;
+        cout<<"0. VOLVER AL MENU ANTERIOR"<<endl;
+        cout<<endl;
+        cout<<" INGRESE LA OPCION DESEADA: ";
+        cin>>opc;
+        switch(opc){
+    case 1:
+          if(listarArticulos()==0){
+        cout<<"NO HAY ARTICULOS REGISTRADOS "<<endl;
+       }
+        system("pause");
+        break;
+         case 2:
+        system("cls");
+        if(listarArticuloCod()<0){
+            cout<<"NO SE ENCONTRO EL ARTICULO "<<endl;
+        }
+        system("pause");
+        break;
+        case 3:
+        system("cls");
+        if(listarArticuloPrecio()<0){
+            cout<<"NO SE ENCONTRO EL ARTICULO "<<endl;
+        }
+        system("pause");
+        break;
+    case 0: estado =false;
+    break;
+
+        }
+}
+}
 
 void menuArticulos(){
-
-
     int opc;
     bool estado = true;
     Articulo aux;
@@ -223,15 +268,10 @@ void menuArticulos(){
         cout << " ________________________" << endl << endl;
         cout << "      MENU ARTICULOS" << endl;
         cout << " ________________________" << endl << endl;
-        cout<<"1.AGREGAR ARTICULO"<<endl;
-        cout<<"2.LISTAR ARTICULOS"<<endl;
-        cout<<"3.LISTAR ARTICULOS POR CODIGO"<<endl;
-        cout<<"4.LISTAR ARTICULOS POR PRECIO"<<endl;
-
-        cout<<"5.ELIMINAR ARTICULO"<<endl;
-        cout<<"6.MODIFICAR PRECIO"<<endl;
-
-
+        cout<<"1. AGREGAR ARTICULO"<<endl;
+        cout<<"2. ELIMINAR ARTICULO"<<endl;
+        cout<<"3. MENU DE LISTADOS"<<endl;
+        cout<<"4. MODIFICAR PRECIO"<<endl;
         cout<<"0. VOLVER AL MENU PRINCIPAL"<<endl;
         cout<<endl;
         cout<<"INGRESE LA OPCION DESEADA: "<<endl;
@@ -248,26 +288,6 @@ void menuArticulos(){
          break;
 
     case 2: system("cls");
-        if(listarArticulos()==0){
-        cout<<"NO HAY ARTICULOS REGISTRADOS "<<endl;
-       }
-        system("pause");
-        break;
-    case 3:  system("cls");
-        if(listarArticuloCod()<0){
-            cout<<"NO SE ENCONTRO EL ARTICULO "<<endl;
-        }
-        system("pause");
-        break;
-    case 4:system("cls");
-        if(listarArticuloPrecio()<0){
-            cout<<"NO SE ENCONTRO EL ARTICULO "<<endl;
-        }
-        system("pause");
-        break;
-
-
-    case 5: system("cls");
 
          if(eliminarArticulo()>0){
             cout<<"ARTICULO ELIMINADO "<<endl;
@@ -275,7 +295,11 @@ void menuArticulos(){
         else{ cout<<"NO SE ENCONTRO ARTICULO CON ESE CODIGO"<<endl;}
         system("pause");
         break;
-    case 6:if(cambiarPrecio()>=0){
+        case 3: system("cls");
+        submenuListarArticulos();
+        system("pause");
+        break;
+    case 4:if(cambiarPrecio()>=0){
 
             cout<<"CAMBIO EXITOSO"<<endl;
         }else{ cout<<"NO HAY ARTICULO CON ESE CODIGO"<<endl; }

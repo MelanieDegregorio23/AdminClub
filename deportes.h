@@ -317,7 +317,43 @@ int listarPorInstructor(){
 
 
 }
+void submenuListarDeporte(){
 
+    system("cls");
+    deporte aux;
+    int opc;
+    bool estado = true;
+       while (estado==true){
+        system("cls");
+        cout<<" ___________________________________"<<endl<<endl;
+        cout<<"      MENU DE LISTADOS"<<endl;
+        cout<<" ____________________________________"<<endl<<endl;
+
+        cout<<endl;
+        cout<<" 1. LISTAR DEPORTES "<<endl;
+        cout<<" 2. LISTAR DEPORTE POR INSTRUCTOR "<<endl;
+        cout<<" 0. VOLVER AL MENU ANTERIOR"<<endl;
+        cout<<endl;
+        cout<<" INGRESE LA OPCION DESEADA: ";
+        cin>>opc;
+        switch(opc){
+    case 1:
+            system("cls");
+            listarDeporte();
+            system("pause");
+
+        break;
+    case 2:
+            system("cls");
+            listarPorInstructor();
+            system("pause");
+        break;
+    case 0: estado =false;
+    break;
+
+        }
+}
+}
 void menuDeportes()
 {
     deporte aux;
@@ -330,12 +366,11 @@ void menuDeportes()
         cout<<"      MENU DEPORTES"<<endl;
         cout<<" ________________________"<<endl<<endl;
 
-        cout<<" 1. LISTAR DEPORTES "<<endl;
-        cout<<" 2. LISTAR DEPORTES ALFABETICAMENTE "<<endl;
-        cout<<" 3. LISTAR DEPORTE POR INSTRUCTOR "<<endl;
-        cout<<" 4. AGREGAR DEPORTE"<<endl;
-        cout<<" 5. ELIMINAR DEPORTE "<<endl;
-        cout<<" 6. MODIFICAR PAGO DE CUOTA"<<endl;
+
+        cout<<" 1. AGREGAR DEPORTE"<<endl;
+        cout<<" 2. MENU DE LISTADOS"<<endl;
+        cout<<" 3. ELIMINAR DEPORTE "<<endl;
+        cout<<" 4. MODIFICAR PAGO DE CUOTA"<<endl;
         cout<<" 0. VOLVER AL MENU PRINCIPAL"<<endl;
         cout<<endl;
         cout<<" INGRESE LA OPCION DESEADA: ";
@@ -344,22 +379,7 @@ void menuDeportes()
         switch(opc)
         {
 
-        case 1:
-            system("cls");
-            listarDeporte();
-            system("pause");
-
-            break;
-        case 2:
-            break;
-        case 3:system("cls");
-            listarPorInstructor();
-
-
-            system("pause");
-            break;
-        case 4:
-            system("cls");
+        case 1: system("cls");
             if(agregarDeporte(aux)==1)
             {
                 cout<<"EL DEPORTE FUE AGREGADO CON EXITO"<<endl;
@@ -370,9 +390,12 @@ void menuDeportes()
 
             }
             system("pause");
+
+
             break;
-        case 5:
-            system("cls");
+        case 2:submenuListarDeporte();
+            break;
+        case 3:system("cls");
             if(eliminarDeporte()>=0)
             {
                 cout<<"DEPORTE ELIMINADO"<<endl;
@@ -383,15 +406,14 @@ void menuDeportes()
             }
             system("pause");
             break;
-        case 6:
-            system("cls");
+        case 4: system("cls");
 
             if(modificarCuota()>=0){cout<<"SE MODIFICO EL VALOR DE CUOTA CON EXITO "<<endl;}else{
                 cout<<"NO SE PUDO MODIFICAR EL VALOR DE CUOTA "<<endl;
             }
             system("pause");
-            break;
 
+            break;
         case 0:
             estado=false;
             break;

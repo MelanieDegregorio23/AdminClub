@@ -349,6 +349,67 @@ int buscarDNI(int dni){
 }
 
 
+
+
+void submenuListarInstructores(){
+
+    system("cls");
+    instructor aux;
+    int opc;
+    bool estado = true;
+       while (estado==true){
+        system("cls");
+        cout<<" ___________________________________"<<endl<<endl;
+        cout<<"      MENU DE LISTADOS"<<endl;
+        cout<<" ____________________________________"<<endl<<endl;
+
+        cout<<endl;
+        cout<<" 1. LISTAR INSTRUCTORES"<<endl;
+        cout<<" 2. LISTAR INSTRUCTORES ALFABETICAMENTE"<<endl;///
+        cout<<" 3. LISTAR INSCTRUCTORES POR ACTIVIDAD"<<endl;
+        cout<<" 4. LISTAR INSTRUCTOR POR ID  "<<endl;
+        cout<<" 5. LISTAR INSTRUCTOR POR DNI  "<<endl;
+        cout<<" 0. VOLVER AL MENU ANTERIOR"<<endl;
+        cout<<endl;
+        cout<<" INGRESE LA OPCION DESEADA: ";
+        cin>>opc;
+        switch(opc){
+    case 1:
+        system("cls");
+       if( listarInstructores(aux)==0){
+        cout<<"NO HAY INSTRUCTORES REGISTRADOS "<<endl;
+       }
+        system("pause");
+        break;
+         case 2:
+        system("cls");
+        listarInstrucDinamico();
+        system("pause");
+        break;
+        break;
+            case 3:
+        system("cls");
+        listarPorActividad(aux);
+        system("pause");
+        break;
+         case 4:
+         system("cls");
+        listarPorID(aux);
+        system("pause");
+        break;
+        case 5:
+        system("cls");
+        listarPorDNI(aux);
+        system("pause");
+        break;
+    case 0: estado =false;
+    break;
+
+        }
+}
+}
+
+
 void menuInstructores(){
     instructor aux;
     int opc;
@@ -361,12 +422,8 @@ void menuInstructores(){
 
         cout<<" 1. AGREGAR INSTRUCTOR "<<endl;
         cout<<" 2. DAR DE BAJA INSTRUCTOR"<<endl;
-        cout<<" 3. LISTAR INSTRUCTORES"<<endl;
-        cout<<" 4. LISTAR INSTRUCTORES ALFABETICAMENTE"<<endl;///
-        cout<<" 5. LISTAR INSCTRUCTORES POR ACTIVIDAD"<<endl;
-        cout<<" 6. BUSCAR INSTRUCTOR POR ID  "<<endl;
-        cout<<" 7. BUSCAR INSTRUCTOR POR DNI  "<<endl;
-        cout<<" 8. MODIFICAR CAMPOS "<<endl;
+        cout<<" 3. MENU DE LISTADOS"<<endl;
+        cout<<" 4. MODIFICAR CAMPOS "<<endl;
         cout<<" 0. VOLVER AL MENU PRINCIPAL"<<endl;
         cout<<endl;
         cout<<" INGRESE LA OPCION DESEADA: ";
@@ -391,34 +448,10 @@ void menuInstructores(){
         }
 
         break;
-    case 3:
-        system("cls");
-       if( listarInstructores(aux)==0){
-        cout<<"NO HAY INSTRUCTORES REGISTRADOS "<<endl;
-       }
-        system("pause");
+    case 3:submenuListarInstructores();
+
         break;
     case 4:
-        system("cls");
-        listarInstrucDinamico();
-        system("pause");
-        break;
-    case 5:
-        system("cls");
-        listarPorActividad(aux);
-        system("pause");
-        break;
-    case 6:
-         system("cls");
-        listarPorID(aux);
-        system("pause");
-        break;
-    case 7:
-        system("cls");
-        listarPorDNI(aux);
-        system("pause");
-        break;
-    case 8:
         system("cls");
         menuInstructoresMod();
         system("pause");

@@ -188,6 +188,48 @@ int ListarID(){
 
 
 }
+void submenuListarVentas(){
+
+    system("cls");
+    Articulo aux;
+    int opc;
+    bool estado = true;
+       while (estado==true){
+        system("cls");
+        cout<<" ___________________________________"<<endl<<endl;
+        cout<<"      MENU DE LISTADOS"<<endl;
+        cout<<" ____________________________________"<<endl<<endl;
+
+        cout<<endl;
+        cout<<" 1. LISTAR VENTAS POR ID"<<endl;
+        cout<<" 2. LISTAR TODAS LAS VENTAS"<<endl;
+        cout<<" 0. VOLVER AL MENU ANTERIOR"<<endl;
+        cout<<endl;
+        cout<<" INGRESE LA OPCION DESEADA: ";
+        cin>>opc;
+        switch(opc){
+    case 1:
+             system("cls");
+
+            if(ListarID()<0){
+                cout<<"EL ID NO CORRESPONDE A UNA VENTA "<<endl;
+            }
+            system("pause");
+        break;
+         case 2:
+            system("cls");
+
+            if(ListarVentas()==0){
+                cout<<"NO HAY VENTAS REGISTRADAS"<<endl;
+            }
+            system("pause");
+        break;
+    case 0: estado =false;
+    break;
+
+        }
+}
+}
 void MenuVentas(){
 int op;
 Venta aux;
@@ -198,11 +240,10 @@ bool estado=true;
         cout<<"       MENU VENTAS"<<endl;
         cout<<" ________________________"<<endl<<endl;
         cout<<endl;
-        cout<<"1. AGREGAR VENTAS"<<endl;
-        cout<<"2. LISTAR VENTAS POR ID"<<endl;
-        cout<<"3. LISTAR TODAS LAS VENTAS"<<endl;
+        cout<<" 1. AGREGAR VENTAS"<<endl;
+        cout<<" 2. MENU DE LISTADOS"<<endl;
         cout<<"------------------"<<endl;
-        cout<<"0. VOLVER AL MENU PRINCIPAL"<<endl;
+        cout<<" 0. VOLVER AL MENU PRINCIPAL"<<endl;
         cout<<endl;
         cout<<"SELECCIONE UNA DE LAS OPCIONES: "<<endl;
         cin>>op;
@@ -213,25 +254,12 @@ bool estado=true;
             }else{cout<<"NO SE PUDO REGISTRAR LA VENTA"<<endl;}
             system("pause");
         break;
-    case 2:
-            system("cls");
+    case 2:system("cls");
+        submenuListarVentas();
+           system("pause");
 
-            if(ListarID()<0){
-                cout<<"EL ID NO CORRESPONDE A UNA VENTA "<<endl;
-            }
-            system("pause");
             break;
-    case 3:
-            system("cls");
 
-            if(ListarVentas()==0){
-                cout<<"NO HAY VENTAS REGISTRADAS"<<endl;
-            }
-            system("pause");
-        break;
-    case 4:
-
-        break;
     case 0:estado=false;
         break;
 
@@ -243,15 +271,7 @@ bool estado=true;
 
 
 
-
-
-
-
-
-
-
-
-
+    system("cls");
 
 
 }
