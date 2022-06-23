@@ -38,7 +38,7 @@ public:
         cargarCadena(Descripcion, 29);
         cout<<"INGRESAR EL HORARIO EN EL QUE SE DICTAN LAS CLASES"<<endl;
          cargarCadena(Horario, 19);
-        ///valor cuota agregar
+
 
 
 
@@ -166,8 +166,29 @@ int agregarDeporte(deporte aux);
 int buscarPorCodigo( int codi, bool borrado=false);
 int eliminarDeporte();
 int listarPorInstructor();
+int  modificarCuota();
 
 
+int  modificarCuota(){
+    deporte reg;
+    int codigo;
+    float cuota;
+    cout<<"INGRESE EL CODIGO DE DEPORTE"<<endl;
+    cin>>codigo;
+    int pos = buscarporCod(codigo);
+    if(pos>=0){
+        listarPorcod(codigo);
+        cout<<endl;
+        cout<<"INGRESE EL NUEVO VALOR DE CUOTA : ";
+        cin>>cuota;
+        reg.LeerEnDisco(pos);
+        reg.setValorCuota(cuota);
+        reg.ModificarEnDisco(pos);
+        return pos;
+
+    }
+    return -1;
+}
 
 void listarDeporte()
 {
@@ -314,6 +335,7 @@ void menuDeportes()
         cout<<" 3. LISTAR DEPORTE POR INSTRUCTOR "<<endl;
         cout<<" 4. AGREGAR DEPORTE"<<endl;
         cout<<" 5. ELIMINAR DEPORTE "<<endl;
+        cout<<" 6. MODIFICAR PAGO DE CUOTA"<<endl;
         cout<<" 0. VOLVER AL MENU PRINCIPAL"<<endl;
         cout<<endl;
         cout<<" INGRESE LA OPCION DESEADA: ";
@@ -361,6 +383,15 @@ void menuDeportes()
             }
             system("pause");
             break;
+        case 6:
+            system("cls");
+
+            if(modificarCuota()>=0){cout<<"SE MODIFICO EL VALOR DE CUOTA CON EXITO "<<endl;}else{
+                cout<<"NO SE PUDO MODIFICAR EL VALOR DE CUOTA "<<endl;
+            }
+            system("pause");
+            break;
+
         case 0:
             estado=false;
             break;

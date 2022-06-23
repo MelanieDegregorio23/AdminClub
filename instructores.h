@@ -89,10 +89,64 @@ void listarPorDNI( instructor aux);
 void listarPorID( instructor aux);
 void mostrarPorPosicion(int pos);
 void listarPorActividad(instructor aux);
+int modificarApellidoInstructores();
+void menuInstructoresMod();
 
 
 ///DESARROLLO
+int modificarApellidoInstructores(){
+ instructor aux;
+    int dni, pos;
+    char apellido[20];
 
+    cout<<"INGRESAR DNI DEL INSTRUCTOR : ";
+    cin>>dni;
+    pos = buscarDNI(dni);
+    if(pos>=0){
+
+         cout<<"INGRESAR NUEVO APELLIDO : "<<endl;
+         cin>>apellido;
+         aux.leerEnDisco(pos);
+         aux.setApellido(apellido);
+         aux.modificarEnDisco(pos);
+         return pos;
+
+
+    }
+return -1;
+}
+
+void menuInstructoresMod(){
+    system("cls");
+    socio aux;
+    int opc;
+    bool estado = true;
+       while (estado==true){
+        system("cls");
+        cout<<" ___________________________________"<<endl<<endl;
+        cout<<"     MENU MODIFICACION INSTRUCTORES"<<endl;
+        cout<<" ____________________________________"<<endl<<endl;
+
+        cout<<endl;
+        cout<<" 1. MODIFICAR APELLIDO"<<endl;
+        cout<<" 0. VOLVER AL MENU ANTERIOR"<<endl;
+        cout<<endl;
+        cout<<" INGRESE LA OPCION DESEADA: ";
+        cin>>opc;
+        switch(opc){
+    case 1:
+        system("cls");
+       if( modificarApellidoInstructores()>=0){cout<<"MODIFICACION EXITOSA "<<endl;}else{
+        cout<<"NO SE PUDO REALIZAR LA MODIFICACION "<<endl;
+       }
+        system("pause");
+        break;
+    case 0: estado =false;
+    break;
+
+        }
+}
+}
 void mostrarVectorInstructor( instructor *v, int cant){
     for(int pos=0;pos<cant;pos++){
         v[pos].Mostrar();
@@ -312,6 +366,7 @@ void menuInstructores(){
         cout<<" 5. LISTAR INSCTRUCTORES POR ACTIVIDAD"<<endl;
         cout<<" 6. BUSCAR INSTRUCTOR POR ID  "<<endl;
         cout<<" 7. BUSCAR INSTRUCTOR POR DNI  "<<endl;
+        cout<<" 8. MODIFICAR CAMPOS "<<endl;
         cout<<" 0. VOLVER AL MENU PRINCIPAL"<<endl;
         cout<<endl;
         cout<<" INGRESE LA OPCION DESEADA: ";
@@ -361,6 +416,11 @@ void menuInstructores(){
     case 7:
         system("cls");
         listarPorDNI(aux);
+        system("pause");
+        break;
+    case 8:
+        system("cls");
+        menuInstructoresMod();
         system("pause");
         break;
     case 0:
