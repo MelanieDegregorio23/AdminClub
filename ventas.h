@@ -17,12 +17,14 @@ public:
     void setCant( int x){ Cant=x ; }
     void setID( int x){ ID=x ; }
     void setImporte( float x){ Importe = x ;}
+    void setFechadeVenta( Fecha f){ FechadeVenta=f ;}
     void setEstado (bool x){ Estado= x;};
     //gets
     int getDNI(){return DNI;}
     const char *getCodArt(){return CodArt;}
     int getCant (){ return  Cant;}
     int getID(){return ID;}
+    Fecha getFechadeVenta(){return FechadeVenta;}
     float getImporte(){return Importe;}
     bool getEstado(){ return Estado;}
 

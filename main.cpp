@@ -21,9 +21,11 @@ using namespace std;
 
 int main()
 {
+    system("cls");
     int opc;
     bool estado = true;
        while (estado==true){
+        system("cls");
         cout<<" ________________________"<<endl<<endl;
         cout<<"      MENU PRINCIPAL"<<endl;
         cout<<" ________________________"<<endl<<endl;
