@@ -1,5 +1,7 @@
 #ifndef SOCIOS_H_INCLUDED
 #define SOCIOS_H_INCLUDED
+#include "rlutil.h"
+#include "utilidades.h"
 
 void menuSocios();
 
@@ -349,6 +351,7 @@ void submenuListar(){
     int opc;
     bool estado = true;
        while (estado==true){
+
         system("cls");
         cout<<" ___________________________________"<<endl<<endl;
         cout<<"      MENU DE LISTADOS"<<endl;
@@ -399,27 +402,77 @@ void submenuListar(){
 
 
 void menuSocios(){
-    system("cls");
+
     socio aux;
-    int opc;
+    const int ANCHO_MENU = 50;
+    const int ALTO_MENU = 10;
     bool estado = true;
+     int key, opc, cursorX, cursorY;
        while (estado==true){
-        system("cls");
-        cout<<" ________________________"<<endl<<endl;
-        cout<<"      MENU SOCIOS"<<endl;
-        cout<<" ________________________"<<endl<<endl;
+       cursorX=POSMENUX+13;
+       cursorY=POSMENUY + 4;
+      setBackgroundColor(COLOR_PANTALLA);
+      cls();
+      opc=0;
+      setColor(LETRA);
+      setBackgroundColor(FONDO);
+      recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
+      separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+      locate(POSMENUX+15,POSMENUY+1);
+      cout<<"      MENU SOCIOS"<<endl;
 
         cout<<endl;
+        locate(POSMENUX+15,POSMENUY+4);
         cout<<" 1. AGREGAR SOCIO"<<endl;
+        locate(POSMENUX+15,POSMENUY+5);
         cout<<" 2. DAR DE BAJA SOCIO"<<endl;
+        locate(POSMENUX+15,POSMENUY+6);
         cout<<" 3. MENU DE LISTADOS"<<endl;
+        locate(POSMENUX+15,POSMENUY+7);
         cout<<" 4. MODIFICAR CAMPOS"<<endl;
+        locate(POSMENUX+15,POSMENUY+8);
         cout<<" 0. VOLVER AL MENU PRINCIPAL"<<endl;
+        locate(POSMENUX+15,POSMENUY+9);
         cout<<endl;
-        cout<<" INGRESE LA OPCION DESEADA: ";
-        cin>>opc;
+         hidecursor();
+      //cin>>opc;
+      locate(cursorX,cursorY);
+        cout<<">>";
+        key = getkey();
+        while(key != KEY_ENTER){
+        locate(cursorX,cursorY);
+        cout<<" ";
+        cout<<" ";
+        switch(key){
+        case KEY_DOWN:
+            if(opc < 4){
+                opc++;
+            }else{
+                opc=0;
+            }
+            break;
+        case KEY_UP:
+            if(opc > 4){
+                opc--;
+            }else{
+                opc=0;
+            }
+            break;
+        }
+        if(opc != 0){
+            cursorY = opc + POSMENUY + 4;
+        }else{
+            cursorY = POSMENUY + 4;
+        }
+        locate(cursorX,cursorY);
+        cout<<">>";
+        key = getkey();
+      }
+      setBackgroundColor(COLOR_PANTALLA);
+      cls();
+      showcursor();
         switch(opc){
-    case 1: if(agregarSocio(aux)==1){
+    case 0: if(agregarSocio(aux)==1){
                 cout<<"EL SOCIO FUE AGREGADO CON EXITO"<<endl;
         }else{
                 cout<<"EL DNI, YA PERTENECE A UN  SOCIO EXISTENTE"<<endl;
@@ -427,23 +480,23 @@ void menuSocios(){
         }
             system("pause");
         break;
-    case 2: system("cls");
+    case 1: system("cls");
          if(eliminarSocio()>=0){
             cout<<"SOCIO ELIMINADO"<<endl;
          }else {cout<<"NO SE ENCONTRO SOCIO CON ESE DNI"<<endl;}
          system("pause");
         break;
-    case 3: system("cls");
+    case 2: system("cls");
             submenuListar();
             system("pause");
 
         break;
-    case 4:
+    case 3:
         system("cls");
         menuSociosMod();
         system("pause");
         break;
-    case 0: estado=false;
+    case 4: estado=false;
         break;
         }
 

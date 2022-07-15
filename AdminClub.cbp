@@ -38,13 +38,16 @@
 		</Unit>
 		<Unit filename="deportes.h" />
 		<Unit filename="fecha.h" />
+		<Unit filename="funciones.h" />
 		<Unit filename="funcionesgenerales.h" />
 		<Unit filename="instructores.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="pagosMes.h" />
 		<Unit filename="persona.h" />
 		<Unit filename="reportes.h" />
+		<Unit filename="rlutil.h" />
 		<Unit filename="socios.h" />
+		<Unit filename="utilidades.h" />
 		<Unit filename="ventas.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
