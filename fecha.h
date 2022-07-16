@@ -29,13 +29,19 @@ void Fecha::Mostrar(){
 
 void Fecha::Cargar(){
     int d;
+    locate(POSMENUX+16,POSMENUY+17);
     cout<<"DIA: ";
+    locate(POSMENUX+16,POSMENUY+18);
     cin>>d;
     setDia(d);
+    locate(POSMENUX+16,POSMENUY+19);
     cout<<"MES: ";
+    locate(POSMENUX+16,POSMENUY+20);
     cin>>d;
     setMes(d);
+    locate(POSMENUX+16,POSMENUY+21);
     cout<<"ANIO: ";
+    locate(POSMENUX+16,POSMENUY+22);
     cin>>d;
     setAnio(d);
 }
