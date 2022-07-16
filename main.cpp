@@ -37,10 +37,9 @@ int main()
 {
     int opcionesMenu=-2;
     int Tecla;
-    system("mode con: cols=148 lines=75");
+    system("mode con: cols=200 lines=75");
 
     bool estado = true;
-    AjustarVentana(89,30);
     const int ANCHO_MENU = 50;
     const int ALTO_MENU = 20;
     srand(time(NULL));
@@ -55,7 +54,7 @@ int main()
       setBackgroundColor(FONDO);
       recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
       separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
-      locate(POSMENUX+15,POSMENUY+1);
+      locate(POSMENUX+17,POSMENUY+1);
         cout<<"MENU PRINCIPAL"<<endl;
         locate(POSMENUX+15,POSMENUY+5);
         cout<<" 1. DEPORTES"<<endl;

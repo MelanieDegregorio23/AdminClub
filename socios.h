@@ -42,12 +42,26 @@ public:
 void Cargar(){
      system("cls");
      persona::Cargar();
+     system("cls");
+    const int ANCHO_MENU = 50;
+    const int ALTO_MENU = 20;
+    const int POSMENUX = 33;
+    const int POSMENUY = 10;
+    setColor(LETRA);
+    setBackgroundColor(FONDO);
+    recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
+    separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+    locate(POSMENUX+16,POSMENUY+1);
+    cout<<"DATOS DEL SOCIO: "<<endl;
+     locate(POSMENUX+16,POSMENUY+5);
      cout<<"INGRESAR ID DEL SOCIO"<<endl;
+     locate(POSMENUX+16,POSMENUY+6);
      cin>>Id;
-     cout<<endl;
-     cout<<"INGRESAR EL ID DEL DEPORTE AL QUE ESTA INSCRIPTO"<<endl;
+     locate(POSMENUX+16,POSMENUY+7);
+     cout<<"INGRESAR EL ID DEL DEPORTE:"<<endl;
+     locate(POSMENUX+16,POSMENUY+8);
      cin>>IdDeporte;
-     cout<<endl;
+     locate(POSMENUX+16,POSMENUY+9);
      cout<<"CARGAR FECHA DE INGRESO AL CLUB"<<endl;
      Fechaingreso.Cargar();
 
@@ -419,7 +433,7 @@ void menuSocios(){
       recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
       separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
       locate(POSMENUX+15,POSMENUY+1);
-      cout<<"      MENU SOCIOS"<<endl;
+        cout<<"      MENU SOCIOS"<<endl;
 
         cout<<endl;
         locate(POSMENUX+15,POSMENUY+4);
@@ -473,11 +487,14 @@ void menuSocios(){
       showcursor();
         switch(opc){
     case 0: if(agregarSocio(aux)==1){
-                cout<<"EL SOCIO FUE AGREGADO CON EXITO"<<endl;
+        locate(POSMENUX+16,POSMENUY+24);
+                cout<<">>EL SOCIO FUE AGREGADO CON EXITO<<"<<endl;
         }else{
+                locate(POSMENUX+16,POSMENUY+23);
                 cout<<"EL DNI, YA PERTENECE A UN  SOCIO EXISTENTE"<<endl;
 
         }
+            locate(POSMENUX+10,POSMENUY+24);
             system("pause");
         break;
     case 1: system("cls");
