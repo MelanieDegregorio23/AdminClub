@@ -449,8 +449,7 @@ void menuSocios(){
         locate(POSMENUX+15,POSMENUY+9);
         cout<<endl;
          hidecursor();
-      //cin>>opc;
-      locate(cursorX,cursorY);
+        locate(cursorX,cursorY);
         cout<<">>";
         key = getkey();
         while(key != KEY_ENTER){

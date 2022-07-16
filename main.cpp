@@ -45,16 +45,16 @@ int main()
     srand(time(NULL));
     int key, opc, cursorX, cursorY;
        while (estado==true){
-      cursorX=POSMENUX+13;
-      cursorY=POSMENUY + 5;
-      setBackgroundColor(COLOR_PANTALLA);
-      cls();
-      opc=-2;
-      setColor(LETRA);
-      setBackgroundColor(FONDO);
-      recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
-      separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
-      locate(POSMENUX+17,POSMENUY+1);
+        cursorX=POSMENUX+13;
+        cursorY=POSMENUY + 5;
+        setBackgroundColor(COLOR_PANTALLA);
+        cls();
+        opc=-2;
+        setColor(LETRA);
+        setBackgroundColor(FONDO);
+        recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
+        separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+        locate(POSMENUX+17,POSMENUY+1);
         cout<<"MENU PRINCIPAL"<<endl;
         locate(POSMENUX+15,POSMENUY+5);
         cout<<" 1. DEPORTES"<<endl;
@@ -75,9 +75,8 @@ int main()
         locate(POSMENUX+15,POSMENUY+13);
         cout<<" 9. SALIR DE MENU PRINCIPAL"<<endl;
         cout<<endl;
-              hidecursor();
-      //cin>>opc;
-      locate(cursorX,cursorY);
+        hidecursor();
+        locate(cursorX,cursorY);
         cout<<">>";
         key = getkey();
         while(key != KEY_ENTER){
