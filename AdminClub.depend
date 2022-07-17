@@ -37,9 +37,9 @@
 1658090523 c:\users\melin\desktop\adminclub\utilidades.h
 	"rlutil.h"
 
-1658090523 c:\users\melin\desktop\adminclub\configuracion.h
+1658096205 c:\users\melin\desktop\adminclub\configuracion.h
 
-1658090925 c:\users\melin\desktop\adminclub\fecha.h
+1658096965 c:\users\melin\desktop\adminclub\fecha.h
 
 1658090523 c:\users\melin\desktop\adminclub\funcionesgenerales.h
 
@@ -57,14 +57,14 @@
 1658090700 c:\users\melin\desktop\adminclub\ventas.h
 	"socios.h"
 
-1658091284 c:\users\melin\desktop\adminclub\socios.h
+1658096983 c:\users\melin\desktop\adminclub\socios.h
 	"rlutil.h"
 	"utilidades.h"
 
 1658090523 c:\users\melin\desktop\adminclub\deportes.h
 	"instructores.h"
 
-1658090700 c:\users\melin\desktop\adminclub\instructores.h
+1658097014 c:\users\melin\desktop\adminclub\instructores.h
 
 1658090700 c:\users\melin\desktop\adminclub\pagosmes.h
 	"deportes.h"

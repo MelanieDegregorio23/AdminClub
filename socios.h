@@ -64,6 +64,7 @@ void Cargar(){
      locate(POSMENUX+16,POSMENUY+9);
      cout<<"CARGAR FECHA DE INGRESO AL CLUB"<<endl;
      Fechaingreso.fechaHoy();
+     Fechaingreso.Mostrar();
 
 
 

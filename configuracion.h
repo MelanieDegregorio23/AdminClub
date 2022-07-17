@@ -18,12 +18,6 @@ void menuConfiguracion()
         cout<<" 3. COPIA DE SEGURIDAD DEL ARCHIVO DE ARTICULOS "<<endl;
         cout<<" 4. COPIA DE SEGURIDAD DEL ARCHIVO DE VENTAS"<<endl;
         cout<<" 5. COPIA DE SEGURIDAD DEL ARCHIVO DE DEPORTES "<<endl;
-        cout<<" 6. RESTAURAR EL ARCHIVO DE SOCIOS"<<endl;
-        cout<<" 7. RESTAURAR EL ARCHIVO DE INSTRUCTORES"<<endl;
-        cout<<" 8. RESTAURAR EL ARCHIVO DE ARTICULOS"<<endl;
-        cout<<" 9. RESTAURAR EL ARCHIVO DE VENTAS"<<endl;
-        cout<<" 10. RESTAURAR EL ARCHIVO DE DEPORTES"<<endl;
-        cout<<" 11. ESTABLECER DATOS DE INICIO "<<endl;
         cout<<" 0. VOLVER AL MENU PRINCIPAL"<<endl;
         cout<<endl;
         cout<<" INGRESE LA OPCION DESEADA: ";
@@ -42,18 +36,6 @@ void menuConfiguracion()
         case 4:
             break;
         case 5:
-            break;
-        case 6:
-            break;
-        case 7:
-            break;
-        case 8:
-            break;
-        case 9:
-            break;
-        case 10:
-            break;
-        case 11:
             break;
         case 0: estado=false;
             break;

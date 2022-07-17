@@ -39,7 +39,7 @@ void Fecha::fechaHoy(){
     dia = fecha->tm_mday;
     mes = fecha->tm_mon+1;
     anio = fecha->tm_year+1900;
-    cout<<dia<<"/"<<mes<<"/"<<anio<<endl;
+    //cout<<dia<<"/"<<mes<<"/"<<anio<<endl;
 
 }
 
