@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1658007911 source:c:\users\melin\desktop\adminclub\main.cpp
+1658090700 source:c:\users\melin\desktop\adminclub\main.cpp
 	<iostream>
 	<cstdlib>
 	<cstdio>
@@ -7,6 +7,7 @@
 	<ctime>
 	"rlutil.h"
 	"utilidades.h"
+	"funciones.h"
 	"configuracion.h"
 	"fecha.h"
 	"funcionesgenerales.h"
@@ -19,7 +20,7 @@
 	"pagosMes.h"
 	"ventas.h"
 
-1658007911 c:\users\melin\desktop\adminclub\rlutil.h
+1658090523 c:\users\melin\desktop\adminclub\rlutil.h
 	<iostream>
 	<string>
 	<cstdio>
@@ -33,39 +34,42 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1658007911 c:\users\melin\desktop\adminclub\utilidades.h
+1658090523 c:\users\melin\desktop\adminclub\utilidades.h
 	"rlutil.h"
 
-1658007911 c:\users\melin\desktop\adminclub\configuracion.h
+1658090523 c:\users\melin\desktop\adminclub\configuracion.h
 
-1658025164 c:\users\melin\desktop\adminclub\fecha.h
+1658090925 c:\users\melin\desktop\adminclub\fecha.h
 
-1658007911 c:\users\melin\desktop\adminclub\funcionesgenerales.h
+1658090523 c:\users\melin\desktop\adminclub\funcionesgenerales.h
 
-1658025095 c:\users\melin\desktop\adminclub\persona.h
+1658091073 c:\users\melin\desktop\adminclub\persona.h
 	"rlutil.h"
 	"utilidades.h"
 
-1658007911 c:\users\melin\desktop\adminclub\articulos.h
+1658090523 c:\users\melin\desktop\adminclub\articulos.h
 	"funcionesgenerales.h"
 
-1658007911 c:\users\melin\desktop\adminclub\reportes.h
+1658090523 c:\users\melin\desktop\adminclub\reportes.h
 	"articulos.h"
 	"ventas.h"
 
-1658007911 c:\users\melin\desktop\adminclub\ventas.h
+1658090700 c:\users\melin\desktop\adminclub\ventas.h
 	"socios.h"
 
-1658018106 c:\users\melin\desktop\adminclub\socios.h
+1658091284 c:\users\melin\desktop\adminclub\socios.h
 	"rlutil.h"
 	"utilidades.h"
 
-1658007911 c:\users\melin\desktop\adminclub\deportes.h
+1658090523 c:\users\melin\desktop\adminclub\deportes.h
 	"instructores.h"
 
-1658018278 c:\users\melin\desktop\adminclub\instructores.h
+1658090700 c:\users\melin\desktop\adminclub\instructores.h
 
-1658007911 c:\users\melin\desktop\adminclub\pagosmes.h
+1658090700 c:\users\melin\desktop\adminclub\pagosmes.h
 	"deportes.h"
 	"socios.h"
+
+1658090700 c:\users\melin\desktop\adminclub\funciones.h
+	<windows.h>
 

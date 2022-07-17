@@ -63,7 +63,7 @@ void Fecha::Cargar(){
 }
 
 ///PROTIPOS
-void generarEdad(Fecha x);
+int  generarEdad(Fecha x);
 int calcularEdad(Fecha actual, Fecha y);
 
 ///DESARROLLO
@@ -77,11 +77,13 @@ int calcularEdad(Fecha actual, Fecha y){
    return edad;
 }
 
-void generarEdad(Fecha x){
+int generarEdad(Fecha x){
     Fecha actual;
     actual.fechaHoy();
    int edad = calcularEdad(actual, x);
-    cout<<"EDAD : "<<edad<<endl;
+   // cout<<"EDAD : "<<edad<<endl;
+   return edad;
+
 }
 
 
