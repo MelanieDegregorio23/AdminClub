@@ -72,9 +72,12 @@ void persona::Cargar(){
     locate(POSMENUX+16,POSMENUY+9);
     cin>> DNI;
     locate(POSMENUX+16,POSMENUY+10);
-    cout<<"INGRESAR EDAD : ";
+    cout<<"INGRESAR FECHA DE NACIMIENTO : ";
     locate(POSMENUX+16,POSMENUY+11);
-    cin>>Edad;
+    fechaDeNacimiento.Cargar();
+    generarEdad(fechaDeNacimiento);///muestro la edad
+    cout<<endl;
+
     locate(POSMENUX+16,POSMENUY+12);
     cout<<"INGRESAR CORREO : ";
     locate(POSMENUX+16,POSMENUY+13);
@@ -86,6 +89,8 @@ void persona::Cargar(){
     locate(POSMENUX+16,POSMENUY+16);
     cout<<"INGRESAR FECHA DE NACIMIENTO"<<endl;
     fechaDeNacimiento.Cargar();
+    //
+
 
 }
 

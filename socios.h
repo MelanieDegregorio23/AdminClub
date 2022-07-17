@@ -62,8 +62,8 @@ void Cargar(){
      locate(POSMENUX+16,POSMENUY+8);
      cin>>IdDeporte;
      locate(POSMENUX+16,POSMENUY+9);
-     cout<<"CARGAR FECHA DE INGRESO AL CLUB"<<endl;
-     Fechaingreso.Cargar();
+     cout<<"FECHA DE INGRESO AL CLUB : "<<endl;
+     Fechaingreso.fechaHoy();
 
 
 
@@ -125,7 +125,7 @@ int ModificarEnDisco(int pos){
 void menuSocios();
 int agregarSocio(socio aux);
 int eliminarSocio();
-int buscarporDNI(int DNI, bool borrado=false);
+int buscarporDNI(int DNI);
 void PagoMes();
 void listarSocio();
 int listarSociosPorDNI();
@@ -217,7 +217,7 @@ int eliminarSocio(){
     }
     return -1;
 }
-int buscarporDNI( int DNI, bool borrado){
+int buscarporDNI( int DNI){
     socio aux;
 
     int pos=0;
@@ -227,12 +227,7 @@ int buscarporDNI( int DNI, bool borrado){
                     return pos;
                 }
                 else{
-                    if(borrado==false){
-                        return -1;
-                    }
-                    else{
-                        return -2;
-                    }
+                    return -1;
                 }
             }
             pos++;
@@ -485,9 +480,12 @@ void menuSocios(){
       setBackgroundColor(COLOR_PANTALLA);
       cls();
       showcursor();
+
         switch(opc){
-    case 0: if(agregarSocio(aux)==1){
+    case 0:
         locate(POSMENUX+16,POSMENUY+24);
+        if(agregarSocio(aux)==1){
+
                 cout<<">>EL SOCIO FUE AGREGADO CON EXITO<<"<<endl;
         }else{
                 locate(POSMENUX+16,POSMENUY+23);
