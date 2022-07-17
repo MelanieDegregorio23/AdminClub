@@ -10,13 +10,14 @@ protected:
 public:
     void Cargar(){
         persona::Cargar();
+         cout<<"FECHA DE INGRESO: "<<endl;
+        fechaDeIngreso.fechaHoy();
         cout<< "INGRESE ID DE INSTRUCTOR : ";
         cin>>IDinstructor;
         ///deberian aparecer los deportes disponibles con sus respectivos códigos
         cout<<" INGRESE CODIGO DE DEPORTE : ";
         cin>>CodigoDep;
-        cout<<"INGRESE FECHA DE INGRESO: "<<endl;
-        fechaDeIngreso.Cargar();
+
 
     }
     void Mostrar(){

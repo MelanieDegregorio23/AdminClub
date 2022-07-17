@@ -1,5 +1,7 @@
 #ifndef FECHA_H_INCLUDED
 #define FECHA_H_INCLUDED
+
+
 class Fecha{
     private:///sólo era accesible desde dentro de la clase
         int dia, mes, anio;///propiedades o variables de la clase
@@ -11,6 +13,7 @@ class Fecha{
         }
         void Mostrar();
         void Cargar();
+        void fechaHoy();
         ///gets()
         int getDia(){return dia;}
         int getMes(){return mes;}
@@ -25,6 +28,19 @@ class Fecha{
 void Fecha::Mostrar(){
     ///cout<<this<<endl;
     cout<<this->dia<<"/"<<this->mes<<"/"<<this->anio<<endl;
+}
+
+void Fecha::fechaHoy(){
+    time_t t;
+    t = time(NULL);
+    struct tm *fecha;
+    fecha = localtime(&t);
+
+    dia = fecha->tm_mday;
+    mes = fecha->tm_mon+1;
+    anio = fecha->tm_year+1900;
+    cout<<dia<<"/"<<mes<<"/"<<anio<<endl;
+
 }
 
 void Fecha::Cargar(){
@@ -44,6 +60,28 @@ void Fecha::Cargar(){
     locate(POSMENUX+16,POSMENUY+22);
     cin>>d;
     setAnio(d);
+}
+
+///PROTIPOS
+void generarEdad(Fecha x);
+int calcularEdad(Fecha actual, Fecha y);
+
+///DESARROLLO
+int calcularEdad(Fecha actual, Fecha y){
+     int edad = actual.getAnio() - y.getAnio();
+    if(actual.getMes() < y.getMes()){
+        edad = edad -1;
+    }else if(actual.getDia() < y.getDia()){
+        edad = edad -1;
+    }
+   return edad;
+}
+
+void generarEdad(Fecha x){
+    Fecha actual;
+    actual.fechaHoy();
+   int edad = calcularEdad(actual, x);
+    cout<<"EDAD : "<<edad<<endl;
 }
 
 
