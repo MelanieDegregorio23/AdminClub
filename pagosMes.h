@@ -25,8 +25,6 @@ public:
 
     void Cargar(){
      system("cls");
-     cout<<"INGRESAR DNI DE SOCIO"<<endl;
-     cin>>dni;
      cout<<endl;
      cout<<"INGRESAR ID DE PAGOS"<<endl;
      cin>>idpagos;
@@ -108,7 +106,7 @@ void listarPagoporDNI(){
     cin>>dni;
     system("cls");
     if(buscarporDNI(dni)>=0){
-        while(aux.LeerEnDisco(pos)==1){
+        while(aux.LeerEnDisco(pos)){
         if(aux.getdni()==dni){
             aux.Mostrar();
             cout<<endl;
@@ -136,10 +134,14 @@ float buscarValordeCuota(int depo){
 int agregarPagos(pagos aux){
     int dni, pos;
     socio obj;
-    aux.Cargar();
-    dni = aux.getdni();
+     cout<<"INGRESAR DNI DE SOCIO"<<endl;
+     cin>>dni;
+
     pos = buscarporDNI(dni);
-    if(pos>=0){ //encontro dni en el registro
+    if(pos>0){
+
+        aux.setdni(dni);
+        aux.Cargar();
         if(obj.LeerEnDisco(pos)==1){
             int deporte = obj.getIdDeporte();
             float valorCuota = buscarValordeCuota(deporte);
@@ -148,7 +150,10 @@ int agregarPagos(pagos aux){
             return 1;
         }
 
+
+
     }
+
     return -1;
 }
 void submenuListarPagos(){

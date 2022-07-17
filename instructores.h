@@ -325,9 +325,11 @@ int listarInstructores(instructor aux){
 
 int cargarInstructor(instructor aux){ ///HASTA EL MOMENTO NO PERMITE AGREGAR INSTRUCTORES QUE YA FUERON ELIMINADOS
     int dni;
-    aux.Cargar();
-    dni = aux.getDNI();
+    cout<<"INGRESAR DNI : ";
+    cin>>dni;
     if(buscarDNI(dni)<0){
+        aux.setdni(dni);
+        aux.Cargar();
         aux.grabarEnDisco();
         return 1;
     }

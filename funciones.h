@@ -36,7 +36,7 @@ void textcolor(short colorTexto=15, short colorFondo=0){
     short color = colorTexto + colorFondo * 16;
     SetConsoleTextAttribute(GetStdHandle (STD_OUTPUT_HANDLE), color);
 }
-void recuadro(short iniX, short iniY, short ancho, short alto, short colorLinea=cBLANCO, short colorFondo=cNEGRO){
+void recuadro2(short iniX, short iniY, short ancho, short alto, short colorLinea=cBLANCO, short colorFondo=cNEGRO){
     int i, j;
     for(i=iniX; i<=iniX+ancho; i++){
         for(j=iniY; j<=iniY+alto; j++){
