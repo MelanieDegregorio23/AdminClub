@@ -1,6 +1,7 @@
 #ifndef PERSONA_H_INCLUDED
 #define PERSONA_H_INCLUDED
-
+#include "rlutil.h"
+#include "utilidades.h"
 
 
 class persona{
@@ -50,21 +51,46 @@ public:
 
 
 void persona::Cargar(){
-
+    const int ANCHO_MENU = 52;
+    const int ALTO_MENU = 30;
+    setColor(LETRA);
+    setBackgroundColor(FONDO);
+    recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
+    separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+    locate(POSMENUX+16,POSMENUY+1);
+    cout<<"CARGA DE DATOS: "<<endl;
+    locate(POSMENUX+16,POSMENUY+4);
     cout<<"INGRESAR NOMBRE : ";
+    locate(POSMENUX+16,POSMENUY+5);
     cargarCadena(Nombre, 19);
+    locate(POSMENUX+16,POSMENUY+6);
     cout<<"INGRESAR APELLIDO : ";
+    locate(POSMENUX+16,POSMENUY+7);
     cargarCadena(Apellido, 19);
+    locate(POSMENUX+16,POSMENUY+8);
     cout<<"INGRESAR DNI : ";
+    locate(POSMENUX+16,POSMENUY+9);
     cin>> DNI;
-    cout<<"INGRESAR EDAD : ";
-    cin>>Edad;
+    locate(POSMENUX+16,POSMENUY+10);
+    cout<<"INGRESAR FECHA DE NACIMIENTO : ";
+    locate(POSMENUX+16,POSMENUY+11);
+    fechaDeNacimiento.Cargar();
+    generarEdad(fechaDeNacimiento);///muestro la edad
+    cout<<endl;
+
+    locate(POSMENUX+16,POSMENUY+12);
     cout<<"INGRESAR CORREO : ";
+    locate(POSMENUX+16,POSMENUY+13);
     cargarCadena(Correo, 34);
+    locate(POSMENUX+16,POSMENUY+14);
     cout<<"INGRESE NUMERO DE TELEFONO :  ";
+    locate(POSMENUX+16,POSMENUY+15);
     cargarCadena(Telefono, 14);
+    locate(POSMENUX+16,POSMENUY+16);
     cout<<"INGRESAR FECHA DE NACIMIENTO"<<endl;
     fechaDeNacimiento.Cargar();
+    //
+
 
 }
 
