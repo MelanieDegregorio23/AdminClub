@@ -64,10 +64,6 @@ int modificarEnDisco(int pos){
 void cargar(){
     cout<<"INGRESE ID DE VENTA: "<<endl;
     cin>>ID;
-    cout<<"INGRESE DNI DEL CLIENTE: "<<endl;
-    cin>>DNI;
-    cout<<"INGRESE CODIGO DE ARTICULO: "<<endl;
-    cargarCadena(CodArt,4);
     cout<<"INGRESE CANTIDAD VENDIDA: "<<endl;
     cin>>Cant;
     cout<<"INGRESE FECHA DE VENTA: "<<endl;
@@ -129,12 +125,20 @@ int buscarPorCodigo(const char *cod){
 }
 
 int AgregarVentas(Venta aux){
-    int posArt, posDNI, cantV;
-    aux.cargar();
-    cantV = aux.getCant();
-    posArt = buscarPorCodigo(aux.getCodArt());
-    posDNI = buscarporDNI(aux.getDNI());
+    int posArt, posDNI, cantV, dni;
+    char cod[5];
+    cout<<"INGRESE EL CODIGO DE ARTICULO: "<<endl;
+    cargarCadena(cod,4);
+    cout<<"INGRESE EL DNI DEL CLIENTE: "<<endl;
+    cin>>dni;
+
+    posArt = buscarPorCodigo(cod);
+    posDNI = buscarporDNI(dni);
     if( posDNI>=0 && posArt>=0){
+             aux.setCodArt(cod);
+             aux.setDNI(dni);
+             aux.cargar();
+             cantV = aux.getCant();
             float importe=generarImpor(cantV, posArt);
             cout<<"IMPORTE: "<<importe<<endl;
             aux.setImporte(importe);

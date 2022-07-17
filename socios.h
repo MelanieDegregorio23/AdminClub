@@ -125,7 +125,7 @@ int ModificarEnDisco(int pos){
 void menuSocios();
 int agregarSocio(socio aux);
 int eliminarSocio();
-int buscarporDNI(int DNI, bool borrado=false);
+int buscarporDNI(int DNI);
 void PagoMes();
 void listarSocio();
 int listarSociosPorDNI();
@@ -193,11 +193,16 @@ void menuSociosMod(){
 }
 int agregarSocio(socio aux){
     int dni;
-    aux.Cargar();
-    dni=aux.getDNI();
-    if(buscarporDNI(dni)<=0){///si encuentra que no esta el dni, lo carga y lo agrega
+    cout<<"INGRESE EL DNI, DE LA PERSONA QUE QUIERE AGREGAR: "<<endl;
+    cin>>dni;
+    if(buscarporDNI(dni)<=0){
+        aux.setdni(dni);
+        aux.Cargar();
         aux.GrabarEnDisco();
         return 1;
+    }
+    else{
+        cout<<"EL DNI, YA PERTENECE A UN SOCIO: "<<endl;
     }
 
     return -1;
@@ -217,24 +222,18 @@ int eliminarSocio(){
     }
     return -1;
 }
-int buscarporDNI( int DNI, bool borrado){
+int buscarporDNI( int DNI){
     socio aux;
 
     int pos=0;
     while(aux.LeerEnDisco(pos)==1){
         if(aux.getDNI()==DNI){
                if(aux.getEstado()==true){
+
                     return pos;
                 }
-                else{
-                    if(borrado==false){
-                        return -1;
-                    }
-                    else{
-                        return -2;
-                    }
-                }
-            }
+
+        }
             pos++;
     }
     return -1;
@@ -486,15 +485,18 @@ void menuSocios(){
       cls();
       showcursor();
         switch(opc){
-    case 0: if(agregarSocio(aux)==1){
-        locate(POSMENUX+16,POSMENUY+24);
+    case 0:
+
+        if(agregarSocio(aux)==1){
+                 gotoxy(36,26);
                 cout<<">>EL SOCIO FUE AGREGADO CON EXITO<<"<<endl;
         }else{
-                locate(POSMENUX+16,POSMENUY+23);
+
+                gotoxy(36,26);
                 cout<<"EL DNI, YA PERTENECE A UN  SOCIO EXISTENTE"<<endl;
 
         }
-            locate(POSMENUX+10,POSMENUY+24);
+            gotoxy(36,28);
             system("pause");
         break;
     case 1: system("cls");

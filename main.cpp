@@ -19,6 +19,7 @@ const int COLOR_PANTALLA = BLACK;
 const int LETRA = WHITE;
 const int FONDO = BLACK;
 #include "utilidades.h"
+#include "funciones.h"
 #include "configuracion.h"
 #include "fecha.h"
 #include "funcionesgenerales.h"
