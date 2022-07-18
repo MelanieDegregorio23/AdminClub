@@ -325,13 +325,16 @@ int listarInstructores(instructor aux){
 
 int cargarInstructor(instructor aux){ ///HASTA EL MOMENTO NO PERMITE AGREGAR INSTRUCTORES QUE YA FUERON ELIMINADOS
     int dni;
-    cout<<"INGRESAR DNI : ";
+    cout<<"INGRESE EL DNI, DE LA PERSONA QUE QUIERE AGREGAR: : ";
     cin>>dni;
     if(buscarDNI(dni)<0){
         aux.setdni(dni);
         aux.Cargar();
         aux.grabarEnDisco();
         return 1;
+    }
+    else{
+        out<<"EL DNI YA PERTENECE A UN INSTRUCTOR: "<<endl;
     }
     return -1;
 }
