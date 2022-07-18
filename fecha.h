@@ -39,7 +39,7 @@ void Fecha::fechaHoy(){
     dia = fecha->tm_mday;
     mes = fecha->tm_mon+1;
     anio = fecha->tm_year+1900;
-    cout<<dia<<"/"<<mes<<"/"<<anio<<endl;
+    //cout<<dia<<"/"<<mes<<"/"<<anio<<endl;
 
 }
 
@@ -63,7 +63,7 @@ void Fecha::Cargar(){
 }
 
 ///PROTIPOS
-void generarEdad(Fecha x);
+int  generarEdad(Fecha x);
 int calcularEdad(Fecha actual, Fecha y);
 
 ///DESARROLLO
@@ -77,11 +77,13 @@ int calcularEdad(Fecha actual, Fecha y){
    return edad;
 }
 
-void generarEdad(Fecha x){
+int generarEdad(Fecha x){
     Fecha actual;
     actual.fechaHoy();
    int edad = calcularEdad(actual, x);
-    cout<<"EDAD : "<<edad<<endl;
+   // cout<<"EDAD : "<<edad<<endl;
+   return edad;
+
 }
 
 

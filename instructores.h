@@ -12,6 +12,7 @@ public:
         persona::Cargar();
          cout<<"FECHA DE INGRESO: "<<endl;
         fechaDeIngreso.fechaHoy();
+        fechaDeIngreso.Mostrar();
         cout<< "INGRESE ID DE INSTRUCTOR : ";
         cin>>IDinstructor;
         ///deberian aparecer los deportes disponibles con sus respectivos códigos

@@ -63,7 +63,8 @@ void Cargar(){
      cin>>IdDeporte;
      locate(POSMENUX+16,POSMENUY+9);
      cout<<"CARGAR FECHA DE INGRESO AL CLUB"<<endl;
-     Fechaingreso.Cargar();
+     Fechaingreso.fechaHoy();
+     Fechaingreso.Mostrar();
 
 
 

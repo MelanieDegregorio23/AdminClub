@@ -70,9 +70,11 @@ void persona::Cargar(){
     locate(POSMENUX+16,POSMENUY+8);
 
     locate(POSMENUX+16,POSMENUY+9);
-    cout<<"INGRESAR EDAD : ";
+    cout<<"INGERSAR FECHA DE NACIMIENTO : ";
     locate(POSMENUX+16,POSMENUY+10);
-    cin>>Edad;
+    fechaDeNacimiento.Cargar();
+    Edad = generarEdad(fechaDeNacimiento);
+    cout<<"EDAD : "<<Edad;
     locate(POSMENUX+16,POSMENUY+11);
     cout<<"INGRESAR CORREO : ";
     locate(POSMENUX+16,POSMENUY+12);
@@ -82,8 +84,7 @@ void persona::Cargar(){
     locate(POSMENUX+16,POSMENUY+14);
     cargarCadena(Telefono, 14);
     locate(POSMENUX+16,POSMENUY+15);
-    cout<<"INGRESAR FECHA DE NACIMIENTO"<<endl;
-    fechaDeNacimiento.Cargar();
+
 
 }
 
