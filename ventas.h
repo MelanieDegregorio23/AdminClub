@@ -64,10 +64,6 @@ int modificarEnDisco(int pos){
 void cargar(){
     cout<<"INGRESE ID DE VENTA: "<<endl;
     cin>>ID;
-    cout<<"INGRESE DNI DEL CLIENTE: "<<endl;
-    cin>>DNI;
-    cout<<"INGRESE CODIGO DE ARTICULO: "<<endl;
-    cargarCadena(CodArt,4);
     cout<<"INGRESE CANTIDAD VENDIDA: "<<endl;
     cin>>Cant;
     cout<<"INGRESE FECHA DE VENTA: "<<endl;
@@ -120,7 +116,7 @@ int buscarPorCodigo(const char *cod){
     Articulo aux;
     int pos=0;
     while(aux.leerEnDisco(pos)==1){
-        if(strcmp(aux.getCodigoAr(), cod)==0){
+        if(strcmp(aux.getCodigoAr(), cod)==0 && aux.getestado()==true){
             return pos;
         }
         pos++;
@@ -129,18 +125,31 @@ int buscarPorCodigo(const char *cod){
 }
 
 int AgregarVentas(Venta aux){
-    int posArt, posDNI, cantV;
-    aux.cargar();
-    cantV = aux.getCant();
-    posArt = buscarPorCodigo(aux.getCodArt());
-    posDNI = buscarporDNI(aux.getDNI());
+    int posArt, posDNI, cantV, dni;
+    char cod[5];
+    cout<<"INGRESE EL CODIGO DE ARTICULO: "<<endl;
+    cargarCadena(cod,4);
+    cout<<"INGRESE EL DNI DEL CLIENTE: "<<endl;
+    cin>>dni;
+    posArt = buscarPorCodigo(cod);
+    posDNI = buscarporDNI(dni);
     if( posDNI>=0 && posArt>=0){
+             aux.setCodArt(cod);
+             aux.setDNI(dni);
+             aux.cargar();
+             cantV = aux.getCant();
             float importe=generarImpor(cantV, posArt);
             cout<<"IMPORTE: "<<importe<<endl;
             aux.setImporte(importe);
             actualizarStockVendido(cantV, posArt);
             aux.grabarEnDisco();
         return 1;
+        }
+        if(posArt<0){
+            cout<<"EL CODIGO DE ARTICULO NO EXISTE EN NUESTRA BASE DE DATOS: "<<endl;
+        }
+        if(posDNI<0){
+            cout<<"EL DNI INGRESADO NO PERTENECE A NINGUN SOCIO DEL CLUB: "<<endl;
         }
   return -1;
 }

@@ -12,7 +12,7 @@ protected:
     char Apellido[20];
     char Correo[35];
     char Telefono[15];
-    bool Estado;
+    bool Estado=true;
     Fecha fechaDeNacimiento;
 public:
     personas(int d=0, int e=0, const char *n="No existe en la base de datos", const char *a="No existe en la base de datos", const char *c="No existe en la base de datos", const char *t="No existe en la base de datos"){
@@ -68,24 +68,23 @@ void persona::Cargar(){
     locate(POSMENUX+16,POSMENUY+7);
     cargarCadena(Apellido, 19);
     locate(POSMENUX+16,POSMENUY+8);
-    cout<<"INGRESAR DNI : ";
+
     locate(POSMENUX+16,POSMENUY+9);
-    cin>> DNI;
+    cout<<"INGERSAR FECHA DE NACIMIENTO : ";
     locate(POSMENUX+16,POSMENUY+10);
-    cout<<"INGRESAR EDAD : ";
-    locate(POSMENUX+16,POSMENUY+11);
-    cin>>Edad;
-    locate(POSMENUX+16,POSMENUY+12);
-    cout<<"INGRESAR CORREO : ";
-    locate(POSMENUX+16,POSMENUY+13);
-    cargarCadena(Correo, 34);
-    locate(POSMENUX+16,POSMENUY+14);
-    cout<<"INGRESE NUMERO DE TELEFONO :  ";
-    locate(POSMENUX+16,POSMENUY+15);
-    cargarCadena(Telefono, 14);
-    locate(POSMENUX+16,POSMENUY+16);
-    cout<<"INGRESAR FECHA DE NACIMIENTO"<<endl;
     fechaDeNacimiento.Cargar();
+    Edad = generarEdad(fechaDeNacimiento);
+    cout<<"EDAD : "<<Edad;
+    locate(POSMENUX+16,POSMENUY+11);
+    cout<<"INGRESAR CORREO : ";
+    locate(POSMENUX+16,POSMENUY+12);
+    cargarCadena(Correo, 34);
+    locate(POSMENUX+16,POSMENUY+13);
+    cout<<"INGRESE NUMERO DE TELEFONO :  ";
+    locate(POSMENUX+16,POSMENUY+14);
+    cargarCadena(Telefono, 14);
+    locate(POSMENUX+16,POSMENUY+15);
+
 
 }
 

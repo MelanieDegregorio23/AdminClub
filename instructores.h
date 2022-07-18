@@ -10,13 +10,15 @@ protected:
 public:
     void Cargar(){
         persona::Cargar();
+         cout<<"FECHA DE INGRESO: "<<endl;
+        fechaDeIngreso.fechaHoy();
+        fechaDeIngreso.Mostrar();
         cout<< "INGRESE ID DE INSTRUCTOR : ";
         cin>>IDinstructor;
         ///deberian aparecer los deportes disponibles con sus respectivos códigos
         cout<<" INGRESE CODIGO DE DEPORTE : ";
         cin>>CodigoDep;
-        cout<<"INGRESE FECHA DE INGRESO: "<<endl;
-        fechaDeIngreso.Cargar();
+
 
     }
     void Mostrar(){
@@ -324,11 +326,16 @@ int listarInstructores(instructor aux){
 
 int cargarInstructor(instructor aux){ ///HASTA EL MOMENTO NO PERMITE AGREGAR INSTRUCTORES QUE YA FUERON ELIMINADOS
     int dni;
-    aux.Cargar();
-    dni = aux.getDNI();
+    cout<<"INGRESE EL DNI, DE LA PERSONA QUE QUIERE AGREGAR: : ";
+    cin>>dni;
     if(buscarDNI(dni)<0){
+        aux.setdni(dni);
+        aux.Cargar();
         aux.grabarEnDisco();
         return 1;
+    }
+    else{
+        cout<<"EL DNI YA PERTENECE A UN INSTRUCTOR: "<<endl;
     }
     return -1;
 }
