@@ -2,9 +2,8 @@
 #define DEPORTES_H_INCLUDED
 #include "instructores.h"
 
-class deporte
-{
-protected:
+class deporte{
+private:
     int CodDep;
     int CantCupos;
     float ValorCuota;
@@ -12,16 +11,20 @@ protected:
     char Descripcion [30];
     char Horario[20];
 public:
-    deporte(int cd=0, int c=0, float v=0, const char *d="No existe en la base de datos", const char *h="No existe en la base de datos", bool e=true)
-    {
-        CodDep=cd;
-        CantCupos=c;
-        ValorCuota=v;
-        strcpy(Descripcion, d);
-        strcpy(Horario,h);
-        Estado=e;
-    }
+    void setCodDep (int cd){CodDep=cd;}
 
+    void setCantCupos (int c){CantCupos=c;}
+    void setValorCuota (float v){ValorCuota=v;}
+    void setDescripcion (const char *d){strcpy(Descripcion,d);}
+    void setHorario(const char *h){strcpy(Horario,h);}
+    void setEstado (bool e){Estado=e;}
+
+    int getCodDep(){return CodDep;}
+    int getCantCupos(){return CantCupos;}
+    float getValorCuota(){return ValorCuota;}
+    const char *getDescripcion (){return Descripcion;}
+    const char *getHorario(){return Horario;}
+    bool getEstado(){return Estado;}
 
     void Cargar()
     {
@@ -70,20 +73,19 @@ public:
         return escribio;
 
     }
-    int LeerEnDisco(int pos)
-    {
-        FILE*p;
-        int leyo;
-        p = fopen("Deportes.dat", "rb");
-        if(p==NULL) return -1;
+int LeerEnDisco(int pos){
+    FILE*p;
+    int leyo;
+    p = fopen("Deportes.dat", "rb");
+    if(p==NULL) return -1;
 
-        fseek(p, pos*sizeof(deporte),SEEK_SET);
-        leyo = fread(this, sizeof(deporte), 1, p);
+    fseek(p, pos*sizeof(deporte),SEEK_SET);
+    leyo = fread(this, sizeof(deporte), 1, p);
 
-        fclose(p);
-        return leyo;
+    fclose(p);
+    return leyo;
 
-    }
+}
     int ModificarEnDisco(int pos)
     {
         FILE*p;
@@ -99,55 +101,7 @@ public:
 
 
     }
-    void setCodDep (int cd)
-    {
-        CodDep=cd;
-    }
-    void setCantCupos (int c)
-    {
-        CantCupos=c;
-    }
-    void setValorCuota (float v)
-    {
-        ValorCuota=v;
-    }
-    void setDescripcion (const char *d)
-    {
-        strcpy(Descripcion,d);
-    }
-    void setHorario(const char *h)
-    {
-        strcpy(Horario,h);
-    }
-    void setEstado (bool e)
-    {
-        Estado=e;
-    }
 
-    int getCodDep()
-    {
-        return CodDep;
-    }
-    int getCantCupos()
-    {
-        return CantCupos;
-    }
-    float getValorCuota()
-    {
-        return ValorCuota;
-    }
-    const char *getDescripcion ()
-    {
-        return Descripcion;
-    }
-    const char *getHorario()
-    {
-        return Horario;
-    }
-    bool getEstado()
-    {
-        return Estado;
-    }
 
 
 

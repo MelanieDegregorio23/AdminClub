@@ -3,7 +3,6 @@
 #include "rlutil.h"
 #include "utilidades.h"
 
-void menuSocios();
 
 class socio:public persona{
 protected:
@@ -29,7 +28,7 @@ public:
      void setId (int i){Id=i;}
      void setFechaingreso(Fecha f){Fechaingreso=f;}
      void setIdDeporte (int d){IdDeporte=d;}
-     void setNombre(const char *v){strcpy(Nombre, v);}
+
 
 
 
@@ -43,6 +42,7 @@ void Cargar(){
      system("cls");
      persona::Cargar();
      system("cls");
+
     const int ANCHO_MENU = 50;
     const int ALTO_MENU = 20;
     const int POSMENUX = 33;
@@ -68,7 +68,7 @@ void Cargar(){
 
 
 
-};
+}
 void MostrarSocio(){
         if (Estado==true){
         persona::Mostrar();
@@ -79,7 +79,7 @@ void MostrarSocio(){
         }
 
 
-};
+}
 int GrabarEnDisco(){
     FILE*p;
     int escribio;

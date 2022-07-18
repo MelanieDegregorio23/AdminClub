@@ -3,7 +3,8 @@
 #include <cstdio>
 #include <cstring>
 #include <ctime>
-#include "rlutil.h"  ///LIBRERIA PARA NUMERO ALEATORIO
+#include <stdlib.h>
+#include "rlutil.h"
 
 #define TECLA_ARRIBA 72
 #define TECLA_ABAJO 80
@@ -18,9 +19,11 @@ const int POSMENUY = 3;
 const int COLOR_PANTALLA = BLACK;
 const int LETRA = WHITE;
 const int FONDO = BLACK;
+const char *ARCHIVO_SOCIOS="Datos/Socios.dat";
+const char *ARCHIVO_SOCIOSBKP="BKP/Socios.bkp";
+
 #include "utilidades.h"
 #include "funciones.h"
-#include "configuracion.h"
 #include "fecha.h"
 #include "funcionesgenerales.h"
 #include "persona.h"
@@ -31,6 +34,7 @@ const int FONDO = BLACK;
 #include "instructores.h"
 #include "pagosMes.h"
 #include "ventas.h"
+#include "configuracion.h"
 
 
 
