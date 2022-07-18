@@ -335,7 +335,7 @@ int cargarInstructor(instructor aux){ ///HASTA EL MOMENTO NO PERMITE AGREGAR INS
         return 1;
     }
     else{
-        out<<"EL DNI YA PERTENECE A UN INSTRUCTOR: "<<endl;
+        cout<<"EL DNI YA PERTENECE A UN INSTRUCTOR: "<<endl;
     }
     return -1;
 }
