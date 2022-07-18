@@ -37,6 +37,10 @@ void menuConfiguracion()
             break;
         case 5:
             break;
+<<<<<<< HEAD
+
+=======
+>>>>>>> e1f4a84fa3f1e9e476a5bb44ee7f0ec5e5c46bf4
         case 0: estado=false;
             break;
 

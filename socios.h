@@ -194,7 +194,7 @@ void menuSociosMod(){
 }
 int agregarSocio(socio aux){
     int dni;
-    cout<<"INGRESE EL DNI, DE LA PERSONA QUE QUIERE AGREGAR: "<<endl;
+    cout<<"INGRESE EL DNI DE LA PERSONA QUE QUIERE AGREGAR: "<<endl;
     cin>>dni;
     if(buscarporDNI(dni)<=0){
         aux.setdni(dni);
@@ -203,7 +203,7 @@ int agregarSocio(socio aux){
         return 1;
     }
     else{
-        cout<<"EL DNI, YA PERTENECE A UN SOCIO: "<<endl;
+        cout<<"EL DNI YA PERTENECE A UN SOCIO: "<<endl;
     }
 
     return -1;
