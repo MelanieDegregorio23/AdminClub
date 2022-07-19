@@ -171,7 +171,7 @@ int  ListarVentas(){
 
 int buscarporid(int id){
     Venta aux;
-    int pos=0,i;
+    int pos=0;
     while(aux.leerEnDisco(pos)==1){
         if(aux.getID()==id){
             return pos;
@@ -186,11 +186,13 @@ int ListarID(){
     int id, pos;
     cout<<"INGRESE ID : "<<endl;
     cin>>id;
-    pos = buscarporid(id);
-    system("cls");
-    while(aux.leerEnDisco(pos)){
-        aux.Mostrar();
+    pos=buscarporid(id);
+    while(aux.leerEnDisco(pos)==1){
+        if(aux.getID()==id){
+           aux.Mostrar();
         cout<<endl;
+        return 1;
+        }
         pos++;
     }
 
