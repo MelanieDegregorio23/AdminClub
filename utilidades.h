@@ -43,6 +43,33 @@ void recuadro(short iniX, short iniY, short ancho, short alto, short colorLinea=
     }
     setlocale(LC_ALL, "spanish");
 }
+void recuadro1(short iniX, short iniY, short ancho, short alto, short colorLinea=WHITE, short colorFondo=CYAN){
+            setlocale(LC_ALL, "C");
+    int i, j;
+    for(i=iniX; i<=iniX+ancho; i++){
+        for(j=iniY; j<=iniY+alto; j++){
+            locate(i, j);
+            setColor(colorLinea);
+            setBackgroundColor(colorFondo);
+            //Arriba izquierda
+            if(i==iniX && j==iniY){
+                cout << (char) 201;
+            }
+            //Arriba derecha
+            else if(i==iniX+ancho && j==iniY){
+                cout << (char) 187;
+            }
+                        //Lineas arriba y abajo
+            else if(j==iniY){
+                cout << (char) 205;
+            }
+            //Lineas izquierda y derecha
+
+
+
+}
+}
+}
 
 void separadorH(short iniX, short iniY, short ancho, short colorLinea=WHITE, short colorFondo=BLACK){
     setlocale(LC_ALL, "C");
@@ -53,6 +80,17 @@ void separadorH(short iniX, short iniY, short ancho, short colorLinea=WHITE, sho
         cout<<(char)205;
     }
     cout<<(char)185;
+    setlocale(LC_ALL, "spanish");
+}
+void separadorx(short iniX, short iniY, short ancho, short colorLinea=WHITE, short colorFondo=BLACK){
+    setlocale(LC_ALL, "C");
+    int i;
+    locate(iniX,iniY);
+
+    for(i=1; i<ancho; i++){
+        cout<<(char)205;
+    }
+
     setlocale(LC_ALL, "spanish");
 }
 

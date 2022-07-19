@@ -68,35 +68,49 @@ void persona::Cargar(){
     locate(POSMENUX+16,POSMENUY+7);
     cargarCadena(Apellido, 19);
     locate(POSMENUX+16,POSMENUY+8);
-
-    locate(POSMENUX+16,POSMENUY+9);
     cout<<"INGERSAR FECHA DE NACIMIENTO : ";
-    locate(POSMENUX+16,POSMENUY+10);
+    locate(POSMENUX+16,POSMENUY+9);
     fechaDeNacimiento.Cargar();
+    locate(POSMENUX+16,POSMENUY+16);
     Edad = generarEdad(fechaDeNacimiento);
     cout<<"EDAD : "<<Edad;
-    locate(POSMENUX+16,POSMENUY+11);
+    locate(POSMENUX+16,POSMENUY+17);
     cout<<"INGRESAR CORREO : ";
-    locate(POSMENUX+16,POSMENUY+12);
+    locate(POSMENUX+16,POSMENUY+18);
     cargarCadena(Correo, 34);
-    locate(POSMENUX+16,POSMENUY+13);
+    locate(POSMENUX+16,POSMENUY+19);
     cout<<"INGRESE NUMERO DE TELEFONO :  ";
-    locate(POSMENUX+16,POSMENUY+14);
+    locate(POSMENUX+16,POSMENUY+20);
     cargarCadena(Telefono, 14);
-    locate(POSMENUX+16,POSMENUY+15);
 
 
 }
 
 void persona::Mostrar(){
         if(Estado==true){
-        cout<<"NOMBRE :  "<<Nombre<<endl;
-        cout<<"APELLIDO :  "<<Apellido<<endl;
-        cout<<"DNI :  "<<DNI<<endl;
-        cout<<"EDAD :  "<<Edad<<endl;
-        cout<<"CORREO :  "<<Correo<<endl;
-        cout<<"TELEFONO :  "<<Telefono<<endl;
-        cout<<"FECHA DE NACIMIENTO"<<endl;
+    const int ANCHO_MENU = 50;
+    const int ALTO_MENU = 20;
+    const int POSMENUX = 33;
+    const int POSMENUY = 3;
+    setColor(LETRA);
+    setBackgroundColor(FONDO);
+    separadorx(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+    locate(POSMENUX+16,POSMENUY+1);
+        cout<<"LISTADO DE SOCIOS";
+        locate(POSMENUX+16,POSMENUY+5);
+        cout<<"NOMBRE :  "<<Nombre;
+        locate(POSMENUX+16,POSMENUY+6);
+        cout<<"APELLIDO :  "<<Apellido;
+        locate(POSMENUX+16,POSMENUY+7);
+        cout<<"DNI :  "<<DNI;
+        locate(POSMENUX+16,POSMENUY+8);
+        cout<<"EDAD :  "<<Edad;
+        locate(POSMENUX+16,POSMENUY+9);
+        cout<<"CORREO :  "<<Correo;
+        locate(POSMENUX+16,POSMENUY+10);
+        cout<<"TELEFONO :  "<<Telefono;
+        locate(POSMENUX+16,POSMENUY+11);
+        cout<<"FECHA DE NACIMIENTO: ";
         fechaDeNacimiento.Mostrar();
         }
 

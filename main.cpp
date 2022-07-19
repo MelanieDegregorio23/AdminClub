@@ -42,7 +42,6 @@ int main()
 {
     int opcionesMenu=-2;
     int Tecla;
-    system("mode con: cols=200 lines=75");
 
     bool estado = true;
     const int ANCHO_MENU = 50;
