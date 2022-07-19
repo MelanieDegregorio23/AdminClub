@@ -332,6 +332,7 @@ void listarSocio(){
     setBackgroundColor(FONDO);
     cout<<"     LISTAR     "<<endl;
     separadorx(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+    cout<<endl<<endl;
 
     while(aux.LeerEnDisco(pos)==1){
         aux.MostrarSocio();
