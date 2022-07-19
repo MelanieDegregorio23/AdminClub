@@ -154,8 +154,8 @@ int modificarNombreSocios(){
 
     pos = listarSociosPorDNI();
     if(pos>=0){
-
-         cout<<"INGRESAR NUEVO NOMBRE : "<<endl;
+         locate(POSMENUX+16,POSMENUY+15);
+         cout<<"INGRESAR NUEVO NOMBRE : ";
          cin>>nombre;
          aux.LeerEnDisco(pos);
          aux.setNombre(nombre);
@@ -172,27 +172,76 @@ void menuSociosMod(){
     socio aux;
     int opc;
     bool estado = true;
+    int key, cursorX, cursorY;
+    const int ANCHO_MENU = 50;
+    const int ALTO_MENU = 10;
        while (estado==true){
+        cursorX=POSMENUX+11;
+        cursorY=POSMENUY + 4;
+        setBackgroundColor(COLOR_PANTALLA);
+        cls();
+        opc=0;
         system("cls");
-        cout<<" ___________________________________"<<endl<<endl;
-        cout<<"      MENU MODIFICACION SOCIOS"<<endl;
-        cout<<" ____________________________________"<<endl<<endl;
+        recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
+        separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+        locate(POSMENUX+14,POSMENUY+1);
+        cout<<"MENU MODIFICACION SOCIOS";
+        locate(POSMENUX+14,POSMENUY+4);
+        cout<<"MODIFICAR NOMBRE."<<endl;
+        locate(POSMENUX+14,POSMENUY+5);
+        cout<<"VOLVER AL MENU ANTERIOR."<<endl;
+        locate(POSMENUX+12,POSMENUY+4);
 
-        cout<<endl;
-        cout<<" 1. MODIFICAR NOMBRE"<<endl;
-        cout<<" 0. VOLVER AL MENU ANTERIOR"<<endl;
-        cout<<endl;
-        cout<<" INGRESE LA OPCION DESEADA: ";
-        cin>>opc;
+         hidecursor();
+        locate(cursorX,cursorY);
+        cout<<">>";
+        key = getkey();
+        while(key != KEY_ENTER){
+        locate(cursorX,cursorY);
+        cout<<" ";
+        cout<<" ";
+        switch(key){
+        case KEY_DOWN:
+            if(opc < 1){
+                opc++;
+            }else{
+                opc=0;
+            }
+            break;
+        case KEY_UP:
+            if(opc > 1){
+                opc--;
+            }else{
+                opc=0;
+            }
+            break;
+        }
+        if(opc != 0){
+            cursorY = opc + POSMENUY + 4;
+        }else{
+            cursorY = POSMENUY + 4;
+        }
+        locate(cursorX,cursorY);
+        cout<<">>";
+        key = getkey();
+      }
+      setBackgroundColor(COLOR_PANTALLA);
+      cls();
+      showcursor();
+
         switch(opc){
-    case 1:
+    case 0:
         system("cls");
-       if( modificarNombreSocios()>=0){cout<<"MODIFICACION EXITOSA "<<endl;}else{
+       if( modificarNombreSocios()>=0){
+            gotoxy(49,20);
+        cout<<"MODIFICACION EXITOSA "<<endl;}else{
+            gotoxy(49,20);
         cout<<"NO SE PUDO REALIZAR LA MODIFICACION "<<endl;
        }
+       gotoxy(49,22);
         system("pause");
         break;
-    case 0: estado =false;
+    case 1: estado=false;
     break;
 
         }
@@ -262,7 +311,12 @@ void listarSocio(){
 int listarSociosPorDNI(){
     socio aux;
     int dni, pos;
-    cout<<"INGRESE DNI : "<<endl;
+
+    separadorx(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+    locate(POSMENUX+12,POSMENUY+1);
+    cout<<"DATOS DEL SOCIO";
+    locate(POSMENUX+12,POSMENUY+5);
+    cout<<"INGRESE DNI : ";
     cin>>dni;
     pos = buscarporDNI(dni);
     if(pos>=0){
