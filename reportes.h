@@ -9,18 +9,37 @@ void menuReportes();
 void ArtMes();
 void mostrarArt(int *v,int tam);
 void CantSociosPorD();
-void cargarVec();
+int contarS(int cod);
+
 
 ///DESARROLLO
-void cargarVec(){
-    socio
+
+
+int contarS(int cod){
+    socio reg;
+    int pos =0,cant=0;
+    while(reg.LeerEnDisco(pos)){
+        if(reg.getIdDeporte()==cod){
+            cant++;
+        }
+        pos++;
+    }
+    return cant;
 }
 
 void CantSociosPorD(){
     int cant, pos =0;
     deporte aux;
-    while(aux.LeerEnDisco(pos)){
+    cout<<"CANTIDAD DE SOCIOS POR DEPORTE "<<endl;
+    cout<<endl;
 
+    while(aux.LeerEnDisco(pos)){
+        int id = aux.getCodDep();
+        int cant = contarS(id);
+        if(cant>0){
+            cout<<"CANTIDAD DE SOCIOS EN "<<aux.getDescripcion()<<"    :    "<<cant<<endl;
+            cout<<endl;
+        }
         pos++;
     }
 }
