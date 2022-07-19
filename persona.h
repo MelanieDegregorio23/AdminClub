@@ -87,32 +87,22 @@ void persona::Cargar(){
 }
 
 void persona::Mostrar(){
+
         if(Estado==true){
-    const int ANCHO_MENU = 50;
-    const int ALTO_MENU = 20;
-    const int POSMENUX = 33;
-    const int POSMENUY = 3;
-    setColor(LETRA);
-    setBackgroundColor(FONDO);
-    separadorx(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
-    locate(POSMENUX+16,POSMENUY+1);
-        cout<<"LISTADO DE SOCIOS";
-        locate(POSMENUX+16,POSMENUY+5);
-        cout<<"NOMBRE :  "<<Nombre;
-        locate(POSMENUX+16,POSMENUY+6);
-        cout<<"APELLIDO :  "<<Apellido;
-        locate(POSMENUX+16,POSMENUY+7);
-        cout<<"DNI :  "<<DNI;
-        locate(POSMENUX+16,POSMENUY+8);
-        cout<<"EDAD :  "<<Edad;
-        locate(POSMENUX+16,POSMENUY+9);
-        cout<<"CORREO :  "<<Correo;
-        locate(POSMENUX+16,POSMENUY+10);
-        cout<<"TELEFONO :  "<<Telefono;
-        locate(POSMENUX+16,POSMENUY+11);
-        cout<<"FECHA DE NACIMIENTO: ";
-        fechaDeNacimiento.Mostrar();
-        }
+            cout<<"NOMBRE :  "<<Nombre<<endl;
+            cout<<"APELLIDO :  "<<Apellido<<endl;
+            cout<<"DNI :  "<<DNI<<endl;
+            cout<<"EDAD :  "<<Edad<<endl;
+            cout<<"CORREO :  "<<Correo<<endl;
+            cout<<"TELEFONO :  "<<Telefono<<endl;
+            cout<<"FECHA DE NACIMIENTO: ";
+            fechaDeNacimiento.Mostrar();
+            cout<<endl<<endl;
+
+
+
+
+    }
 
 }
 

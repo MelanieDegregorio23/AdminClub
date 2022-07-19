@@ -12,9 +12,9 @@ void CantSociosPorD();
 void cargarVec();
 
 ///DESARROLLO
-void cargarVec(){
+/*void cargarVec(){
     socio
-}
+}*/
 
 void CantSociosPorD(){
     int cant, pos =0;
