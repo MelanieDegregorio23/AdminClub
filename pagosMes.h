@@ -30,7 +30,8 @@ public:
      cin>>idpagos;
      cout<<endl;
      cout<<"CARGAR FECHA DE PAGO"<<endl;
-     fechadePago.Cargar();
+     fechadePago.fechaHoy();
+     fechadePago.Mostrar();
 
 
 
@@ -92,29 +93,32 @@ int ModificarEnDisco(int pos){
 void menuPagoMes();
 int agregarPagos(pagos aux);
 float buscarValordeCuota(int depo);
-void listarPagoporDNI();
+int listarPagoporDNI();
 
 
 ///DESARROLLO
 
 
 
-void listarPagoporDNI(){
+int listarPagoporDNI(){
     pagos aux;
     int dni,pos=0;
     cout<<"INGRESE DNI DE SOCIO : "<<endl;
     cin>>dni;
-    system("cls");
-    if(buscarporDNI(dni)>=0){
+
+        pos=buscarporDNI(dni);
+        if(pos>=0){
         while(aux.LeerEnDisco(pos)){
         if(aux.getdni()==dni){
             aux.Mostrar();
+            return 1;
             cout<<endl;
         }
         pos++;
     }
+}
+    return-1;
 
-    }
 
 }
 
@@ -138,7 +142,7 @@ int agregarPagos(pagos aux){
      cin>>dni;
 
     pos = buscarporDNI(dni);
-    if(pos>0){
+    if(pos>=0){
 
         aux.setdni(dni);
         aux.Cargar();
@@ -177,7 +181,9 @@ void submenuListarPagos(){
         switch(opc){
     case 1:
           system("cls");
-            listarPagoporDNI();
+            if(listarPagoporDNI()<0){
+                cout<<"NO SE ENCONTRO PAGOS DE CUOTAS PARA ESE DNI: ";
+            }
         system("pause");
         break;
 
