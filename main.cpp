@@ -28,12 +28,12 @@ const char *ARCHIVO_SOCIOSBKP="BKP/Socios.bkp";
 #include "funcionesgenerales.h"
 #include "persona.h"
 #include "articulos.h"
-#include "reportes.h"
 #include "socios.h"
 #include "deportes.h"
 #include "instructores.h"
 #include "pagosMes.h"
 #include "ventas.h"
+#include "reportes.h"
 #include "configuracion.h"
 
 
