@@ -25,11 +25,23 @@ public:
 
     void Cargar(){
      system("cls");
-     cout<<endl;
-     cout<<"INGRESAR ID DE PAGOS"<<endl;
+
+    const int ANCHO_MENU = 50;
+    const int ALTO_MENU = 20;
+    const int POSMENUX = 33;
+    const int POSMENUY = 3;
+    setColor(LETRA);
+    setBackgroundColor(FONDO);
+    recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
+    separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+    locate(POSMENUX+16,POSMENUY+1);
+    cout<<"PAGO DE COUTAS: ";
+     locate(POSMENUX+16,POSMENUY+5);
+     cout<<"INGRESAR ID DE PAGOS: ";
      cin>>idpagos;
-     cout<<endl;
-     cout<<"CARGAR FECHA DE PAGO"<<endl;
+     locate(POSMENUX+16,POSMENUY+6);
+     cout<<"CARGAR FECHA DE PAGO: "<<endl;
+     locate(POSMENUX+16,POSMENUY+7);
      fechadePago.fechaHoy();
      fechadePago.Mostrar();
 
@@ -138,8 +150,14 @@ float buscarValordeCuota(int depo){
 int agregarPagos(pagos aux){
     int dni, pos;
     socio obj;
-     cout<<"INGRESAR DNI DE SOCIO"<<endl;
-     cin>>dni;
+    separadorx(POSMENUX,POSMENUY+2,ANCHO_MENU+17,LETRA,FONDO);
+    locate(POSMENUX+20,POSMENUY+1);
+    cout<<"DATOS DEL SOCIO";
+    locate(POSMENUX+12,POSMENUY+5);
+    cout<<"INGRESE EL DNI DEL SOCIO";
+    locate(POSMENUX+12,POSMENUY+7);
+    cout<<"DNI: ";
+    cin>>dni;
 
     pos = buscarporDNI(dni);
     if(pos>=0){
@@ -166,20 +184,64 @@ void submenuListarPagos(){
     Articulo aux;
     int opc;
     bool estado = true;
+    int key, cursorX, cursorY;
+    const int ANCHO_MENU = 50;
+    const int ALTO_MENU = 10;
        while (estado==true){
+        cursorX=POSMENUX+11;
+        cursorY=POSMENUY + 4;
+        setBackgroundColor(COLOR_PANTALLA);
+        cls();
+        opc=0;
         system("cls");
-        cout<<" ___________________________________"<<endl<<endl;
-        cout<<"      MENU DE LISTADOS"<<endl;
-        cout<<" ____________________________________"<<endl<<endl;
+        recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
+        separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+        locate(POSMENUX+18,POSMENUY+1);
+        cout<<"MENU DE LISTADOS";
+        locate(POSMENUX+14,POSMENUY+4);
+        cout<<" LISTAR PAGOS POR DNI DE SOCIO"<<endl<<endl;
+        locate(POSMENUX+14,POSMENUY+5);
+        cout<<" VOLVER AL MENU ANTERIOR"<<endl;
+        locate(POSMENUX+12,POSMENUY+4);
 
-        cout<<endl;
-        cout<<" 1. LISTAR PAGOS POR DNI DE SOCIO"<<endl;
-        cout<<" 0. VOLVER AL MENU ANTERIOR"<<endl;
-        cout<<endl;
-        cout<<" INGRESE LA OPCION DESEADA: ";
-        cin>>opc;
+         hidecursor();
+        locate(cursorX,cursorY);
+        cout<<">>";
+        key = getkey();
+        while(key != KEY_ENTER){
+        locate(cursorX,cursorY);
+        cout<<" ";
+        cout<<" ";
+        switch(key){
+        case KEY_DOWN:
+            if(opc < 1){
+                opc++;
+            }else{
+                opc=0;
+            }
+            break;
+        case KEY_UP:
+            if(opc > 1){
+                opc--;
+            }else{
+                opc=0;
+            }
+            break;
+        }
+        if(opc != 0){
+            cursorY = opc + POSMENUY + 4;
+        }else{
+            cursorY = POSMENUY + 4;
+        }
+        locate(cursorX,cursorY);
+        cout<<">>";
+        key = getkey();
+      }
+      setBackgroundColor(COLOR_PANTALLA);
+      cls();
+      showcursor();
         switch(opc){
-    case 1:
+    case 0:
           system("cls");
             if(listarPagoporDNI()<0){
                 cout<<"NO SE ENCONTRO PAGOS DE CUOTAS PARA ESE DNI: ";
@@ -187,7 +249,7 @@ void submenuListarPagos(){
         system("pause");
         break;
 
-    case 0: estado =false;
+    case 1: estado =false;
     break;
 
         }
@@ -200,36 +262,84 @@ void menuPagoMes()
    system("cls");
     pagos aux;
     int opc;
-    bool estado = true;
+   bool estado = true;
+    int key, cursorX, cursorY;
+    const int ANCHO_MENU = 50;
+    const int ALTO_MENU = 10;
        while (estado==true){
+        cursorX=POSMENUX+11;
+        cursorY=POSMENUY + 4;
+        setBackgroundColor(COLOR_PANTALLA);
+        cls();
+        opc=0;
         system("cls");
-        cout<<" ________________________"<<endl<<endl;
-        cout<<"   MENU PAGOS MENSUALES "<<endl;
-        cout<<" ________________________"<<endl<<endl;
+        recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
+        separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+        locate(POSMENUX+18,POSMENUY+1);
+        cout<<"MENU PAGOS MENSUALES ";
+        locate(POSMENUX+14,POSMENUY+4);
+        cout<<" INGRESAR VALOR DE CUOTA"<<endl;
+        locate(POSMENUX+14,POSMENUY+5);
+        cout<<" MENU DE LISTADOS"<<endl;
+        locate(POSMENUX+14,POSMENUY+6);
+        cout<<" VOLVER AL MENU PRINCIPAL"<<endl;
+       locate(POSMENUX+12,POSMENUY+7);
 
-        cout<<endl;
-        cout<<" 1. INGRESAR VALOR DE CUOTA"<<endl;
-        cout<<" 2. MENU DE LISTADOS"<<endl;
-        cout<<" 0. VOLVER AL MENU PRINCIPAL"<<endl;
-        cout<<endl;
-        cout<<" INGRESE LA OPCION DESEADA: ";
-        cin>>opc;
+         hidecursor();
+        locate(cursorX,cursorY);
+        cout<<">>";
+        key = getkey();
+        while(key != KEY_ENTER){
+        locate(cursorX,cursorY);
+        cout<<" ";
+        cout<<" ";
+        switch(key){
+        case KEY_DOWN:
+            if(opc < 2){
+                opc++;
+            }else{
+                opc=0;
+            }
+            break;
+        case KEY_UP:
+            if(opc > 2){
+                opc--;
+            }else{
+                opc=0;
+            }
+            break;
+        }
+        if(opc != 0){
+            cursorY = opc + POSMENUY + 4;
+        }else{
+            cursorY = POSMENUY + 4;
+        }
+        locate(cursorX,cursorY);
+        cout<<">>";
+        key = getkey();
+      }
+      setBackgroundColor(COLOR_PANTALLA);
+      cls();
+      showcursor();
         switch(opc){
-    case 1: system("cls");
+    case 0: system("cls");
         if(agregarPagos(aux)==1){
+                gotoxy(46,26);
                 cout<<"EL PAGO FUE AGREGADO CON EXITO"<<endl;
         }else{
+            gotoxy(46,26);
                 cout<<"EL PAGO NO PUDO SER AGREGADO"<<endl;
 
         }
+            gotoxy(42,28);
             system("pause");
         break;
-        case 2: system("cls");
+        case 1: system("cls");
             submenuListarPagos();
             system("pause");
         break;
 
-    case 0: estado=false;
+    case 2: estado=false;
         break;
         }
 
