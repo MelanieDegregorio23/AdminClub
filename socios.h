@@ -70,16 +70,14 @@ void Cargar(){
 
 
 }
-void MostrarSocio(){
-        const int POSMENUX = 33;
-        const int POSMENUY = 3;
+void MostrarSocio( ){
         if (Estado==true){
         persona::Mostrar();
-        locate(POSMENUX+16,POSMENUY+12);
-        cout<<"ID DE SOCIO: "<<Id;
-        locate(POSMENUX+16,POSMENUY+13);
-        cout<<"ID DE DEPORTE: "<<IdDeporte;
-        locate(POSMENUX+16,POSMENUY+14);
+
+        cout<<"ID DE SOCIO: "<<Id<<endl;
+
+        cout<<"ID DE DEPORTE: "<<IdDeporte<<endl;
+
         cout<<"FECHA DE INGRESO: ";
         Fechaingreso.Mostrar();
         }
@@ -154,7 +152,6 @@ int modificarNombreSocios(){
 
     pos = listarSociosPorDNI();
     if(pos>=0){
-         locate(POSMENUX+16,POSMENUY+15);
          cout<<"INGRESAR NUEVO NOMBRE : ";
          cin>>nombre;
          aux.LeerEnDisco(pos);
@@ -249,31 +246,58 @@ void menuSociosMod(){
 }
 int agregarSocio(socio aux){
     int dni;
-    cout<<"INGRESE EL DNI DE LA PERSONA QUE QUIERE AGREGAR: "<<endl;
+    separadorx(POSMENUX,POSMENUY+2,ANCHO_MENU+17,LETRA,FONDO);
+    locate(POSMENUX+20,POSMENUY+1);
+    cout<<"DATOS DEL SOCIO";
+    locate(POSMENUX+12,POSMENUY+5);
+    cout<<"INGRESE EL DNI DEL SOCIO QUE QUIERE AGREGAR";
+    locate(POSMENUX+12,POSMENUY+7);
+    cout<<"DNI: ";
     cin>>dni;
-    if(buscarporDNI(dni)<=0){
+    if(buscarporDNI(dni)<0){
         aux.setdni(dni);
         aux.Cargar();
         aux.GrabarEnDisco();
         return 1;
     }
-    else{
-        cout<<"EL DNI YA PERTENECE A UN SOCIO: "<<endl;
-    }
+
 
     return -1;
 }
+
+void mostrarPorPosicion(int pos){
+ socio aux;
+    if(aux.LeerEnDisco(pos)==1){
+        aux.MostrarSocio();
+    }
+}
 int eliminarSocio(){
+    system("cls");
     socio aux;
     int dni, pos;
-    cout<<"INGRESAR DNI SOCIO"<<endl;
+    char confirmo;
+    const int POSMENUX = 0;
+    const int POSMENUY = 0;
+     cout<<"     DATOS DEL SOCIO     "<<endl;
+    separadorx(POSMENUX,POSMENUY+2,ANCHO_MENU+17,LETRA,FONDO);
+    cout<<endl;
+    cout<<"INGRESAR DNI SOCIO: "<<endl;
     cin>>dni;
     pos=buscarporDNI(dni);
-    if (pos>=0){
-        aux.LeerEnDisco(pos);
-        aux.setEstado(false);
-        aux.ModificarEnDisco(pos);
-        return pos;
+    if(pos>=0){
+        mostrarPorPosicion(pos);
+        cout<<endl;
+        cout<<"QUIERE ELIMINAR  EL SOCIO?  (S/ N): "<<endl;
+        cin>> confirmo;
+        switch(confirmo){
+        case 's':
+            aux.setEstado(false);
+            aux.ModificarEnDisco(pos);
+            return 1;
+            break;
+        case 'n':  return 2;
+            break;
+        }
 
     }
     return -1;
@@ -299,8 +323,16 @@ int buscarporDNI( int DNI){
 
 
 void listarSocio(){
+    system("cls");
     socio aux;
     int pos=0;
+    const int POSMENUX = 0;
+    const int POSMENUY = 0;
+    setColor(LETRA);
+    setBackgroundColor(FONDO);
+    cout<<"     LISTAR     "<<endl;
+    separadorx(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+
     while(aux.LeerEnDisco(pos)==1){
         aux.MostrarSocio();
         cout<<endl<<endl;
@@ -422,50 +454,95 @@ void submenuListar(){
 
     system("cls");
     socio aux;
-    int opc;
+    const int ANCHO_MENU = 50;
+    const int ALTO_MENU = 10;
     bool estado = true;
+     int key, opc, cursorX, cursorY;
        while (estado==true){
-
-        system("cls");
-        cout<<" ___________________________________"<<endl<<endl;
-        cout<<"      MENU DE LISTADOS"<<endl;
-        cout<<" ____________________________________"<<endl<<endl;
-
-        cout<<endl;
-        cout<<" 1. LISTAR SOCIOS "<<endl;
-        cout<<" 2. LISTAR SOCIOS POR DNI"<<endl;
-        cout<<" 3. LISTAR SOCIOS POR ID"<<endl;
-        cout<<" 4. LISTAR SOCIOS ALFABETICAMENTE"<<endl;
-        cout<<" 0. VOLVER AL MENU ANTERIOR"<<endl;
-        cout<<endl;
-        cout<<" INGRESE LA OPCION DESEADA: ";
-        cin>>opc;
+       cursorX=POSMENUX+13;
+       cursorY=POSMENUY + 4;
+      setBackgroundColor(COLOR_PANTALLA);
+      cls();
+      opc=0;
+      setColor(LETRA);
+      setBackgroundColor(FONDO);
+      recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
+      separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+      locate(POSMENUX+15,POSMENUY+1);
+        cout<<" MENU DE LISTADOS"<<endl;
+        locate(POSMENUX+15,POSMENUY+4);
+        cout<<" LISTAR SOCIOS "<<endl;
+        locate(POSMENUX+15,POSMENUY+5);
+        cout<<" LISTAR SOCIOS POR DNI"<<endl;
+        locate(POSMENUX+15,POSMENUY+6);
+        cout<<" LISTAR SOCIOS POR ID"<<endl;
+        locate(POSMENUX+15,POSMENUY+7);
+        cout<<" LISTAR SOCIOS ALFABETICAMENTE"<<endl;
+        locate(POSMENUX+15,POSMENUY+8);
+        cout<<" VOLVER AL MENU ANTERIOR"<<endl;
+        locate(POSMENUX+15,POSMENUY+9);
+         hidecursor();
+        locate(cursorX,cursorY);
+        cout<<">>";
+        key = getkey();
+        while(key != KEY_ENTER){
+        locate(cursorX,cursorY);
+        cout<<" ";
+        cout<<" ";
+        switch(key){
+        case KEY_DOWN:
+            if(opc < 4){
+                opc++;
+            }else{
+                opc=0;
+            }
+            break;
+        case KEY_UP:
+            if(opc > 4){
+                opc--;
+            }else{
+                opc=0;
+            }
+            break;
+        }
+        if(opc != 0){
+            cursorY = opc + POSMENUY + 4;
+        }else{
+            cursorY = POSMENUY + 4;
+        }
+        locate(cursorX,cursorY);
+        cout<<">>";
+        key = getkey();
+      }
+      setBackgroundColor(COLOR_PANTALLA);
+      cls();
+      showcursor();
         switch(opc){
-    case 1:
+    case 0:
         system("cls");
         listarSocio();
         system("pause");
         break;
-         case 2:
+         case 1:
         system("cls");
         if(listarSociosPorDNI()<0){
             cout<<"NO SE ENCONTRO CLIENTE CON EL DNI INGRESADO"<<endl;
             }
         system("pause");
         break;
-            case 3:
+            case 2:
         system("cls");
                 if(listarSociosPorId()<0){
                 cout<<"NO SE ENCONTRO CLIENTE CON EL ID INGRESADO"<<endl;
             }
         system("pause");
         break;
-         case 4:
+         case 3:
         system("cls");
            listarSocioDinamico();
         system("pause");
         break;
-    case 0: estado =false;
+    case 4: estado =false;
     break;
 
         }
@@ -560,9 +637,13 @@ void menuSocios(){
             system("pause");
         break;
     case 1: system("cls");
-         if(eliminarSocio()>=0){
+         if(eliminarSocio()==1){
+
             cout<<"SOCIO ELIMINADO"<<endl;
-         }else {cout<<"NO SE ENCONTRO SOCIO CON ESE DNI"<<endl;}
+         }else {
+
+         cout<<"NO SE ELIMINO EL SOCIO"<<endl;}
+
          system("pause");
         break;
     case 2: system("cls");
