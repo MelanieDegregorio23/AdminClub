@@ -27,6 +27,7 @@ class Fecha{
 
 void Fecha::Mostrar(){
     ///cout<<this<<endl;
+
     cout<<this->dia<<"/"<<this->mes<<"/"<<this->anio<<endl;
 }
 
@@ -45,19 +46,19 @@ void Fecha::fechaHoy(){
 
 void Fecha::Cargar(){
     int d;
-    locate(POSMENUX+16,POSMENUY+17);
+    locate(POSMENUX+16,POSMENUY+10);
     cout<<"DIA: ";
-    locate(POSMENUX+16,POSMENUY+18);
+    locate(POSMENUX+16,POSMENUY+11);
     cin>>d;
     setDia(d);
-    locate(POSMENUX+16,POSMENUY+19);
+    locate(POSMENUX+16,POSMENUY+12);
     cout<<"MES: ";
-    locate(POSMENUX+16,POSMENUY+20);
+    locate(POSMENUX+16,POSMENUY+13);
     cin>>d;
     setMes(d);
-    locate(POSMENUX+16,POSMENUY+21);
+    locate(POSMENUX+16,POSMENUY+14);
     cout<<"ANIO: ";
-    locate(POSMENUX+16,POSMENUY+22);
+    locate(POSMENUX+16,POSMENUY+15);
     cin>>d;
     setAnio(d);
 }

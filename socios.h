@@ -64,17 +64,23 @@ void Cargar(){
      locate(POSMENUX+16,POSMENUY+9);
      cout<<"CARGAR FECHA DE INGRESO AL CLUB"<<endl;
      Fechaingreso.fechaHoy();
+      locate(POSMENUX+16,POSMENUY+10);
      Fechaingreso.Mostrar();
 
 
 
 }
 void MostrarSocio(){
+        const int POSMENUX = 33;
+        const int POSMENUY = 3;
         if (Estado==true){
         persona::Mostrar();
-        cout<<"ID DE SOCIO: "<<endl<<Id<<endl;
-        cout<<"ID DE DEPORTE: "<<endl<<IdDeporte<<endl;
-        cout<<"FECHA DE INGRESO: "<<endl;
+        locate(POSMENUX+16,POSMENUY+12);
+        cout<<"ID DE SOCIO: "<<Id;
+        locate(POSMENUX+16,POSMENUY+13);
+        cout<<"ID DE DEPORTE: "<<IdDeporte;
+        locate(POSMENUX+16,POSMENUY+14);
+        cout<<"FECHA DE INGRESO: ";
         Fechaingreso.Mostrar();
         }
 
@@ -449,8 +455,7 @@ void menuSocios(){
         locate(POSMENUX+15,POSMENUY+9);
         cout<<endl;
          hidecursor();
-      //cin>>opc;
-      locate(cursorX,cursorY);
+        locate(cursorX,cursorY);
         cout<<">>";
         key = getkey();
         while(key != KEY_ENTER){
@@ -489,15 +494,15 @@ void menuSocios(){
     case 0:
 
         if(agregarSocio(aux)==1){
-                 gotoxy(36,26);
+                 gotoxy(46,26);
                 cout<<">>EL SOCIO FUE AGREGADO CON EXITO<<"<<endl;
         }else{
 
-                gotoxy(36,26);
+                gotoxy(46,26);
                 cout<<"EL DNI, YA PERTENECE A UN  SOCIO EXISTENTE"<<endl;
 
         }
-            gotoxy(36,28);
+            gotoxy(42,28);
             system("pause");
         break;
     case 1: system("cls");
