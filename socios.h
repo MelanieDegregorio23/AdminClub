@@ -46,7 +46,7 @@ void Cargar(){
     const int ANCHO_MENU = 50;
     const int ALTO_MENU = 20;
     const int POSMENUX = 33;
-    const int POSMENUY = 10;
+    const int POSMENUY = 3;
     setColor(LETRA);
     setBackgroundColor(FONDO);
     recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
