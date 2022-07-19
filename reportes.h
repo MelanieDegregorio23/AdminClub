@@ -13,7 +13,6 @@ int contarS(int cod);
 
 
 ///DESARROLLO
-<<<<<<< HEAD
 
 
 int contarS(int cod){
@@ -27,11 +26,7 @@ int contarS(int cod){
     }
     return cant;
 }
-=======
-/*void cargarVec(){
-    socio
-}*/
->>>>>>> 4565c91dd08e89dd191e5504b32276e5b229bdcf
+
 
 void CantSociosPorD(){
     int cant, pos =0;
