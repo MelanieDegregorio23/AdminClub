@@ -32,15 +32,16 @@ public:
         cout<<"INGRESAR CODIGO DE DEPORTE"<<endl;
         cin>>CodDep;
         cout<<endl;
+        cout<<"NOMBRE DE DEPORTE"<<endl;
+        cargarCadena(Descripcion, 29);
         cout<<"INGRESAR CANTIDAD DE CUPOS"<<endl;
         cin>>CantCupos;
         cout<<endl;
         cout<<"AGREGAR VALOR DE CUOTA"<<endl;
         cin>>ValorCuota;
-        cout<<"DESCRIPCION DEL DEPORTE"<<endl;
-        cargarCadena(Descripcion, 29);
         cout<<"INGRESAR EL HORARIO EN EL QUE SE DICTAN LAS CLASES"<<endl;
          cargarCadena(Horario, 19);
+         Estado =true;
 
 
 
@@ -52,9 +53,9 @@ public:
         if (Estado==true)
         {
             cout<<"CODIGO DE DEPORTE: "<<endl<<CodDep<<endl;
+            cout<<"DEPORTE: "<<endl<<Descripcion<<endl;
             cout<<"CANTIDAD DE CUPOS: "<<endl<<CantCupos<<endl;
             cout<<"VALOR DE LA CUOTA: "<<endl<<ValorCuota<<endl;
-            cout<<"DESCRIPCION: "<<endl<<Descripcion<<endl;
             cout<<"HORARIO DE CLASES: "<<endl<<Horario<<endl;
             ///mostrar
 
@@ -110,7 +111,7 @@ int LeerEnDisco(int pos){
 
 
 
-
+///DECLARACIONES
 
 void menuDeportes();
 void listarDeporte();
@@ -121,7 +122,18 @@ int buscarPorCodigo( int codi, bool borrado=false);
 int eliminarDeporte();
 int listarPorInstructor();
 int  modificarCuota();
+int cantidadDeportes();
 
+///DESARROLLO
+int cantidadDeportes(){
+    deporte aux;
+    FILE * p;
+    p = fopen("Deportes.dat", "rb");
+    if(p==NULL) return -1;
+    fseek(p, 0, 2);
+    int cant = ftell(p)/sizeof(deporte);
+    return cant;
+}
 
 int  modificarCuota(){
     deporte reg;

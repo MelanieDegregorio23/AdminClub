@@ -3,10 +3,27 @@
 #include "articulos.h"
 #include "ventas.h"
 
+///DECLARACIONES
 
 void menuReportes();
 void ArtMes();
 void mostrarArt(int *v,int tam);
+void CantSociosPorD();
+void cargarVec();
+
+///DESARROLLO
+void cargarVec(){
+    socio
+}
+
+void CantSociosPorD(){
+    int cant, pos =0;
+    deporte aux;
+    while(aux.LeerEnDisco(pos)){
+
+        pos++;
+    }
+}
 
 void mostrarArt(int *v,int tam){
 int i;
@@ -51,11 +68,11 @@ void menuReportes(){
 
 
         cout<<"1. CANTIDAD DE ARTICULOS VENDIDOS POR MES."<<endl;
-        cout<<"2. CANTIDAD DE DINERO ACUMULADO POR VENTAS."<<endl;
-        cout<<"3. CANTIDAD DE SOCIOS POR AÑO."<<endl;
-        cout<<"4. CANTIDAD DE DINERO ACUMULADO POR MES SEGUN LA ACTIVIDAD."<<endl;
-        cout<<"5. CANTIDAD DE CLASES DADAS POR MES."<<endl;
-        cout<<"6. INFORMAR DEPORTES CON MAYOR NUMERO DE SOCIOS."<<endl;
+        cout<<"2. IMPORTE TOTAL ACUMULADO POR ENIO POR VENTAS."<<endl;
+        cout<<"3. IMPORTE ACUMULADO POR MES SEGUN EL DEPORTE."<<endl;
+        cout<<"4. CANTIDAD DE SOCIOS POR DEPORTE."<<endl;
+        cout<<"5. INFORMAR EL DEPORTE CON MAYOR NUMERO DE SOCIOS."<<endl;
+        cout<<"6. INFORMAR EL DEPORTE CON MENOR NUMERO DE SOCIOS."<<endl;
         cout<<"0. VOLVER AL MENU PRINCIPAL"<<endl;
         cout<<endl;
         cout<<"INGRESE LA OPCION DESEADA: "<<endl;
@@ -65,7 +82,10 @@ void menuReportes(){
         ArtMes();
             system("pause");
         break;
-    case 2:
+    case 4:
+        system("cls");
+        CantSociosPorD();
+        system("pause");
         break;
     case 0: estado=false;
         break;
