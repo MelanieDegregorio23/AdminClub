@@ -129,11 +129,17 @@ int agregarArticulo(Articulo aux){///NO PERMITE INGRESAR CODIGOS QUE FUERON ELIM
 }
 int listarArticulos(){
     Articulo aux;
-    int pos=0, lectura=0;
+    int pos=0, lectura=0, contador=0;
     while(aux.leerEnDisco(pos)==1){
         lectura=1;
+        if(aux.getestado()==true){
+        cout<<"ARTICULO N"<<(char)186<<contador+1<<endl;
+        cout<<"--------------- "<<endl;
         aux.Mostrar();
+        cout<<"--------------- "<<endl;
         cout<<endl<<endl;
+        contador++;
+        }
         pos++;
 
     }
@@ -163,7 +169,10 @@ int listarArticulos(){
     if(pos>=0){
         system("cls");
         aux.leerEnDisco(pos);
+        cout<<"ARTICULO N"<<(char)186<<aux.getCodigoAr()<<endl;
+        cout<<"--------------- "<<endl;
         aux.Mostrar();
+        cout<<"--------------- "<<endl;
         return pos;
     }
     return -1;
@@ -179,7 +188,10 @@ int listarArticulos(){
         system("cls");
         aux.leerEnDisco(pos);
 
-             aux.Mostrar();
+        cout<<"ARTICULO N"<<(char)186<<aux.getCodigoAr()<<endl;
+        cout<<"--------------- "<<endl;
+        aux.Mostrar();
+        cout<<"--------------- "<<endl;
 
 
 
@@ -190,7 +202,10 @@ int listarArticulos(){
 void mostrarPosicionART(int pos, Articulo aux){
 
     if(aux.leerEnDisco(pos)==1){
+        cout<<"ARTICULO N"<<(char)186<<aux.getCodigoAr()<<endl;
+        cout<<"--------------- "<<endl;
         aux.Mostrar();
+        cout<<"--------------- "<<endl;
     }
 }
 

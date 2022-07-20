@@ -122,7 +122,12 @@ int listarPagoporDNI(){
         if(pos>=0){
         while(aux.LeerEnDisco(pos)){
         if(aux.getdni()==dni){
-            aux.Mostrar();
+        cout<<"ARTICULO N"<<(char)186<<aux.getidpagos()<<endl;
+        cout<<"--------------- "<<endl;
+        aux.Mostrar();
+        cout<<"--------------- "<<endl;
+        cout<<endl<<endl;
+
             return 1;
             cout<<endl;
         }
