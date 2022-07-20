@@ -51,6 +51,7 @@ public:
 
 
 void persona::Cargar(){
+    system("cls");
     const int ANCHO_MENU = 52;
     const int ALTO_MENU = 30;
     setColor(LETRA);

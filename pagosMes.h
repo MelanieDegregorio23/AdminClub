@@ -120,13 +120,13 @@ int listarPagoporDNI(){
 
         pos=buscarporDNI(dni);
         if(pos>=0){
-        while(aux.LeerEnDisco(pos)){
-        if(aux.getdni()==dni){
-        cout<<"ARTICULO N"<<(char)186<<aux.getidpagos()<<endl;
-        cout<<"--------------- "<<endl;
-        aux.Mostrar();
-        cout<<"--------------- "<<endl;
-        cout<<endl<<endl;
+        while(aux.LeerEnDisco(pos)==1){
+            if(aux.getdni()==dni){
+            cout<<"PAGO N"<<(char)186<<aux.getidpagos()<<endl;
+            cout<<"--------------- "<<endl;
+            aux.Mostrar();
+            cout<<"--------------- "<<endl;
+            cout<<endl<<endl;
 
             return 1;
             cout<<endl;
@@ -329,14 +329,14 @@ void menuPagoMes()
         switch(opc){
     case 0: system("cls");
         if(agregarPagos(aux)==1){
-                gotoxy(46,26);
+                gotoxy(46,15);
                 cout<<"EL PAGO FUE AGREGADO CON EXITO"<<endl;
         }else{
-            gotoxy(46,26);
+            gotoxy(46,15);
                 cout<<"EL PAGO NO PUDO SER AGREGADO"<<endl;
 
         }
-            gotoxy(42,28);
+            gotoxy(42,17);
             system("pause");
         break;
         case 1: system("cls");

@@ -9,11 +9,13 @@ protected:
 
 public:
     void Cargar(){
+
         persona::Cargar();
         const int ANCHO_MENU = 50;
-        const int ALTO_MENU = 29;
+        const int ALTO_MENU = 20;
         const int POSMENUX = 33;
         const int POSMENUY = 3;
+        system("cls");
         setColor(LETRA);
         setBackgroundColor(FONDO);
         recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
@@ -30,7 +32,7 @@ public:
         locate(POSMENUX+16,POSMENUY+7);
         cin>>IDinstructor;
         locate(POSMENUX+16,POSMENUY+8);
-        cout<<" INGRESE CODIGO DE DEPORTE : ";
+        cout<<"INGRESE CODIGO DE DEPORTE : ";
         locate(POSMENUX+16,POSMENUY+9);
         cin>>CodigoDep;
 
@@ -613,11 +615,11 @@ void menuInstructores(){
                 system("cls");
 
                     if( cargarInstructor(aux)==1){
-                        gotoxy(46,26);
+                        gotoxy(46,15);
                         cout<<"NUEVO INSTRUCTOR REGISTRADO "<<endl;
                     }else{
-                        gotoxy(46,26);cout<<"NO SE PUDO REGISTRAR AL INSTRUCTOR"<<endl;}
-                    gotoxy(42,28);
+                        gotoxy(46,15);cout<<"NO SE PUDO REGISTRAR AL INSTRUCTOR"<<endl;}
+                    gotoxy(42,17);
                     system("pause");
 
                     break;
