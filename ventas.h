@@ -141,7 +141,7 @@ int buscarPorCodigo(const char *cod){
 }
 
 int AgregarVentas(Venta aux){
-    int posArt, posDNI, cantV, dni;
+    int posArt, posDNI, cantV, dni,codven;
     char cod[5];
     separadorx(POSMENUX,POSMENUY+2,ANCHO_MENU+17,LETRA,FONDO);
     locate(POSMENUX+20,POSMENUY+1);
@@ -160,7 +160,7 @@ int AgregarVentas(Venta aux){
              aux.cargar();
              cantV = aux.getCant();
             float importe=generarImpor(cantV, posArt);
-            locate(POSMENUX+12,POSMENUY+7);
+            locate(POSMENUX+16,POSMENUY+8);
             cout<<"IMPORTE: "<<importe<<endl;
             aux.setImporte(importe);
             actualizarStockVendido(cantV, posArt);
@@ -385,12 +385,12 @@ Venta aux;
         switch(opc){
     case 0: system("cls");
             if(AgregarVentas(aux)==1){
-                    gotoxy(46,26);
+                    gotoxy(46,15);
             cout<<"VENTA REGISTRADA"<<endl;
             }else{
-                gotoxy(46,26);
+                gotoxy(46,15);
             cout<<"NO SE PUDO REGISTRAR LA VENTA"<<endl;}
-            gotoxy(42,28);
+            gotoxy(42,17);
             system("pause");
         break;
     case 1:system("cls");
