@@ -62,12 +62,28 @@ int modificarEnDisco(int pos){
 
 }
 void cargar(){
-    cout<<"INGRESE ID DE VENTA: "<<endl;
+
+    const int ANCHO_MENU = 50;
+    const int ALTO_MENU = 20;
+    const int POSMENUX = 33;
+    const int POSMENUY = 3;
+    setColor(LETRA);
+    setBackgroundColor(FONDO);
+    recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
+    separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+    locate(POSMENUX+18,POSMENUY+1);
+    cout<<"VENTAS"<<endl;
+     locate(POSMENUX+16,POSMENUY+5);
+    cout<<"INGRESE ID DE VENTA: ";
     cin>>ID;
-    cout<<"INGRESE CANTIDAD VENDIDA: "<<endl;
+    locate(POSMENUX+16,POSMENUY+6);
+    cout<<"INGRESE CANTIDAD VENDIDA: ";
     cin>>Cant;
+    locate(POSMENUX+16,POSMENUY+7);
     cout<<"INGRESE FECHA DE VENTA: "<<endl;
-    FechadeVenta.Cargar();
+    locate(POSMENUX+16,POSMENUY+8);
+    FechadeVenta.fechaHoy();
+    FechadeVenta.Mostrar();
 
 }
 void Mostrar(){
@@ -127,9 +143,14 @@ int buscarPorCodigo(const char *cod){
 int AgregarVentas(Venta aux){
     int posArt, posDNI, cantV, dni;
     char cod[5];
-    cout<<"INGRESE EL CODIGO DE ARTICULO: "<<endl;
+    separadorx(POSMENUX,POSMENUY+2,ANCHO_MENU+17,LETRA,FONDO);
+    locate(POSMENUX+20,POSMENUY+1);
+    cout<<"VENTAS";
+    locate(POSMENUX+12,POSMENUY+5);
+    cout<<"INGRESE EL CODIGO DE ARTICULO: ";
     cargarCadena(cod,4);
-    cout<<"INGRESE EL DNI DEL CLIENTE: "<<endl;
+    locate(POSMENUX+12,POSMENUY+6);
+    cout<<"INGRESE EL DNI DEL CLIENTE: ";
     cin>>dni;
     posArt = buscarPorCodigo(cod);
     posDNI = buscarporDNI(dni);
@@ -139,6 +160,7 @@ int AgregarVentas(Venta aux){
              aux.cargar();
              cantV = aux.getCant();
             float importe=generarImpor(cantV, posArt);
+            locate(POSMENUX+12,POSMENUY+7);
             cout<<"IMPORTE: "<<importe<<endl;
             aux.setImporte(importe);
             actualizarStockVendido(cantV, posArt);
@@ -146,9 +168,11 @@ int AgregarVentas(Venta aux){
         return 1;
         }
         if(posArt<0){
+                locate(POSMENUX+12,POSMENUY+8);
             cout<<"EL CODIGO DE ARTICULO NO EXISTE EN NUESTRA BASE DE DATOS: "<<endl;
         }
         if(posDNI<0){
+            locate(POSMENUX+12,POSMENUY+9);
             cout<<"EL DNI INGRESADO NO PERTENECE A NINGUN SOCIO DEL CLUB: "<<endl;
         }
   return -1;
@@ -207,21 +231,67 @@ void submenuListarVentas(){
     Articulo aux;
     int opc;
     bool estado = true;
+    int key, cursorX, cursorY;
+    const int ANCHO_MENU = 50;
+    const int ALTO_MENU = 10;
        while (estado==true){
+        cursorX=POSMENUX+11;
+        cursorY=POSMENUY + 4;
+        setBackgroundColor(COLOR_PANTALLA);
+        cls();
+        opc=0;
         system("cls");
-        cout<<" ___________________________________"<<endl<<endl;
-        cout<<"      MENU DE LISTADOS"<<endl;
-        cout<<" ____________________________________"<<endl<<endl;
+        recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
+        separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+        locate(POSMENUX+18,POSMENUY+1);
+        cout<<" MENU DE LISTADOS"<<endl;
+        locate(POSMENUX+14,POSMENUY+4);
+        cout<<" LISTAR VENTAS POR ID"<<endl;
+        locate(POSMENUX+14,POSMENUY+5);
+        cout<<" LISTAR TODAS LAS VENTAS"<<endl;
+        locate(POSMENUX+14,POSMENUY+6);
+        cout<<" VOLVER AL MENU ANTERIOR"<<endl;
+        locate(POSMENUX+13,POSMENUY+7);
 
-        cout<<endl;
-        cout<<" 1. LISTAR VENTAS POR ID"<<endl;
-        cout<<" 2. LISTAR TODAS LAS VENTAS"<<endl;
-        cout<<" 0. VOLVER AL MENU ANTERIOR"<<endl;
-        cout<<endl;
-        cout<<" INGRESE LA OPCION DESEADA: ";
-        cin>>opc;
+         hidecursor();
+        locate(cursorX,cursorY);
+        cout<<">>";
+        key = getkey();
+        while(key != KEY_ENTER){
+        locate(cursorX,cursorY);
+        cout<<" ";
+        cout<<" ";
+        switch(key){
+        case KEY_DOWN:
+            if(opc < 2){
+                opc++;
+            }else{
+                opc=0;
+            }
+            break;
+        case KEY_UP:
+            if(opc > 2){
+                opc--;
+            }else{
+                opc=0;
+            }
+            break;
+        }
+        if(opc != 0){
+            cursorY = opc + POSMENUY + 4;
+        }else{
+            cursorY = POSMENUY + 4;
+        }
+        locate(cursorX,cursorY);
+        cout<<">>";
+        key = getkey();
+      }
+      setBackgroundColor(COLOR_PANTALLA);
+      cls();
+      showcursor();
+
         switch(opc){
-    case 1:
+    case 0:
              system("cls");
 
             if(ListarID()<0){
@@ -229,7 +299,7 @@ void submenuListarVentas(){
             }
             system("pause");
         break;
-         case 2:
+         case 1:
             system("cls");
 
             if(ListarVentas()==0){
@@ -237,43 +307,92 @@ void submenuListarVentas(){
             }
             system("pause");
         break;
-    case 0: estado =false;
+    case 2: estado =false;
     break;
 
         }
 }
 }
 void MenuVentas(){
-int op;
 Venta aux;
-bool estado=true;
-    while(estado==true){
+    int opc;
+    bool estado = true;
+    int key, cursorX, cursorY;
+    const int ANCHO_MENU = 50;
+    const int ALTO_MENU = 10;
+       while (estado==true){
+        cursorX=POSMENUX+11;
+        cursorY=POSMENUY + 4;
+        setBackgroundColor(COLOR_PANTALLA);
+        cls();
+        opc=0;
         system("cls");
-        cout<<" ________________________"<<endl<<endl;
-        cout<<"       MENU VENTAS"<<endl;
-        cout<<" ________________________"<<endl<<endl;
-        cout<<endl;
-        cout<<" 1. AGREGAR VENTAS"<<endl;
-        cout<<" 2. MENU DE LISTADOS"<<endl;
-        cout<<"------------------"<<endl;
-        cout<<" 0. VOLVER AL MENU PRINCIPAL"<<endl;
-        cout<<endl;
-        cout<<"SELECCIONE UNA DE LAS OPCIONES: "<<endl;
-        cin>>op;
-        switch(op){
-    case 1: system("cls");
+        recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
+        separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+        locate(POSMENUX+18,POSMENUY+1);
+        cout<<"MENU VENTAS"<<endl;
+        locate(POSMENUX+14,POSMENUY+4);
+        cout<<" AGREGAR VENTAS."<<endl;
+        locate(POSMENUX+14,POSMENUY+5);
+        cout<<" MENU DE LISTADOS."<<endl;
+        locate(POSMENUX+14,POSMENUY+6);
+        cout<<" VOLVER AL MENU PRINCIPAL."<<endl;
+        locate(POSMENUX+13,POSMENUY+7);
+
+         hidecursor();
+        locate(cursorX,cursorY);
+        cout<<">>";
+        key = getkey();
+        while(key != KEY_ENTER){
+        locate(cursorX,cursorY);
+        cout<<" ";
+        cout<<" ";
+        switch(key){
+        case KEY_DOWN:
+            if(opc < 2){
+                opc++;
+            }else{
+                opc=0;
+            }
+            break;
+        case KEY_UP:
+            if(opc > 2){
+                opc--;
+            }else{
+                opc=0;
+            }
+            break;
+        }
+        if(opc != 0){
+            cursorY = opc + POSMENUY + 4;
+        }else{
+            cursorY = POSMENUY + 4;
+        }
+        locate(cursorX,cursorY);
+        cout<<">>";
+        key = getkey();
+      }
+      setBackgroundColor(COLOR_PANTALLA);
+      cls();
+      showcursor();
+        switch(opc){
+    case 0: system("cls");
             if(AgregarVentas(aux)==1){
+                    gotoxy(46,26);
             cout<<"VENTA REGISTRADA"<<endl;
-            }else{cout<<"NO SE PUDO REGISTRAR LA VENTA"<<endl;}
+            }else{
+                gotoxy(46,26);
+            cout<<"NO SE PUDO REGISTRAR LA VENTA"<<endl;}
+            gotoxy(42,28);
             system("pause");
         break;
-    case 2:system("cls");
+    case 1:system("cls");
         submenuListarVentas();
            system("pause");
 
             break;
 
-    case 0:estado=false;
+    case 2:estado=false;
         break;
 
 
