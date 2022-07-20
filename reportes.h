@@ -30,8 +30,16 @@ void informarMenorS(){
         }
         pos++;
     }
-    cout<<endl;
-    cout<<"  EL DEPORTE CON MENOR CANTIDAD DE SOCIOS ES "<<dep<<endl;
+      const int ANCHO_MENU = 50;
+      const int ALTO_MENU = 8;
+      recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
+      separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+      locate(POSMENUX+20,POSMENUY+1);
+    cout<<"REPORTES"<<endl;
+    locate(POSMENUX+6,POSMENUY+4);
+    cout<<"EL DEPORTE CON MENOR CANTIDAD DE SOCIOS ES: "<<endl;
+    locate(POSMENUX+6,POSMENUY+5);
+    cout<<dep;
     cout<<endl;
 }
 
@@ -48,13 +56,24 @@ void informarMayorS(){
         }
         pos++;
     }
-    cout<<endl;
-    cout<<"  EL DEPORTE CON MAYOR CANTIDAD DE SOCIOS ES "<<dep<<endl;
-    cout<<endl;
+    const int ANCHO_MENU = 50;
+      const int ALTO_MENU = 8;
+      recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
+      separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+      locate(POSMENUX+20,POSMENUY+1);
+      cout<<"REPORTES"<<endl;
+    locate(POSMENUX+6,POSMENUY+4);
+    cout<<"  EL DEPORTE CON MAYOR CANTIDAD DE SOCIOS ES "<<endl;
+    locate(POSMENUX+6,POSMENUY+5);
+    cout<<dep;
 }
 
 void importePorVentas(){
-    cout<<endl;
+    const int ANCHO_MENU = 50;
+      const int ALTO_MENU = 8;
+      recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
+      separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+      locate(POSMENUX+10,POSMENUY+1);
     cout<<"SE REGISTRAN VENTAS A PARTIR DEL 2018 "<<endl;
     cout<<endl<<endl;
      int n[5]={0}, pos=0;
@@ -65,7 +84,10 @@ void importePorVentas(){
  }
     for(int i=0; i<5 ; i++){
         if(n[i]>0){
-            cout<<"IMPORTE ACUMULADO EN EL  "<<i+2018<<" :   $"<<n[i]<<endl;
+            locate(POSMENUX+10,POSMENUY+4);
+            cout<<"IMPORTE ACUMULADO EN EL  "<<i+2018<<" :"<<endl;
+            locate(POSMENUX+10,POSMENUY+5);
+            cout<<n[i]<<endl;
         }
     }
 
@@ -87,6 +109,11 @@ int contarS(int cod){
 void CantSociosPorD(){
         int cant, pos =0;
         deporte aux;
+      const int ANCHO_MENU = 50;
+      const int ALTO_MENU = 8;
+      recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
+      separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+      locate(POSMENUX+10,POSMENUY+1);
         cout<<"CANTIDAD DE SOCIOS POR DEPORTE "<<endl;
         cout<<endl;
 
@@ -94,8 +121,10 @@ void CantSociosPorD(){
             int id = aux.getCodDep();
             int cant = contarS(id);
             if(cant>0){
-                cout<<"CANTIDAD DE SOCIOS EN "<<aux.getDescripcion()<<"    :    "<<cant<<endl;
-                cout<<endl;
+                locate(POSMENUX+10,POSMENUY+4);
+                cout<<"CANTIDAD DE SOCIOS EN "<<aux.getDescripcion()<<": "<<endl;
+                locate(POSMENUX+10,POSMENUY+5);
+                cout<<cant<<endl;
             }
             pos++;
     }
@@ -106,11 +135,13 @@ void CantSociosPorD(){
 
 void mostrarArt(int *v,int tam){
 int i;
+      const int ANCHO_MENU = 60;
+      const int ALTO_MENU = 15;
 
     cout<<"LA CANTIDAD DE ARTICULOS VENDIDOS POR MES ES: "<<endl;
     for (i=0; i<tam;i++){
         if(v[i]>0){
-        cout<<"MES : "<<i+1<<"            CANTIDAD VENDIDA: "<<v[i]<<endl;
+            cout<<"MES : "<<i+1<<"            CANTIDAD VENDIDA: "<<v[i]<<endl;
         }
 
 }
@@ -137,54 +168,110 @@ int v[12]={0};
 
 void menuReportes(){
     system("cls");
-    int opc;
+    const int ANCHO_MENU = 64;
+    const int ALTO_MENU = 18;
     bool estado = true;
+     int key, opc, cursorX, cursorY;
        while (estado==true){
-            system("cls");
-        cout<<" ________________________"<<endl<<endl;
-        cout<<"      MENU REPORTES"<<endl;
-        cout<<" ________________________"<<endl<<endl;
+       cursorX=POSMENUX+9;
+       cursorY=POSMENUY + 4;
+      setBackgroundColor(COLOR_PANTALLA);
+      cls();
+      opc=0;
+      setColor(LETRA);
+      setBackgroundColor(FONDO);
+      recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
+      separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+      locate(POSMENUX+24,POSMENUY+1);
+        cout<<" MENU REPORTES"<<endl;
+        locate(POSMENUX+12,POSMENUY+4);
+        cout<<" CANTIDAD DE ARTICULOS VENDIDOS POR MES."<<endl;
+        locate(POSMENUX+12,POSMENUY+5);
+        cout<<" IMPORTE ANUAL ACUMULADO POR VENTAS."<<endl;
+        locate(POSMENUX+12,POSMENUY+6);
+        cout<<" IMPORTE ACUMULADO POR MES SEGUN EL DEPORTE."<<endl;
+        locate(POSMENUX+12,POSMENUY+7);
+        cout<<" CANTIDAD DE SOCIOS POR DEPORTE."<<endl;
+        locate(POSMENUX+12,POSMENUY+8);
+        cout<<" INFORMAR EL DEPORTE CON MAYOR NUMERO DE SOCIOS."<<endl;
+        locate(POSMENUX+12,POSMENUY+9);
+        cout<<" INFORMAR EL DEPORTE CON MENOR NUMERO DE SOCIOS."<<endl;
+        locate(POSMENUX+12,POSMENUY+10);
+        cout<<" VOLVER AL MENU PRINCIPAL"<<endl;
+        locate(POSMENUX+8,POSMENUY+11);
 
-
-        cout<<"1. CANTIDAD DE ARTICULOS VENDIDOS POR MES."<<endl;
-        cout<<"2. IMPORTE ANUAL ACUMULADO POR VENTAS."<<endl;
-        cout<<"3. IMPORTE ACUMULADO POR MES SEGUN EL DEPORTE."<<endl;
-        cout<<"4. CANTIDAD DE SOCIOS POR DEPORTE."<<endl;
-        cout<<"5. INFORMAR EL DEPORTE CON MAYOR NUMERO DE SOCIOS."<<endl;
-        cout<<"6. INFORMAR EL DEPORTE CON MENOR NUMERO DE SOCIOS."<<endl;
-        cout<<"0. VOLVER AL MENU PRINCIPAL"<<endl;
-        cout<<endl;
-        cout<<"INGRESE LA OPCION DESEADA: "<<endl;
-        cin>>opc;
+        hidecursor();
+        locate(cursorX,cursorY);
+        cout<<">>";
+        key = getkey();
+        while(key != KEY_ENTER){
+        locate(cursorX,cursorY);
+        cout<<" ";
+        cout<<" ";
+        switch(key){
+        case KEY_DOWN:
+            if(opc < 6){
+                opc++;
+            }else{
+                opc=0;
+            }
+            break;
+        case KEY_UP:
+            if(opc > 6){
+                opc--;
+            }else{
+                opc=0;
+            }
+            break;
+        }
+        if(opc != 0){
+            cursorY = opc + POSMENUY + 4;
+        }else{
+            cursorY = POSMENUY + 4;
+        }
+        locate(cursorX,cursorY);
+        cout<<">>";
+        key = getkey();
+      }
+      setBackgroundColor(COLOR_PANTALLA);
+      cls();
+      showcursor();
         switch(opc){
-    case 1:system("cls");
+    case 0:system("cls");
             ArtMes();
+
+
+
             system("pause");
         break;
-    case 2:
+    case 1:
         system("cls");
         importePorVentas();
+        locate(POSMENUX+6,POSMENUY+7);
         system("pause");
         break;
-    case 3:
+    case 2:
         ///a desarrollar
+        break;
+    case 3:
+        system("cls");
+        CantSociosPorD();
+        locate(POSMENUX+6,POSMENUY+7);
+        system("pause");
         break;
     case 4:
         system("cls");
-        CantSociosPorD();
+        informarMayorS();
+        locate(POSMENUX+6,POSMENUY+7);
         system("pause");
         break;
     case 5:
         system("cls");
-        informarMayorS();
-        system("pause");
-        break;
-    case 6:
-        system("cls");
         informarMenorS();
+        locate(POSMENUX+6,POSMENUY+7);
         system("pause");
         break;
-    case 0: estado=false;
+    case 6: estado=false;
         break;
         }
 
