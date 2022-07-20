@@ -34,20 +34,20 @@ public:
         separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
         locate(POSMENUX+18,POSMENUY+1);
         cout<<"ARTICULOS";
-        locate(POSMENUX+15,POSMENUY+4);
-     cout<<"INGRESE EL CODIGO: ";
-     cargarCadena(CodigoAr, 4);
-     locate(POSMENUX+15,POSMENUY+5);
-     cout<<"INGRESE LA DESCRIPCION DEL ARTICULO: ";
-     locate(POSMENUX+15,POSMENUY+6);
-     cargarCadena(Descripcion, 24);
-     locate(POSMENUX+15,POSMENUY+7);
-     cout<<"INGRESE EL PRECIO UNITARIO:  ";
-     cin>>Pu;
-     locate(POSMENUX+15,POSMENUY+8);
-     cout<<"INGRESE EL STOCK:  ";
-     cin>>Stock;
-     Estado=true;
+        locate(POSMENUX+13,POSMENUY+4);
+        cout<<"INGRESE EL CODIGO: ";
+        cargarCadena(CodigoAr, 4);
+        locate(POSMENUX+13,POSMENUY+5);
+        cout<<"INGRESE LA DESCRIPCION DEL ARTICULO: ";
+        locate(POSMENUX+13,POSMENUY+6);
+        cargarCadena(Descripcion, 24);
+        locate(POSMENUX+13,POSMENUY+7);
+        cout<<"INGRESE EL PRECIO UNITARIO:  ";
+        cin>>Pu;
+        locate(POSMENUX+13,POSMENUY+8);
+        cout<<"INGRESE EL STOCK:  ";
+        cin>>Stock;
+        Estado=true;
  }
   void Mostrar(){
     if(Estado==true){
@@ -107,7 +107,7 @@ int cambiarPrecio();
 int buscarporCodigoArt(const char* cod){
     Articulo reg;
     int pos=0;
-    while(reg.leerEnDisco(pos)){
+    while(reg.leerEnDisco(pos)==1){
         if(strcmp(reg.getCodigoAr(), cod)==0){
             return pos;
         }

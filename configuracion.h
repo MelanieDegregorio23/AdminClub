@@ -114,7 +114,7 @@ void menuConfiguracion()
     int key, opc, cursorX, cursorY;
     while (estado==true)
     {
-        cursorX=POSMENUX+13;
+        cursorX=POSMENUX+11;
         cursorY=POSMENUY + 4;
         setBackgroundColor(COLOR_PANTALLA);
         cls();
