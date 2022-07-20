@@ -97,7 +97,6 @@ void persona::Mostrar(){
             cout<<"TELEFONO :  "<<Telefono<<endl;
             cout<<"FECHA DE NACIMIENTO: ";
             fechaDeNacimiento.Mostrar();
-            cout<<endl<<endl;
 
 
 
