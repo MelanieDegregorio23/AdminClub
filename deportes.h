@@ -29,7 +29,7 @@ public:
     void Cargar()
     {
     system("cls");
-    const int ANCHO_MENU = 50;
+    const int ANCHO_MENU = 68;
     const int ALTO_MENU = 29;
     const int POSMENUX = 33;
     const int POSMENUY = 3;
@@ -37,7 +37,7 @@ public:
     setBackgroundColor(FONDO);
     recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
     separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
-    locate(POSMENUX+18,POSMENUY+1);
+    locate(POSMENUX+28,POSMENUY+1);
         cout<<"DEPORTES"<<endl;
         locate(POSMENUX+16,POSMENUY+4);
         cout<<"INGRESAR CODIGO DE DEPORTE: ";
@@ -385,18 +385,18 @@ void submenuListarDeporte(){
       cls();
       showcursor();
         switch(opc){
-    case 1:
+    case 0:
             system("cls");
             listarDeporte();
             system("pause");
 
         break;
-    case 2:
+    case 1:
             system("cls");
             listarPorInstructor();
             system("pause");
         break;
-    case 0: estado =false;
+    case 2: estado =false;
     break;
 
         }
@@ -419,8 +419,8 @@ void menuDeportes()
       setBackgroundColor(FONDO);
       recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
       separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
-      locate(POSMENUX+15,POSMENUY+1);
-        cout<<"      MENU DEPORTES"<<endl;
+      locate(POSMENUX+18,POSMENUY+1);
+        cout<<"MENU DEPORTES"<<endl;
         locate(POSMENUX+15,POSMENUY+4);
         cout<<" AGREGAR DEPORTE";
         locate(POSMENUX+15,POSMENUY+5);
@@ -475,15 +475,15 @@ void menuDeportes()
 
         case 0: system("cls");
             if(agregarDeporte(aux)==1)
-            {       gotoxy(46,26);
+            {       gotoxy(49,24);
                 cout<<"EL DEPORTE FUE AGREGADO CON EXITO"<<endl;
             }
             else
-            {       gotoxy(46,26);
+            {       gotoxy(49,24);
                 cout<<"EL CODIGO, YA PERTENECE A UN  DEPORTE EXISTENTE"<<endl;
 
             }
-            gotoxy(42,28);
+            gotoxy(49,26);
             system("pause");
 
 
