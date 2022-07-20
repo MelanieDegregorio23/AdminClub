@@ -182,7 +182,10 @@ void listarDeporte()
     {
         if(aux.getEstado()==true)
         {
-            aux.Mostrar();
+        cout<<"DEPORTE N"<<(char)186<<aux.getCodDep()<<endl;
+        cout<<"--------------- "<<endl;
+        aux.Mostrar();
+        cout<<"--------------- "<<endl;
             cout<<endl<<endl;
         }
         pos++;
@@ -236,7 +239,11 @@ int buscarPorCodigo( int codi, bool borrado)
 void mostrarPosicion(int pos){
  deporte aux;
     if(aux.LeerEnDisco(pos)==1){
+        cout<<"DEPORTE N"<<(char)186<<aux.getCodDep()<<endl;
+        cout<<"--------------- "<<endl;
         aux.Mostrar();
+        cout<<"--------------- "<<endl;
+            cout<<endl<<endl;
     }
 }
 int eliminarDeporte()
@@ -272,14 +279,18 @@ int eliminarDeporte()
 }
 int listarPorcod(int cod){
     deporte aux;
-    int pos;
-    pos = buscarporCod(cod);
-    if(pos>=0){
-        system("cls");
-        aux.LeerEnDisco(pos);
+    int pos=0;
+    system("cls");
+    while(aux.LeerEnDisco(pos)==1){
+
+        cout<<"DEPORTE N"<<(char)186<<aux.getCodDep()<<endl;
+        cout<<"--------------- "<<endl;
         aux.Mostrar();
+        cout<<"--------------- "<<endl;
         return pos;
+        pos++;
     }
+
     return -1;
 }
 int buscarporCod( int cod){

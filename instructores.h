@@ -279,7 +279,7 @@ void listarPorActividad(instructor aux){
     system("cls");
     while(aux.leerEnDisco(pos)==1){
             if(aux.getCodigoDep()==codigo){
-                cout<<"INSTRUCTOR N"<<(char)167<<contador+1<<endl;
+                cout<<"INSTRUCTOR N"<<(char)186<<contador+1<<endl;
                 cout<<"--------------- "<<endl;
                 aux.Mostrar();
                 cout<<"--------------- "<<endl;
@@ -296,7 +296,11 @@ void listarPorActividad(instructor aux){
 void mostrarPorPosicion(int pos, instructor aux){
 
     if(aux.leerEnDisco(pos)==1){
+        cout<<"INSTRUCTOR N"<<(char)186<<aux.getIDinstructor()<<endl;
+        cout<<"--------------- "<<endl;
         aux.Mostrar();
+        cout<<"--------------- "<<endl;
+        cout<<endl;
     }
 }
 

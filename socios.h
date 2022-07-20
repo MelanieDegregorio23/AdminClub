@@ -73,11 +73,8 @@ void Cargar(){
 void MostrarSocio( ){
         if (Estado==true){
         persona::Mostrar();
-
         cout<<"ID DE SOCIO: "<<Id<<endl;
-
         cout<<"ID DE DEPORTE: "<<IdDeporte<<endl;
-
         cout<<"FECHA DE INGRESO: ";
         Fechaingreso.Mostrar();
         }
@@ -268,7 +265,11 @@ int agregarSocio(socio aux){
 void mostrarPorPosicion(int pos){
  socio aux;
     if(aux.LeerEnDisco(pos)==1){
+        cout<<"SOCIO N"<<(char)186<<aux.getId()<<endl;
+        cout<<"--------------- "<<endl;
         aux.MostrarSocio();
+        cout<<"--------------- "<<endl;
+        cout<<endl;
     }
 }
 int eliminarSocio(){
@@ -325,7 +326,7 @@ int buscarporDNI( int DNI){
 void listarSocio(){
     system("cls");
     socio aux;
-    int pos=0;
+    int pos=0, contador=0;
     const int POSMENUX = 0;
     const int POSMENUY = 0;
     setColor(LETRA);
@@ -335,15 +336,20 @@ void listarSocio(){
     cout<<endl<<endl;
 
     while(aux.LeerEnDisco(pos)==1){
+        cout<<"SOCIO N"<<(char)186<<contador+1<<endl;
+        cout<<"--------------- "<<endl;
         aux.MostrarSocio();
-        cout<<endl<<endl;
+        cout<<"--------------- "<<endl;
+        cout<<endl;
+        contador++;
+
         pos++;
     }
 }
 
 int listarSociosPorDNI(){
     socio aux;
-    int dni, pos;
+    int dni, pos, contador;
 
     separadorx(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
     locate(POSMENUX+12,POSMENUY+1);
@@ -355,7 +361,12 @@ int listarSociosPorDNI(){
     if(pos>=0){
         system("cls");
         aux.LeerEnDisco(pos);
+        cout<<"SOCIO N"<<(char)186<<aux.getId()<<endl;
+        cout<<"--------------- "<<endl;
         aux.MostrarSocio();
+        cout<<"--------------- "<<endl;
+        cout<<endl;
+
         return pos;
     }
     return -1;
@@ -383,7 +394,11 @@ int listarSociosPorId(){
     if(pos>=0){
         system("cls");
         aux.LeerEnDisco(pos);
+        cout<<"SOCIO N"<<(char)186<<aux.getId()<<endl;
+        cout<<"--------------- "<<endl;
         aux.MostrarSocio();
+        cout<<"--------------- "<<endl;
+        cout<<endl;
         return pos;
     }
     return -1;
@@ -626,15 +641,15 @@ void menuSocios(){
     case 0:
 
         if(agregarSocio(aux)==1){
-                 gotoxy(46,26);
+                 gotoxy(46,15);
                 cout<<">>EL SOCIO FUE AGREGADO CON EXITO<<"<<endl;
         }else{
 
-                gotoxy(46,26);
+                gotoxy(46,15);
                 cout<<"EL DNI, YA PERTENECE A UN  SOCIO EXISTENTE"<<endl;
 
         }
-            gotoxy(42,28);
+            gotoxy(42,17);
             system("pause");
         break;
     case 1: system("cls");
