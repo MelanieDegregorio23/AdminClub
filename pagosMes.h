@@ -107,6 +107,7 @@ void menuPagoMes();
 int agregarPagos(pagos aux);
 float buscarValordeCuota(int depo);
 int listarPagoporDNI();
+void submenuListarPagos();
 
 
 ///DESARROLLO
@@ -141,10 +142,12 @@ int agregarPagos(pagos aux){
     cin>>dni;
 
     pos = buscarporDNI(dni);
-    if(pos>=0){
+    if(pos>=0)
+    {
 
 
-        if(obj.LeerEnDisco(pos)==1){
+        if(obj.LeerEnDisco(pos)==1)
+        {
 
             int deporte = obj.getIdDeporte();
             float valorCuota = buscarValordeCuota(deporte);
@@ -168,8 +171,10 @@ int listarPagoporDNI(){
     cin>>dni;
 
 
-        while(aux.LeerEnDisco(pos)==1){
-            if(aux.getdni()==dni){
+    while(aux.LeerEnDisco(pos)==1)
+    {
+        if(aux.getdni()==dni)
+        {
             cout<<"PAGO N"<<(char)186<<aux.getidpagos()<<endl;
             cout<<"--------------- "<<endl;
             aux.Mostrar();
@@ -189,7 +194,6 @@ int listarPagoporDNI(){
 
 }
 void submenuListarPagos(){
-
     system("cls");
     Articulo aux;
     int opc;
@@ -197,7 +201,8 @@ void submenuListarPagos(){
     int key, cursorX, cursorY;
     const int ANCHO_MENU = 50;
     const int ALTO_MENU = 10;
-       while (estado==true){
+    while (estado==true)
+    {
         cursorX=POSMENUX+11;
         cursorY=POSMENUY + 4;
         setBackgroundColor(COLOR_PANTALLA);
@@ -214,69 +219,84 @@ void submenuListarPagos(){
         cout<<" VOLVER AL MENU ANTERIOR"<<endl;
         locate(POSMENUX+12,POSMENUY+4);
 
-         hidecursor();
+        hidecursor();
         locate(cursorX,cursorY);
         cout<<">>";
         key = getkey();
-        while(key != KEY_ENTER){
-        locate(cursorX,cursorY);
-        cout<<" ";
-        cout<<" ";
-        switch(key){
-        case KEY_DOWN:
-            if(opc < 1){
-                opc++;
-            }else{
-                opc=0;
+        while(key != KEY_ENTER)
+        {
+            locate(cursorX,cursorY);
+            cout<<" ";
+            cout<<" ";
+            switch(key)
+            {
+            case KEY_DOWN:
+                if(opc < 1)
+                {
+                    opc++;
+                }
+                else
+                {
+                    opc=0;
+                }
+                break;
+            case KEY_UP:
+                if(opc > 1)
+                {
+                    opc--;
+                }
+                else
+                {
+                    opc=0;
+                }
+                break;
             }
-            break;
-        case KEY_UP:
-            if(opc > 1){
-                opc--;
-            }else{
-                opc=0;
+            if(opc != 0)
+            {
+                cursorY = opc + POSMENUY + 4;
             }
-            break;
+            else
+            {
+                cursorY = POSMENUY + 4;
+            }
+            locate(cursorX,cursorY);
+            cout<<">>";
+            key = getkey();
         }
-        if(opc != 0){
-            cursorY = opc + POSMENUY + 4;
-        }else{
-            cursorY = POSMENUY + 4;
-        }
-        locate(cursorX,cursorY);
-        cout<<">>";
-        key = getkey();
-      }
-      setBackgroundColor(COLOR_PANTALLA);
-      cls();
-      showcursor();
-        switch(opc){
-    case 0:
-          system("cls");
-            if(listarPagoporDNI()<0){
+        setBackgroundColor(COLOR_PANTALLA);
+        cls();
+        showcursor();
+        switch(opc)
+        {
+        case 0:
+            system("cls");
+            if(listarPagoporDNI()<0)
+            {
                 cout<<"NO SE ENCONTRO PAGOS DE CUOTAS PARA ESE DNI: ";
             }
-        system("pause");
-        break;
+            system("pause");
+            break;
 
-    case 1: estado =false;
-    break;
+        case 1:
+            estado =false;
+            break;
 
         }
-}
+    }
 }
 
 
 void menuPagoMes()
 {
-   system("cls");
+    system("cls");
     pagos aux;
     int opc;
-   bool estado = true;
+    bool estado = true;
     int key, cursorX, cursorY;
     const int ANCHO_MENU = 50;
     const int ALTO_MENU = 10;
-       while (estado==true){
+    while (estado==true)
+    {
         cursorX=POSMENUX+11;
         cursorY=POSMENUY + 4;
         setBackgroundColor(COLOR_PANTALLA);
@@ -293,68 +313,86 @@ void menuPagoMes()
         cout<<" MENU DE LISTADOS"<<endl;
         locate(POSMENUX+14,POSMENUY+6);
         cout<<" VOLVER AL MENU PRINCIPAL"<<endl;
-       locate(POSMENUX+12,POSMENUY+7);
+        locate(POSMENUX+12,POSMENUY+7);
 
-         hidecursor();
+        hidecursor();
         locate(cursorX,cursorY);
         cout<<">>";
         key = getkey();
-        while(key != KEY_ENTER){
-        locate(cursorX,cursorY);
-        cout<<" ";
-        cout<<" ";
-        switch(key){
-        case KEY_DOWN:
-            if(opc < 2){
-                opc++;
-            }else{
-                opc=0;
+        while(key != KEY_ENTER)
+        {
+            locate(cursorX,cursorY);
+            cout<<" ";
+            cout<<" ";
+            switch(key)
+            {
+            case KEY_DOWN:
+                if(opc < 2)
+                {
+                    opc++;
+                }
+                else
+                {
+                    opc=0;
+                }
+                break;
+            case KEY_UP:
+                if(opc > 2)
+                {
+                    opc--;
+                }
+                else
+                {
+                    opc=0;
+                }
+                break;
             }
-            break;
-        case KEY_UP:
-            if(opc > 2){
-                opc--;
-            }else{
-                opc=0;
+            if(opc != 0)
+            {
+                cursorY = opc + POSMENUY + 4;
             }
-            break;
+            else
+            {
+                cursorY = POSMENUY + 4;
+            }
+            locate(cursorX,cursorY);
+            cout<<">>";
+            key = getkey();
         }
-        if(opc != 0){
-            cursorY = opc + POSMENUY + 4;
-        }else{
-            cursorY = POSMENUY + 4;
-        }
-        locate(cursorX,cursorY);
-        cout<<">>";
-        key = getkey();
-      }
-      setBackgroundColor(COLOR_PANTALLA);
-      cls();
-      showcursor();
-        switch(opc){
-    case 0: system("cls");
-        if(agregarPagos(aux)==1){
+        setBackgroundColor(COLOR_PANTALLA);
+        cls();
+        showcursor();
+        switch(opc)
+        {
+        case 0:
+            system("cls");
+            if(agregarPagos(aux)==1)
+            {
                 gotoxy(46,15);
                 cout<<"EL PAGO FUE AGREGADO CON EXITO"<<endl;
-        }else{
-            gotoxy(46,15);
+            }
+            else
+            {
+                gotoxy(46,15);
                 cout<<"EL PAGO NO PUDO SER AGREGADO"<<endl;
 
-        }
+            }
             gotoxy(42,17);
             system("pause");
-        break;
-        case 1: system("cls");
+            break;
+        case 1:
+            system("cls");
             submenuListarPagos();
 
-        break;
+            break;
 
-    case 2: estado=false;
-        break;
+        case 2:
+            estado=false;
+            break;
         }
 
-       }
-       system("cls");
+    }
+    system("cls");
 }
 
 

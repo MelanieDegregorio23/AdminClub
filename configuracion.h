@@ -1,13 +1,22 @@
 #ifndef CONFIGURACION_H_INCLUDED
 #define CONFIGURACION_H_INCLUDED
+///prototipos
+bool backupsocio();
+bool backupinstructores();
+bool backuparticulos();
+bool backupventas();
+bool backupdepo();
+bool backupPagos();
 
+///desarrollo
 bool backupsocio(){
     FILE *p;
     p=fopen("socios.bkp", "wb");
     if(p==NULL) return false;
     socio reg;
     int pos=0;
-    while(reg.LeerEnDisco(pos)==1){
+    while(reg.LeerEnDisco(pos)==1)
+    {
         fwrite(&reg, sizeof reg, 1, p);
 
         pos++;
@@ -22,7 +31,8 @@ bool backupinstructores(){
     if(p==NULL) return false;
     instructor reg;
     int pos=0;
-    while(reg.leerEnDisco(pos)==1){
+    while(reg.leerEnDisco(pos)==1)
+    {
         fwrite(&reg, sizeof reg, 1, p);
 
         pos++;
@@ -37,7 +47,8 @@ bool backuparticulos(){
     if(p==NULL) return false;
     Articulo reg;
     int pos=0;
-    while(reg.leerEnDisco(pos)==1){
+    while(reg.leerEnDisco(pos)==1)
+    {
         fwrite(&reg, sizeof reg, 1, p);
 
         pos++;
@@ -52,7 +63,8 @@ bool backupventas(){
     if(p==NULL) return false;
     Venta reg;
     int pos=0;
-    while(reg.leerEnDisco(pos)==1){
+    while(reg.leerEnDisco(pos)==1)
+    {
         fwrite(&reg, sizeof reg, 1, p);
 
         pos++;
@@ -68,7 +80,8 @@ bool backupdepo(){
     if(p==NULL) return false;
     deporte aux;
     int pos=0;
-    while(aux.LeerEnDisco(pos)==1){
+    while(aux.LeerEnDisco(pos)==1)
+    {
         fwrite(&aux, sizeof aux, 1, p);
         pos++;
     }
@@ -83,7 +96,8 @@ bool backupPagos(){
     if(p==NULL) return false;
     pagos aux;
     int pos=0;
-    while(aux.LeerEnDisco(pos)==1){
+    while(aux.LeerEnDisco(pos)==1)
+    {
         fwrite(&aux, sizeof aux, 1, p);
         pos++;
     }
@@ -97,18 +111,19 @@ void menuConfiguracion()
     const int ANCHO_MENU = 65;
     const int ALTO_MENU = 14;
     bool estado = true;
-     int key, opc, cursorX, cursorY;
-       while (estado==true){
-       cursorX=POSMENUX+13;
-       cursorY=POSMENUY + 4;
-      setBackgroundColor(COLOR_PANTALLA);
-      cls();
-      opc=0;
-      setColor(LETRA);
-      setBackgroundColor(FONDO);
-      recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
-      separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
-      locate(POSMENUX+22,POSMENUY+1);
+    int key, opc, cursorX, cursorY;
+    while (estado==true)
+    {
+        cursorX=POSMENUX+13;
+        cursorY=POSMENUY + 4;
+        setBackgroundColor(COLOR_PANTALLA);
+        cls();
+        opc=0;
+        setColor(LETRA);
+        setBackgroundColor(FONDO);
+        recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
+        separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+        locate(POSMENUX+22,POSMENUY+1);
         cout<<"MENU CONFIGURACION";
         locate(POSMENUX+14,POSMENUY+4);
         cout<<" COPIA DE SEGURIDAD DEL ARCHIVO DE SOCIOS."<<endl;
@@ -126,130 +141,169 @@ void menuConfiguracion()
         cout<<" VOLVER AL MENU PRINCIPAL."<<endl;
         locate(POSMENUX+13,POSMENUY+11);
         cout<<endl;
-         hidecursor();
+        hidecursor();
         locate(cursorX,cursorY);
         cout<<">>";
         key = getkey();
-        while(key != KEY_ENTER){
-        locate(cursorX,cursorY);
-        cout<<" ";
-        cout<<" ";
-        switch(key){
-        case KEY_DOWN:
-            if(opc < 6){
-                opc++;
-            }else{
-                opc=0;
+        while(key != KEY_ENTER)
+        {
+            locate(cursorX,cursorY);
+            cout<<" ";
+            cout<<" ";
+            switch(key)
+            {
+            case KEY_DOWN:
+                if(opc < 6)
+                {
+                    opc++;
+                }
+                else
+                {
+                    opc=0;
+                }
+                break;
+            case KEY_UP:
+                if(opc > 6)
+                {
+                    opc--;
+                }
+                else
+                {
+                    opc=0;
+                }
+                break;
             }
-            break;
-        case KEY_UP:
-            if(opc > 6){
-                opc--;
-            }else{
-                opc=0;
+            if(opc != 0)
+            {
+                cursorY = opc + POSMENUY + 4;
             }
-            break;
+            else
+            {
+                cursorY = POSMENUY + 4;
+            }
+            locate(cursorX,cursorY);
+            cout<<">>";
+            key = getkey();
         }
-        if(opc != 0){
-            cursorY = opc + POSMENUY + 4;
-        }else{
-            cursorY = POSMENUY + 4;
-        }
-        locate(cursorX,cursorY);
-        cout<<">>";
-        key = getkey();
-      }
-      setBackgroundColor(COLOR_PANTALLA);
-      cls();
-      showcursor();
+        setBackgroundColor(COLOR_PANTALLA);
+        cls();
+        showcursor();
         switch(opc)
         {
 
         case 0:
             system("cls");
-                separadorx(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
-                locate(POSMENUX+25,POSMENUY+1);
-                cout<<"BACKUP SOCIO";
-                if(backupsocio()){
-                    gotoxy(46,6);
-                    cout<<"COPIA DE SEGURIDAD DE SOCIOS REALIZADA."<<endl;}
-                    else{
-                    gotoxy(46,6);
-                    cout<<"NO SE PUDO HACER LA COPIA DE SEGURIDAD."<<endl;}
-                gotoxy(46,9);
+            separadorx(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+            locate(POSMENUX+25,POSMENUY+1);
+            cout<<"BACKUP SOCIO";
+            if(backupsocio())
+            {
+                gotoxy(46,6);
+                cout<<"COPIA DE SEGURIDAD DE SOCIOS REALIZADA."<<endl;
+            }
+            else
+            {
+                gotoxy(46,6);
+                cout<<"NO SE PUDO HACER LA COPIA DE SEGURIDAD."<<endl;
+            }
+            gotoxy(46,9);
             system("pause");
             break;
-        case 1:  system("cls");
-                separadorx(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
-                locate(POSMENUX+25,POSMENUY+1);
-                cout<<"BACKUP INSTRUCTORES";
-                if(backupinstructores()){
-                        gotoxy(46,6);
-                        cout<<"COPIA DE SEGURIDAD  DE INSTRUCTORES REALIZADA."<<endl;}
-                    else {
-                        gotoxy(46,6);
-                            cout<<"NO SE PUDO HACER LA COPIA DE SEGURIDAD."<<endl;}
-                gotoxy(46,9);
+        case 1:
+            system("cls");
+            separadorx(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+            locate(POSMENUX+25,POSMENUY+1);
+            cout<<"BACKUP INSTRUCTORES";
+            if(backupinstructores())
+            {
+                gotoxy(46,6);
+                cout<<"COPIA DE SEGURIDAD  DE INSTRUCTORES REALIZADA."<<endl;
+            }
+            else
+            {
+                gotoxy(46,6);
+                cout<<"NO SE PUDO HACER LA COPIA DE SEGURIDAD."<<endl;
+            }
+            gotoxy(46,9);
             system("pause");
             break;
-        case 2:system("cls");
-                separadorx(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
-                locate(POSMENUX+25,POSMENUY+1);
-                cout<<"BACKUP ARTICULOS";
-                if(backuparticulos()) {
-                        gotoxy(46,6);
-                    cout<<"COPIA DE SEGURIDAD ARTICULOS REALIZADA."<<endl;}
-                else {
-                    gotoxy(46,6);
-                cout<<"NO SE PUDO HACER LA COPIA DE SEGURIDAD."<<endl;}
-                gotoxy(46,9);
-                 system("pause");
+        case 2:
+            system("cls");
+            separadorx(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+            locate(POSMENUX+25,POSMENUY+1);
+            cout<<"BACKUP ARTICULOS";
+            if(backuparticulos())
+            {
+                gotoxy(46,6);
+                cout<<"COPIA DE SEGURIDAD ARTICULOS REALIZADA."<<endl;
+            }
+            else
+            {
+                gotoxy(46,6);
+                cout<<"NO SE PUDO HACER LA COPIA DE SEGURIDAD."<<endl;
+            }
+            gotoxy(46,9);
+            system("pause");
             break;
         case 3:
-                system("cls");
-                separadorx(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
-                locate(POSMENUX+25,POSMENUY+1);
-                cout<<"BACKUP VENTAS";
-                if( backupventas()){
-                        gotoxy(46,6);
-                    cout<<"COPIA DE SEGURIDAD DE VENTAS  REALIZADA."<<endl;}
-                else {
-                    gotoxy(46,6);
-                    cout<<"NO SE PUDO HACER LA COPIA DE SEGURIDAD."<<endl;}
-                gotoxy(46,9);
-                 system("pause");
+            system("cls");
+            separadorx(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+            locate(POSMENUX+25,POSMENUY+1);
+            cout<<"BACKUP VENTAS";
+            if( backupventas())
+            {
+                gotoxy(46,6);
+                cout<<"COPIA DE SEGURIDAD DE VENTAS  REALIZADA."<<endl;
+            }
+            else
+            {
+                gotoxy(46,6);
+                cout<<"NO SE PUDO HACER LA COPIA DE SEGURIDAD."<<endl;
+            }
+            gotoxy(46,9);
+            system("pause");
             break;
         case 4:
-               system("cls");
-                separadorx(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
-                locate(POSMENUX+25,POSMENUY+1);
-                cout<<"BACKUP DEPORTES";
-                if(backupdepo()==true){
-                        gotoxy(46,6);
-                    cout<<"COPIA DE SEGURIDAD DE DEPORTES REALIZADA."<<endl;}
+            system("cls");
+            separadorx(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+            locate(POSMENUX+25,POSMENUY+1);
+            cout<<"BACKUP DEPORTES";
+            if(backupdepo()==true)
+            {
+                gotoxy(46,6);
+                cout<<"COPIA DE SEGURIDAD DE DEPORTES REALIZADA."<<endl;
+            }
 
-                else {
-                        gotoxy(46,6);
-                cout<<"NO SE PUDO HACER LA COPIA DE SEGURIDAD."<<endl;}
-                gotoxy(46,9);
-                 system("pause");
+            else
+            {
+                gotoxy(46,6);
+                cout<<"NO SE PUDO HACER LA COPIA DE SEGURIDAD."<<endl;
+            }
+            gotoxy(46,9);
+            system("pause");
             break;
-        case 5:   system("cls");
-                separadorx(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
-                locate(POSMENUX+24,POSMENUY+1);
-                cout<<"BACKUP PAGOS COUTA";
-                if(backupPagos()==true){
-                        gotoxy(46,6);
-                    cout<<"COPIA DE SEGURIDAD DE PAGOS REALIZADA."<<endl;}
+        case 5:
+            system("cls");
+            separadorx(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+            locate(POSMENUX+24,POSMENUY+1);
+            cout<<"BACKUP PAGOS COUTA";
+            if(backupPagos()==true)
+            {
+                gotoxy(46,6);
+                cout<<"COPIA DE SEGURIDAD DE PAGOS REALIZADA."<<endl;
+            }
 
-                else {
-                        gotoxy(46,6);
-                cout<<"NO SE PUDO HACER LA COPIA DE SEGURIDAD."<<endl;}
-                gotoxy(46,9);
-                 system("pause");
+            else
+            {
+                gotoxy(46,6);
+                cout<<"NO SE PUDO HACER LA COPIA DE SEGURIDAD."<<endl;
+            }
+            gotoxy(46,9);
+            system("pause");
             break;
 
-        case 6: estado=false;
+        case 6:
+            estado=false;
             break;
 
         }
