@@ -49,6 +49,7 @@ public:
 
 };
 void Mostrar(){
+
         cout<<"ID DE PAGOS: "<<idpagos<<endl;
         cout<<"DNI DE SOCIO: "<<dni<<endl;
         cout<<"FECHA DE PAGO: ";
@@ -112,32 +113,7 @@ int listarPagoporDNI();
 
 
 
-int listarPagoporDNI(){
-    pagos aux;
-    int dni,pos=0;
-    cout<<"INGRESE DNI DE SOCIO : "<<endl;
-    cin>>dni;
 
-        pos=buscarporDNI(dni);
-        if(pos>=0){
-        while(aux.LeerEnDisco(pos)==1){
-            if(aux.getdni()==dni){
-            cout<<"PAGO N"<<(char)186<<aux.getidpagos()<<endl;
-            cout<<"--------------- "<<endl;
-            aux.Mostrar();
-            cout<<"--------------- "<<endl;
-            cout<<endl<<endl;
-
-            return 1;
-            cout<<endl;
-        }
-        pos++;
-    }
-}
-    return-1;
-
-
-}
 
 float buscarValordeCuota(int depo){
     int pos;
@@ -167,12 +143,14 @@ int agregarPagos(pagos aux){
     pos = buscarporDNI(dni);
     if(pos>=0){
 
-        aux.setdni(dni);
-        aux.Cargar();
+
         if(obj.LeerEnDisco(pos)==1){
+
             int deporte = obj.getIdDeporte();
             float valorCuota = buscarValordeCuota(deporte);
             aux.setValorCuota(valorCuota);
+            aux.setdni(dni);
+            aux.Cargar();
             aux.GrabarEnDisco();
             return 1;
         }
@@ -182,6 +160,33 @@ int agregarPagos(pagos aux){
     }
 
     return -1;
+}
+int listarPagoporDNI(){
+    pagos aux;
+    int dni,pos=0;
+    cout<<"INGRESE DNI DE SOCIO : "<<endl;
+    cin>>dni;
+
+
+        while(aux.LeerEnDisco(pos)==1){
+            if(aux.getdni()==dni){
+            cout<<"PAGO N"<<(char)186<<aux.getidpagos()<<endl;
+            cout<<"--------------- "<<endl;
+            aux.Mostrar();
+            cout<<"--------------- "<<endl;
+            cout<<endl<<endl;
+
+
+
+
+        }
+
+        pos++;
+    }
+
+    return pos;
+
+
 }
 void submenuListarPagos(){
 
@@ -341,7 +346,7 @@ void menuPagoMes()
         break;
         case 1: system("cls");
             submenuListarPagos();
-            system("pause");
+
         break;
 
     case 2: estado=false;

@@ -307,7 +307,7 @@ int buscarporDNI( int DNI){
     socio aux;
 
     int pos=0;
-    while(aux.LeerEnDisco(pos)==1){
+    while(aux.LeerEnDisco(pos)){
         if(aux.getDNI()==DNI){
                if(aux.getEstado()==true){
 
@@ -664,13 +664,13 @@ void menuSocios(){
         break;
     case 2: system("cls");
             submenuListar();
-            system("pause");
+
 
         break;
     case 3:
         system("cls");
         menuSociosMod();
-        system("pause");
+
         break;
     case 4: estado=false;
         break;
