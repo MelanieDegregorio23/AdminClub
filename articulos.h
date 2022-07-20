@@ -35,17 +35,17 @@ public:
         locate(POSMENUX+18,POSMENUY+1);
         cout<<"ARTICULOS";
         locate(POSMENUX+15,POSMENUY+4);
-     cout<<"Ingrese el Codigo : ";
+     cout<<"INGRESE EL CODIGO: ";
      cargarCadena(CodigoAr, 4);
      locate(POSMENUX+15,POSMENUY+5);
-     cout<<"Ingrese Descripcion del Articulo: ";
+     cout<<"INGRESE LA DESCRIPCION DEL ARTICULO: ";
      locate(POSMENUX+15,POSMENUY+6);
      cargarCadena(Descripcion, 24);
      locate(POSMENUX+15,POSMENUY+7);
-     cout<<"Ingrese el Precio unitario :  ";
+     cout<<"INGRESE EL PRECIO UNITARIO:  ";
      cin>>Pu;
      locate(POSMENUX+15,POSMENUY+8);
-     cout<<"Ingrese la Cantidad en Stock :  ";
+     cout<<"INGRESE EL STOCK:  ";
      cin>>Stock;
      Estado=true;
  }
@@ -163,7 +163,7 @@ int listarArticulos(){
     Articulo aux;
     int pos;
     float pu;
-    cout<<"Ingresar Precio:  ";
+    cout<<"INGRESAR PRECIO:  ";
     cin>>pu;
     pos = buscarPorPrecio(pu);
     if(pos>=0){
@@ -181,7 +181,7 @@ int listarArticulos(){
     Articulo aux;
     int pos;
     char codigo[5];
-    cout<<"Ingresar Codigo:  ";
+    cout<<"INGRESAR CODIGO:  ";
     cin>>codigo;
     pos = buscarporCodigoArt(codigo);
     if(pos>=0){
@@ -244,13 +244,13 @@ int cambiarPrecio(){
     locate(POSMENUX+17,POSMENUY+1);
     cout<<"DATOS DEL ARTICULOS";
     locate(POSMENUX+15,POSMENUY+4);
-    cout<<"Ingrese el codigo del Articulo  :";
+    cout<<"INGRESE EL CODIGO DE ARTICULO:";
     cin>>codigo;
     pos=buscarporCodigoArt(codigo);
 
     if(pos>=0){
         locate(POSMENUX+15,POSMENUY+5);
-        cout<<"Ingresar el nuevo Precio Unitario (PU):  ";
+        cout<<"INGRESAR EL PRECIO UNITARIO:  ";
         cin>>precio;
         if(precio<0){
             locate(POSMENUX+15,POSMENUY+6);
@@ -448,7 +448,7 @@ void menuArticulos(){
         break;
         case 2: system("cls");
         submenuListarArticulos();
-        system("pause");
+
         break;
     case 3:if(cambiarPrecio()>=0){
 
