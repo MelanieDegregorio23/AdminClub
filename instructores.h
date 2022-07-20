@@ -110,11 +110,12 @@ void mostrarPorPosicion(int pos);
 void listarPorActividad(instructor aux);
 int modificarApellidoInstructores();
 void menuInstructoresMod();
+void submenuListarInstructores();
 
 
 ///DESARROLLO
 int modificarApellidoInstructores(){
- instructor aux;
+    instructor aux;
     int dni, pos;
     char apellido[20];
     separadorx(POSMENUX,POSMENUY+2,ANCHO_MENU+17,LETRA,FONDO);
@@ -124,29 +125,31 @@ int modificarApellidoInstructores(){
     cout<<"INGRESAR DNI DEL INSTRUCTOR : ";
     cin>>dni;
     pos = buscarDNI(dni);
-    if(pos>=0){
-            locate(POSMENUX+16,POSMENUY+5);
-         cout<<"INGRESAR NUEVO APELLIDO : ";
-         cin>>apellido;
-         aux.leerEnDisco(pos);
-         aux.setApellido(apellido);
-         aux.modificarEnDisco(pos);
-         return pos;
+    if(pos>=0)
+    {
+        locate(POSMENUX+16,POSMENUY+5);
+        cout<<"INGRESAR NUEVO APELLIDO : ";
+        cin>>apellido;
+        aux.leerEnDisco(pos);
+        aux.setApellido(apellido);
+        aux.modificarEnDisco(pos);
+        return pos;
 
 
     }
-return -1;
+    return -1;
 }
 
 void menuInstructoresMod(){
     system("cls");
     socio aux;
-     int opc;
+    int opc;
     bool estado = true;
     int key, cursorX, cursorY;
     const int ANCHO_MENU = 50;
     const int ALTO_MENU = 10;
-       while (estado==true){
+    while (estado==true)
+    {
         cursorX=POSMENUX+11;
         cursorY=POSMENUY + 4;
         setBackgroundColor(COLOR_PANTALLA);
@@ -162,67 +165,85 @@ void menuInstructoresMod(){
         cout<<" MODIFICAR APELLIDO";
         locate(POSMENUX+14,POSMENUY+5);
         cout<<" VOLVER AL MENU ANTERIOR";
-         locate(POSMENUX+12,POSMENUY+4);
+        locate(POSMENUX+12,POSMENUY+4);
 
-         hidecursor();
+        hidecursor();
         locate(cursorX,cursorY);
         cout<<">>";
         key = getkey();
-        while(key != KEY_ENTER){
-        locate(cursorX,cursorY);
-        cout<<" ";
-        cout<<" ";
-        switch(key){
-        case KEY_DOWN:
-            if(opc < 1){
-                opc++;
-            }else{
-                opc=0;
+        while(key != KEY_ENTER)
+        {
+            locate(cursorX,cursorY);
+            cout<<" ";
+            cout<<" ";
+            switch(key)
+            {
+            case KEY_DOWN:
+                if(opc < 1)
+                {
+                    opc++;
+                }
+                else
+                {
+                    opc=0;
+                }
+                break;
+            case KEY_UP:
+                if(opc > 1)
+                {
+                    opc--;
+                }
+                else
+                {
+                    opc=0;
+                }
+                break;
             }
-            break;
-        case KEY_UP:
-            if(opc > 1){
-                opc--;
-            }else{
-                opc=0;
+            if(opc != 0)
+            {
+                cursorY = opc + POSMENUY + 4;
             }
+            else
+            {
+                cursorY = POSMENUY + 4;
+            }
+            locate(cursorX,cursorY);
+            cout<<">>";
+            key = getkey();
+        }
+        setBackgroundColor(COLOR_PANTALLA);
+        cls();
+        showcursor();
+
+
+        switch(opc)
+        {
+        case 0:
+            system("cls");
+            if( modificarApellidoInstructores()>=0)
+            {
+                gotoxy(49,10);
+                cout<<"MODIFICACION EXITOSA "<<endl;
+            }
+            else
+            {
+                gotoxy(49,10);
+
+                cout<<"NO SE PUDO REALIZAR LA MODIFICACION "<<endl;
+            }
+            gotoxy(49,12);
+            system("pause");
             break;
-        }
-        if(opc != 0){
-            cursorY = opc + POSMENUY + 4;
-        }else{
-            cursorY = POSMENUY + 4;
-        }
-        locate(cursorX,cursorY);
-        cout<<">>";
-        key = getkey();
-      }
-      setBackgroundColor(COLOR_PANTALLA);
-      cls();
-      showcursor();
-
-
-        switch(opc){
-    case 0:
-        system("cls");
-       if( modificarApellidoInstructores()>=0){
-           gotoxy(49,10);
-        cout<<"MODIFICACION EXITOSA "<<endl;}
-       else{gotoxy(49,10);
-
-        cout<<"NO SE PUDO REALIZAR LA MODIFICACION "<<endl;
-       }
-       gotoxy(49,12);
-        system("pause");
-        break;
-    case 1: estado =false;
-    break;
+        case 1:
+            estado =false;
+            break;
 
         }
-}
+    }
 }
 void mostrarVectorInstructor( instructor *v, int cant){
-    for(int pos=0;pos<cant;pos++){
+    for(int pos=0; pos<cant; pos++)
+    {
         v[pos].Mostrar();
         cout<<endl;
     }
@@ -231,12 +252,15 @@ void mostrarVectorInstructor( instructor *v, int cant){
 void ordenarInstructor(instructor *vec, int cantReg){
     int i, j, posMin=0;
     instructor aux;
-    for(i=0;i<cantReg-1;i++){
+    for(i=0; i<cantReg-1; i++)
+    {
         posMin=i;
-        for(j=i+1;j<cantReg;j++){
-            if(strcmp(vec[j].getApellido(), vec[posMin].getApellido())<0){
-               posMin=j;
-               }
+        for(j=i+1; j<cantReg; j++)
+        {
+            if(strcmp(vec[j].getApellido(), vec[posMin].getApellido())<0)
+            {
+                posMin=j;
+            }
         }
         aux=vec[i];
         vec[i]=vec[posMin];
@@ -279,15 +303,17 @@ void listarPorActividad(instructor aux){
     cout<<"INGRESAR CODIGO DE ACTIVIDAD : "<<endl;
     cin>>codigo;
     system("cls");
-    while(aux.leerEnDisco(pos)==1){
-            if(aux.getCodigoDep()==codigo){
-                cout<<"INSTRUCTOR N"<<(char)186<<contador+1<<endl;
-                cout<<"--------------- "<<endl;
-                aux.Mostrar();
-                cout<<"--------------- "<<endl;
-                cout<<endl;
-                contador++;
-            }
+    while(aux.leerEnDisco(pos)==1)
+    {
+        if(aux.getCodigoDep()==codigo)
+        {
+            cout<<"INSTRUCTOR N"<<(char)186<<contador+1<<endl;
+            cout<<"--------------- "<<endl;
+            aux.Mostrar();
+            cout<<"--------------- "<<endl;
+            cout<<endl;
+            contador++;
+        }
         pos++;
     }
 
@@ -307,15 +333,18 @@ void mostrarPorPosicion(int pos, instructor aux){
 }
 
 void listarPorID( instructor aux){
-     int id, pos;
+    int id, pos;
     cout<<"INGRESE EL ID DEL INSTRUCTOR QUE DECIA BUSCAR : ";
     cin>>id;
     system("cls");
     pos = buscarID(id);
-    if(pos>=0){
+    if(pos>=0)
+    {
         mostrarPorPosicion(pos, aux);
 
-    }else{
+    }
+    else
+    {
         cout<<"NO SE ENCONTRO INSTRUCTOR CON ESE ID "<<endl;
     }
 
@@ -327,10 +356,13 @@ void  listarPorDNI( instructor aux){
     cin>>dni;
     system("cls");
     pos = buscarDNI(dni);
-    if(pos>=0){
+    if(pos>=0)
+    {
         mostrarPorPosicion(pos, aux);
 
-    }else{
+    }
+    else
+    {
         cout<<"NO SE ENCONTRO INSTRUCTOR CON ESE DNI "<<endl;
     }
 
@@ -343,18 +375,21 @@ int eliminarInstructor(instructor aux){
     cout<<"INGRESE ID DE INSTRUCTOR :  ";
     cin>>id;
     pos = buscarID(id);
-    if(pos>=0){
+    if(pos>=0)
+    {
         mostrarPorPosicion(pos, aux);
         cout<<endl;
         cout<<"QUIERE ELIMINAR ESTE INSTRUCTOR ?  (S / N) ";
         cin>> confirmo;
-        switch(confirmo){
+        switch(confirmo)
+        {
         case 's':
-              aux.setEstado(false);
+            aux.setEstado(false);
             aux.modificarEnDisco(pos);
             return 1;
             break;
-        case 'n':  return 2;
+        case 'n':
+            return 2;
             break;
         }
 
@@ -362,11 +397,14 @@ int eliminarInstructor(instructor aux){
     return -1;
 }
 
-    int buscarID(int id){
+int buscarID(int id)
+{
     instructor aux;
     int pos = 0;
-    while(aux.leerEnDisco(pos)==1){
-        if(aux.getIDinstructor()==id){
+    while(aux.leerEnDisco(pos)==1)
+    {
+        if(aux.getIDinstructor()==id)
+        {
             return pos;
         }
 
@@ -378,15 +416,17 @@ int eliminarInstructor(instructor aux){
 
 int listarInstructores(instructor aux){
     int pos=0, lectura=0, contador=0;
-    while(aux.leerEnDisco(pos)==1){
+    while(aux.leerEnDisco(pos)==1)
+    {
         lectura =1;
-        if(aux.getEstado()==1){
-        cout<<"INSTRUCTOR N"<<(char)167<<contador+1<<endl;
-        cout<<"--------------- "<<endl;
-        aux.Mostrar();
-        cout<<"--------------- "<<endl;
-        cout<<endl;
-        contador++;
+        if(aux.getEstado()==1)
+        {
+            cout<<"INSTRUCTOR N"<<(char)167<<contador+1<<endl;
+            cout<<"--------------- "<<endl;
+            aux.Mostrar();
+            cout<<"--------------- "<<endl;
+            cout<<endl;
+            contador++;
 
         }
         pos++;
@@ -408,7 +448,8 @@ int cargarInstructor(instructor aux){ ///HASTA EL MOMENTO NO PERMITE AGREGAR INS
     locate(POSMENUX+12,POSMENUY+7);
     cout<<"DNI: ";
     cin>>dni;
-    if(buscarDNI(dni)<0){
+    if(buscarDNI(dni)<0)
+    {
         aux.setdni(dni);
         aux.Cargar();
         aux.grabarEnDisco();
@@ -422,9 +463,11 @@ int cargarInstructor(instructor aux){ ///HASTA EL MOMENTO NO PERMITE AGREGAR INS
 int buscarDNI(int dni){
     instructor aux;
     int pos = 0;
-    while(aux.leerEnDisco(pos)==1){
-        if(aux.getDNI()==dni){
-         return pos;
+    while(aux.leerEnDisco(pos)==1)
+    {
+        if(aux.getDNI()==dni)
+        {
+            return pos;
 
         }
 
@@ -443,18 +486,19 @@ void submenuListarInstructores(){
     const int ANCHO_MENU = 52;
     const int ALTO_MENU = 13;
     bool estado = true;
-     int key, opc, cursorX, cursorY;
-       while (estado==true){
-       cursorX=POSMENUX+13;
-       cursorY=POSMENUY + 4;
-      setBackgroundColor(COLOR_PANTALLA);
-      cls();
-      opc=0;
-      setColor(LETRA);
-      setBackgroundColor(FONDO);
-      recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
-      separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
-      locate(POSMENUX+18,POSMENUY+1);
+    int key, opc, cursorX, cursorY;
+    while (estado==true)
+    {
+        cursorX=POSMENUX+13;
+        cursorY=POSMENUY + 4;
+        setBackgroundColor(COLOR_PANTALLA);
+        cls();
+        opc=0;
+        setColor(LETRA);
+        setBackgroundColor(FONDO);
+        recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
+        separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+        locate(POSMENUX+18,POSMENUY+1);
         cout<<"MENU DE LISTADOS"<<endl;
         locate(POSMENUX+15,POSMENUY+4);
 
@@ -470,77 +514,91 @@ void submenuListarInstructores(){
         locate(POSMENUX+15,POSMENUY+9);
         cout<<" VOLVER AL MENU ANTERIOR"<<endl;
         locate(POSMENUX+15,POSMENUY+10);
-         hidecursor();
+        hidecursor();
         locate(cursorX,cursorY);
         cout<<">>";
         key = getkey();
-        while(key != KEY_ENTER){
-        locate(cursorX,cursorY);
-        cout<<" ";
-        cout<<" ";
-        switch(key){
-        case KEY_DOWN:
-            if(opc < 5){
-                opc++;
-            }else{
-                opc=0;
+        while(key != KEY_ENTER)
+        {
+            locate(cursorX,cursorY);
+            cout<<" ";
+            cout<<" ";
+            switch(key)
+            {
+            case KEY_DOWN:
+                if(opc < 5)
+                {
+                    opc++;
+                }
+                else
+                {
+                    opc=0;
+                }
+                break;
+            case KEY_UP:
+                if(opc > 5)
+                {
+                    opc--;
+                }
+                else
+                {
+                    opc=0;
+                }
+                break;
             }
-            break;
-        case KEY_UP:
-            if(opc > 5){
-                opc--;
-            }else{
-                opc=0;
+            if(opc != 0)
+            {
+                cursorY = opc + POSMENUY + 4;
             }
+            else
+            {
+                cursorY = POSMENUY + 4;
+            }
+            locate(cursorX,cursorY);
+            cout<<">>";
+            key = getkey();
+        }
+        setBackgroundColor(COLOR_PANTALLA);
+        cls();
+        showcursor();
+
+        switch(opc)
+        {
+        case 0:
+            system("cls");
+            if( listarInstructores(aux)==0)
+            {
+                cout<<"NO HAY INSTRUCTORES REGISTRADOS "<<endl;
+            }
+            system("pause");
             break;
-        }
-        if(opc != 0){
-            cursorY = opc + POSMENUY + 4;
-        }else{
-            cursorY = POSMENUY + 4;
-        }
-        locate(cursorX,cursorY);
-        cout<<">>";
-        key = getkey();
-      }
-      setBackgroundColor(COLOR_PANTALLA);
-      cls();
-      showcursor();
+        case 1:
+            system("cls");
+            listarInstrucDinamico();
+            system("pause");
+            break;
 
-        switch(opc){
-    case 0:
-        system("cls");
-       if( listarInstructores(aux)==0){
-        cout<<"NO HAY INSTRUCTORES REGISTRADOS "<<endl;
-       }
-        system("pause");
-        break;
-         case 1:
-        system("cls");
-        listarInstrucDinamico();
-        system("pause");
-        break;
-
-            case 2:
-        system("cls");
-        listarPorActividad(aux);
-        system("pause");
-        break;
-         case 3:
-         system("cls");
-        listarPorID(aux);
-        system("pause");
-        break;
+        case 2:
+            system("cls");
+            listarPorActividad(aux);
+            system("pause");
+            break;
+        case 3:
+            system("cls");
+            listarPorID(aux);
+            system("pause");
+            break;
         case 4:
-        system("cls");
-        listarPorDNI(aux);
-        system("pause");
-        break;
-    case 5: estado =false;
-    break;
+            system("cls");
+            listarPorDNI(aux);
+            system("pause");
+            break;
+        case 5:
+            estado =false;
+            break;
 
         }
-}
+    }
 }
 
 
@@ -550,104 +608,126 @@ void menuInstructores(){
     const int ALTO_MENU = 10;
     bool estado = true;
     int key, opc, cursorX, cursorY;
-       while (estado==true){
-            cursorX=POSMENUX+13;
-            cursorY=POSMENUY + 4;
-            setBackgroundColor(COLOR_PANTALLA);
-            cls();
-            opc=0;
-            setColor(LETRA);
-            setBackgroundColor(FONDO);
-            recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
-            separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
-            locate(POSMENUX+18,POSMENUY+1);
-            cout<<"MENU INSTRUCTORES"<<endl;
-            locate(POSMENUX+15,POSMENUY+4);
-            cout<<" AGREGAR INSTRUCTOR "<<endl;
-            locate(POSMENUX+15,POSMENUY+5);
-            cout<<" DAR DE BAJA INSTRUCTOR"<<endl;
-            locate(POSMENUX+15,POSMENUY+6);
-            cout<<" MENU DE LISTADOS"<<endl;
-            locate(POSMENUX+15,POSMENUY+7);
-            cout<<" MODIFICAR CAMPOS "<<endl;
-            locate(POSMENUX+15,POSMENUY+8);
-            cout<<" VOLVER AL MENU PRINCIPAL"<<endl;
-            locate(POSMENUX+15,POSMENUY+9);
+    while (estado==true)
+    {
+        cursorX=POSMENUX+13;
+        cursorY=POSMENUY + 4;
+        setBackgroundColor(COLOR_PANTALLA);
+        cls();
+        opc=0;
+        setColor(LETRA);
+        setBackgroundColor(FONDO);
+        recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
+        separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+        locate(POSMENUX+18,POSMENUY+1);
+        cout<<"MENU INSTRUCTORES"<<endl;
+        locate(POSMENUX+15,POSMENUY+4);
+        cout<<" AGREGAR INSTRUCTOR "<<endl;
+        locate(POSMENUX+15,POSMENUY+5);
+        cout<<" DAR DE BAJA INSTRUCTOR"<<endl;
+        locate(POSMENUX+15,POSMENUY+6);
+        cout<<" MENU DE LISTADOS"<<endl;
+        locate(POSMENUX+15,POSMENUY+7);
+        cout<<" MODIFICAR CAMPOS "<<endl;
+        locate(POSMENUX+15,POSMENUY+8);
+        cout<<" VOLVER AL MENU PRINCIPAL"<<endl;
+        locate(POSMENUX+15,POSMENUY+9);
 
-            hidecursor();
+        hidecursor();
+        locate(cursorX,cursorY);
+        cout<<">>";
+        key = getkey();
+        while(key != KEY_ENTER)
+        {
+            locate(cursorX,cursorY);
+            cout<<" ";
+            cout<<" ";
+            switch(key)
+            {
+            case KEY_DOWN:
+                if(opc < 4)
+                {
+                    opc++;
+                }
+                else
+                {
+                    opc=0;
+                }
+                break;
+            case KEY_UP:
+                if(opc > 4)
+                {
+                    opc--;
+                }
+                else
+                {
+                    opc=0;
+                }
+                break;
+            }
+            if(opc != 0)
+            {
+                cursorY = opc + POSMENUY + 4;
+            }
+            else
+            {
+                cursorY = POSMENUY + 4;
+            }
             locate(cursorX,cursorY);
             cout<<">>";
             key = getkey();
-            while(key != KEY_ENTER){
-                locate(cursorX,cursorY);
-                cout<<" ";
-                cout<<" ";
-                switch(key){
-                case KEY_DOWN:
-                    if(opc < 4){
-                        opc++;
-                    }else{
-                        opc=0;
-                    }
-                    break;
-                case KEY_UP:
-                    if(opc > 4){
-                        opc--;
-                    }else{
-                        opc=0;
-                }
-                break;
-                }
-                    if(opc != 0){
-                        cursorY = opc + POSMENUY + 4;
-                    }else{
-                        cursorY = POSMENUY + 4;
-                        }
-                        locate(cursorX,cursorY);
-                        cout<<">>";
-                        key = getkey();
-                        }
-                        setBackgroundColor(COLOR_PANTALLA);
-                        cls();
-                        showcursor();
-                switch(opc){
-                case 0:
-                system("cls");
+        }
+        setBackgroundColor(COLOR_PANTALLA);
+        cls();
+        showcursor();
+        switch(opc)
+        {
+        case 0:
+            system("cls");
 
-                    if( cargarInstructor(aux)==1){
-                        gotoxy(46,15);
-                        cout<<"NUEVO INSTRUCTOR REGISTRADO "<<endl;
-                    }else{
-                        gotoxy(46,15);cout<<"NO SE PUDO REGISTRAR AL INSTRUCTOR"<<endl;}
-                    gotoxy(42,17);
-                    system("pause");
+            if( cargarInstructor(aux)==1)
+            {
+                gotoxy(46,15);
+                cout<<"NUEVO INSTRUCTOR REGISTRADO "<<endl;
+            }
+            else
+            {
+                gotoxy(46,15);
+                cout<<"NO SE PUDO REGISTRAR AL INSTRUCTOR"<<endl;
+            }
+            gotoxy(42,17);
+            system("pause");
 
-                    break;
-                case 1:
-                    if(eliminarInstructor(aux)==1){
-                        cout<<"INSTRUCTOR ELIMINADO"<<endl;
-                        system("pause");
-                    }else{
-                    cout<<"NO SE PUDO ELIMINAR AL INSTRUCTOR"<<endl;
-                    system("pause");
-                    }
-
-                    break;
-            case 2:submenuListarInstructores();
-
-                break;
-            case 3:
-                system("cls");
-                menuInstructoresMod();
+            break;
+        case 1:
+            if(eliminarInstructor(aux)==1)
+            {
+                cout<<"INSTRUCTOR ELIMINADO"<<endl;
                 system("pause");
-                break;
-            case 4:
-                estado=false;
+            }
+            else
+            {
+                cout<<"NO SE PUDO ELIMINAR AL INSTRUCTOR"<<endl;
+                system("pause");
+            }
+
+            break;
+        case 2:
+            submenuListarInstructores();
+
+            break;
+        case 3:
+            system("cls");
+            menuInstructoresMod();
+            system("pause");
+            break;
+        case 4:
+            estado=false;
             break;
         }
 
-       }
-       system("cls");
+    }
+    system("cls");
 }
 
 #endif // INSTRUCTORES_H_INCLUDED

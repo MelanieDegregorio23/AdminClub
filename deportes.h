@@ -132,6 +132,7 @@ int LeerEnDisco(int pos){
 ///DECLARACIONES
 
 void menuDeportes();
+void submenuListarDeporte();
 void listarDeporte();
 int buscarporCod( int cod);
 int listarPorcod(int cod);
@@ -141,6 +142,7 @@ int eliminarDeporte();
 int listarPorInstructor();
 int  modificarCuota();
 int cantidadDeportes();
+void mostrarPosicion(int pos);
 
 ///DESARROLLO
 int cantidadDeportes(){
@@ -182,10 +184,10 @@ void listarDeporte()
     {
         if(aux.getEstado()==true)
         {
-        cout<<"DEPORTE N"<<(char)186<<aux.getCodDep()<<endl;
-        cout<<"--------------- "<<endl;
-        aux.Mostrar();
-        cout<<"--------------- "<<endl;
+            cout<<"DEPORTE N"<<(char)186<<aux.getCodDep()<<endl;
+            cout<<"--------------- "<<endl;
+            aux.Mostrar();
+            cout<<"--------------- "<<endl;
             cout<<endl<<endl;
         }
         pos++;
@@ -253,24 +255,27 @@ int eliminarDeporte()
     char confirmo;
     const int POSMENUX = 0;
     const int POSMENUY = 0;
-     cout<<"    DEPORTES    "<<endl;
+    cout<<"    DEPORTES    "<<endl;
     separadorx(POSMENUX,POSMENUY+2,ANCHO_MENU+17,LETRA,FONDO);
     cout<<endl;
     cout<<"INGRESAR CODIGO DE DEPORTE: "<<endl;
     cin>>codi;
     pos=buscarporCod(codi);
-    if(pos>=0){
+    if(pos>=0)
+    {
         mostrarPosicion(pos);
         cout<<endl;
         cout<<"QUIERE ELIMINAR  EL DEPORTE?  (S/ N): "<<endl;
         cin>> confirmo;
-        switch(confirmo){
+        switch(confirmo)
+        {
         case 's':
             aux.setEstado(false);
             aux.ModificarEnDisco(pos);
             return 1;
             break;
-        case 'n':  return 2;
+        case 'n':
+            return 2;
             break;
         }
 
@@ -340,7 +345,8 @@ void submenuListarDeporte(){
     int key,opc, cursorX, cursorY;
     const int ANCHO_MENU = 50;
     const int ALTO_MENU = 10;
-       while (estado==true){
+    while (estado==true)
+    {
         cursorX=POSMENUX+11;
         cursorY=POSMENUY + 4;
         setBackgroundColor(COLOR_PANTALLA);
@@ -359,59 +365,72 @@ void submenuListarDeporte(){
         cout<<" VOLVER AL MENU ANTERIOR";
         locate(POSMENUX+12,POSMENUY+7);
 
-         hidecursor();
+        hidecursor();
         locate(cursorX,cursorY);
         cout<<">>";
         key = getkey();
-        while(key != KEY_ENTER){
-        locate(cursorX,cursorY);
-        cout<<" ";
-        cout<<" ";
-        switch(key){
-        case KEY_DOWN:
-            if(opc < 2){
-                opc++;
-            }else{
-                opc=0;
+        while(key != KEY_ENTER)
+        {
+            locate(cursorX,cursorY);
+            cout<<" ";
+            cout<<" ";
+            switch(key)
+            {
+            case KEY_DOWN:
+                if(opc < 2)
+                {
+                    opc++;
+                }
+                else
+                {
+                    opc=0;
+                }
+                break;
+            case KEY_UP:
+                if(opc > 2)
+                {
+                    opc--;
+                }
+                else
+                {
+                    opc=0;
+                }
+                break;
             }
-            break;
-        case KEY_UP:
-            if(opc > 2){
-                opc--;
-            }else{
-                opc=0;
+            if(opc != 0)
+            {
+                cursorY = opc + POSMENUY + 4;
             }
-            break;
+            else
+            {
+                cursorY = POSMENUY + 4;
+            }
+            locate(cursorX,cursorY);
+            cout<<">>";
+            key = getkey();
         }
-        if(opc != 0){
-            cursorY = opc + POSMENUY + 4;
-        }else{
-            cursorY = POSMENUY + 4;
-        }
-        locate(cursorX,cursorY);
-        cout<<">>";
-        key = getkey();
-      }
-      setBackgroundColor(COLOR_PANTALLA);
-      cls();
-      showcursor();
-        switch(opc){
-    case 0:
+        setBackgroundColor(COLOR_PANTALLA);
+        cls();
+        showcursor();
+        switch(opc)
+        {
+        case 0:
             system("cls");
             listarDeporte();
             system("pause");
 
-        break;
-    case 1:
+            break;
+        case 1:
             system("cls");
             listarPorInstructor();
             system("pause");
-        break;
-    case 2: estado =false;
-    break;
+            break;
+        case 2:
+            estado =false;
+            break;
 
         }
-}
+    }
 }
 void menuDeportes()
 {
@@ -419,18 +438,19 @@ void menuDeportes()
     const int ANCHO_MENU = 50;
     const int ALTO_MENU = 10;
     bool estado = true;
-     int key, opc, cursorX, cursorY;
-       while (estado==true){
-       cursorX=POSMENUX+13;
-       cursorY=POSMENUY + 4;
-      setBackgroundColor(COLOR_PANTALLA);
-      cls();
-      opc=0;
-      setColor(LETRA);
-      setBackgroundColor(FONDO);
-      recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
-      separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
-      locate(POSMENUX+18,POSMENUY+1);
+    int key, opc, cursorX, cursorY;
+    while (estado==true)
+    {
+        cursorX=POSMENUX+13;
+        cursorY=POSMENUY + 4;
+        setBackgroundColor(COLOR_PANTALLA);
+        cls();
+        opc=0;
+        setColor(LETRA);
+        setBackgroundColor(FONDO);
+        recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
+        separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+        locate(POSMENUX+18,POSMENUY+1);
         cout<<"MENU DEPORTES"<<endl;
         locate(POSMENUX+15,POSMENUY+4);
         cout<<" AGREGAR DEPORTE";
@@ -445,52 +465,66 @@ void menuDeportes()
 
         locate(POSMENUX+15,POSMENUY+9);
         cout<<endl;
-         hidecursor();
+        hidecursor();
         locate(cursorX,cursorY);
         cout<<">>";
         key = getkey();
-        while(key != KEY_ENTER){
-        locate(cursorX,cursorY);
-        cout<<" ";
-        cout<<" ";
-        switch(key){
-        case KEY_DOWN:
-            if(opc < 4){
-                opc++;
-            }else{
-                opc=0;
+        while(key != KEY_ENTER)
+        {
+            locate(cursorX,cursorY);
+            cout<<" ";
+            cout<<" ";
+            switch(key)
+            {
+            case KEY_DOWN:
+                if(opc < 4)
+                {
+                    opc++;
+                }
+                else
+                {
+                    opc=0;
+                }
+                break;
+            case KEY_UP:
+                if(opc > 4)
+                {
+                    opc--;
+                }
+                else
+                {
+                    opc=0;
+                }
+                break;
             }
-            break;
-        case KEY_UP:
-            if(opc > 4){
-                opc--;
-            }else{
-                opc=0;
+            if(opc != 0)
+            {
+                cursorY = opc + POSMENUY + 4;
             }
-            break;
+            else
+            {
+                cursorY = POSMENUY + 4;
+            }
+            locate(cursorX,cursorY);
+            cout<<">>";
+            key = getkey();
         }
-        if(opc != 0){
-            cursorY = opc + POSMENUY + 4;
-        }else{
-            cursorY = POSMENUY + 4;
-        }
-        locate(cursorX,cursorY);
-        cout<<">>";
-        key = getkey();
-      }
-      setBackgroundColor(COLOR_PANTALLA);
-      cls();
-      showcursor();
+        setBackgroundColor(COLOR_PANTALLA);
+        cls();
+        showcursor();
         switch(opc)
         {
 
-        case 0: system("cls");
+        case 0:
+            system("cls");
             if(agregarDeporte(aux)==1)
-            {       gotoxy(49,24);
+            {
+                gotoxy(49,24);
                 cout<<"EL DEPORTE FUE AGREGADO CON EXITO"<<endl;
             }
             else
-            {       gotoxy(49,24);
+            {
+                gotoxy(49,24);
                 cout<<"EL CODIGO, YA PERTENECE A UN  DEPORTE EXISTENTE"<<endl;
 
             }
@@ -499,9 +533,11 @@ void menuDeportes()
 
 
             break;
-        case 1:submenuListarDeporte();
+        case 1:
+            submenuListarDeporte();
             break;
-        case 2:system("cls");
+        case 2:
+            system("cls");
             if(eliminarDeporte()==1)
             {
                 cout<<"DEPORTE ELIMINADO"<<endl;
@@ -512,9 +548,15 @@ void menuDeportes()
             }
             system("pause");
             break;
-        case 3: system("cls");
+        case 3:
+            system("cls");
 
-            if(modificarCuota()>=0){cout<<"SE MODIFICO EL VALOR DE CUOTA CON EXITO "<<endl;}else{
+            if(modificarCuota()>=0)
+            {
+                cout<<"SE MODIFICO EL VALOR DE CUOTA CON EXITO "<<endl;
+            }
+            else
+            {
                 cout<<"NO SE PUDO MODIFICAR EL VALOR DE CUOTA "<<endl;
             }
             system("pause");

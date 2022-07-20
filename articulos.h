@@ -140,7 +140,7 @@ int listarArticulos(){
         cout<<endl<<endl;
         contador++;
         }
-        pos++;
+    pos++;
 
     }
     return lectura;
@@ -272,7 +272,8 @@ void submenuListarArticulos(){
     int key,opc, cursorX, cursorY;
     const int ANCHO_MENU = 50;
     const int ALTO_MENU = 10;
-       while (estado==true){
+    while (estado==true)
+    {
         cursorX=POSMENUX+11;
         cursorY=POSMENUY + 4;
         setBackgroundColor(COLOR_PANTALLA);
@@ -293,88 +294,104 @@ void submenuListarArticulos(){
         locate(POSMENUX+14,POSMENUY+7);
         cout<<" VOLVER AL MENU ANTERIOR";
         locate(POSMENUX+14,POSMENUY+9);
-         hidecursor();
+        hidecursor();
         locate(cursorX,cursorY);
         cout<<">>";
         key = getkey();
-        while(key != KEY_ENTER){
-        locate(cursorX,cursorY);
-        cout<<" ";
-        cout<<" ";
-        switch(key){
-        case KEY_DOWN:
-            if(opc < 3){
-                opc++;
-            }else{
-                opc=0;
+        while(key != KEY_ENTER)
+        {
+            locate(cursorX,cursorY);
+            cout<<" ";
+            cout<<" ";
+            switch(key)
+            {
+            case KEY_DOWN:
+                if(opc < 3)
+                {
+                    opc++;
+                }
+                else
+                {
+                    opc=0;
+                }
+                break;
+            case KEY_UP:
+                if(opc > 3)
+                {
+                    opc--;
+                }
+                else
+                {
+                    opc=0;
+                }
+                break;
             }
-            break;
-        case KEY_UP:
-            if(opc > 3){
-                opc--;
-            }else{
-                opc=0;
+            if(opc != 0)
+            {
+                cursorY = opc + POSMENUY + 4;
             }
+            else
+            {
+                cursorY = POSMENUY + 4;
+            }
+            locate(cursorX,cursorY);
+            cout<<">>";
+            key = getkey();
+        }
+        setBackgroundColor(COLOR_PANTALLA);
+        cls();
+        showcursor();
+        switch(opc)
+        {
+        case 0:
+            if(listarArticulos()==0)
+            {
+                cout<<"NO HAY ARTICULOS REGISTRADOS "<<endl;
+            }
+            system("pause");
             break;
-        }
-        if(opc != 0){
-            cursorY = opc + POSMENUY + 4;
-        }else{
-            cursorY = POSMENUY + 4;
-        }
-        locate(cursorX,cursorY);
-        cout<<">>";
-        key = getkey();
-      }
-      setBackgroundColor(COLOR_PANTALLA);
-      cls();
-      showcursor();
-        switch(opc){
-    case 0:
-          if(listarArticulos()==0){
-        cout<<"NO HAY ARTICULOS REGISTRADOS "<<endl;
-       }
-        system("pause");
-        break;
-         case 1:
-        system("cls");
-        if(listarArticuloCod()<0){
-            cout<<"NO SE ENCONTRO EL ARTICULO "<<endl;
-        }
-        system("pause");
-        break;
+        case 1:
+            system("cls");
+            if(listarArticuloCod()<0)
+            {
+                cout<<"NO SE ENCONTRO EL ARTICULO "<<endl;
+            }
+            system("pause");
+            break;
         case 2:
-        system("cls");
-        if(listarArticuloPrecio()<0){
-            cout<<"NO SE ENCONTRO EL ARTICULO "<<endl;
-        }
-        system("pause");
-        break;
-    case 3: estado =false;
-    break;
+            system("cls");
+            if(listarArticuloPrecio()<0)
+            {
+                cout<<"NO SE ENCONTRO EL ARTICULO "<<endl;
+            }
+            system("pause");
+            break;
+        case 3:
+            estado =false;
+            break;
 
         }
 }
 }
 
 void menuArticulos(){
-
     Articulo aux;
     const int ANCHO_MENU = 50;
     const int ALTO_MENU = 10;
     bool estado = true;
-     int key, opc, cursorX, cursorY;
-       while (estado==true){
-       cursorX=POSMENUX+13;
-       cursorY=POSMENUY + 4;
-      setBackgroundColor(COLOR_PANTALLA);
-      cls();
-      opc=0;
-      setColor(LETRA);
-      setBackgroundColor(FONDO);
-      recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
-      separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
-      locate(POSMENUX+18,POSMENUY+1);
+    int key, opc, cursorX, cursorY;
+    while (estado==true)
+    {
+        cursorX=POSMENUX+13;
+        cursorY=POSMENUY + 4;
+        setBackgroundColor(COLOR_PANTALLA);
+        cls();
+        opc=0;
+        setColor(LETRA);
+        setBackgroundColor(FONDO);
+        recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
+        separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
+        locate(POSMENUX+18,POSMENUY+1);
         cout << "MENU ARTICULOS";
         locate(POSMENUX+15,POSMENUY+4);
         cout<<" AGREGAR ARTICULO";
@@ -388,80 +405,109 @@ void menuArticulos(){
         cout<<" VOLVER AL MENU PRINCIPAL"<<endl;
         locate(POSMENUX+15,POSMENUY+9);
         cout<<endl;
-         hidecursor();
+        hidecursor();
         locate(cursorX,cursorY);
         cout<<">>";
         key = getkey();
-        while(key != KEY_ENTER){
-        locate(cursorX,cursorY);
-        cout<<" ";
-        cout<<" ";
-        switch(key){
-        case KEY_DOWN:
-            if(opc < 4){
-                opc++;
-            }else{
-                opc=0;
+        while(key != KEY_ENTER)
+        {
+            locate(cursorX,cursorY);
+            cout<<" ";
+            cout<<" ";
+            switch(key)
+            {
+            case KEY_DOWN:
+                if(opc < 4)
+                {
+                    opc++;
+                }
+                else
+                {
+                    opc=0;
+                }
+                break;
+            case KEY_UP:
+                if(opc > 4)
+                {
+                    opc--;
+                }
+                else
+                {
+                    opc=0;
+                }
+                break;
             }
-            break;
-        case KEY_UP:
-            if(opc > 4){
-                opc--;
-            }else{
-                opc=0;
+            if(opc != 0)
+            {
+                cursorY = opc + POSMENUY + 4;
             }
-            break;
+            else
+            {
+                cursorY = POSMENUY + 4;
+            }
+            locate(cursorX,cursorY);
+            cout<<">>";
+            key = getkey();
         }
-        if(opc != 0){
-            cursorY = opc + POSMENUY + 4;
-        }else{
-            cursorY = POSMENUY + 4;
-        }
-        locate(cursorX,cursorY);
-        cout<<">>";
-        key = getkey();
-      }
-      setBackgroundColor(COLOR_PANTALLA);
-      cls();
-      showcursor();
-        switch(opc){
+        setBackgroundColor(COLOR_PANTALLA);
+        cls();
+        showcursor();
+        switch(opc)
+        {
 
-    case 0: system("cls");
-        if(agregarArticulo(aux)==1){
+        case 0:
+            system("cls");
+            if(agregarArticulo(aux)==1)
+            {
                 gotoxy(46,26);
-            cout<<" ARTICULO AGREGADO"<<endl;
+                cout<<" ARTICULO AGREGADO"<<endl;
             }
-            else{
+            else
+            {
                 gotoxy(46,26);
-        cout<<"EL CODIGO YA PERTENECE A UN ARTICULO EXISTENTE"<<endl;}
-        gotoxy(42,28);
-        system("pause");
-         break;
-
-    case 1: system("cls");
-
-         if(eliminarArticulo()==1){
-            cout<<"ARTICULO ELIMINADO "<<endl;
+                cout<<"EL CODIGO YA PERTENECE A UN ARTICULO EXISTENTE"<<endl;
             }
-        else{ cout<<"NO SE ELIMINO ARTICULO"<<endl;}
-        system("pause");
-        break;
-        case 2: system("cls");
-        submenuListarArticulos();
+            gotoxy(42,28);
+            system("pause");
+            break;
 
-        break;
-    case 3:if(cambiarPrecio()>=0){
+        case 1:
+            system("cls");
 
-            cout<<"CAMBIO EXITOSO"<<endl;
-        }else{ cout<<"NO HAY ARTICULO CON ESE CODIGO"<<endl; }
-        system("pause");
-        break;
-        break;
-    case 4: estado=false;
-        break;
+            if(eliminarArticulo()==1)
+            {
+                cout<<"ARTICULO ELIMINADO "<<endl;
+            }
+            else
+            {
+                cout<<"NO SE ELIMINO ARTICULO"<<endl;
+            }
+            system("pause");
+            break;
+        case 2:
+            system("cls");
+            submenuListarArticulos();
+
+            break;
+        case 3:
+            if(cambiarPrecio()>=0)
+            {
+
+                cout<<"CAMBIO EXITOSO"<<endl;
+            }
+            else
+            {
+                cout<<"NO HAY ARTICULO CON ESE CODIGO"<<endl;
+            }
+            system("pause");
+            break;
+            break;
+        case 4:
+            estado=false;
+            break;
         }
 
-       }
+    }
 }
 
 #endif // ARTICULOS_H_INCLUDED
