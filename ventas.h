@@ -180,11 +180,15 @@ int AgregarVentas(Venta aux){
 
 int  ListarVentas(){
     Venta aux;
-    int pos =0,contador=0;
+    int pos =0,contador=0, contador2=0;
     while(aux.leerEnDisco(pos)==1){
         contador++;
+        cout<<"VENTAS N"<<(char)186<<contador2+1<<endl;
+        cout<<"--------------- "<<endl;
         aux.Mostrar();
+        cout<<"--------------- "<<endl;
         cout<<endl<<endl;
+        contador2++;
         pos++;
 
     }
@@ -213,8 +217,11 @@ int ListarID(){
     pos=buscarporid(id);
     while(aux.leerEnDisco(pos)==1){
         if(aux.getID()==id){
-           aux.Mostrar();
-        cout<<endl;
+        cout<<"VENTAS N"<<(char)186<<aux.getID()<<endl;
+        cout<<"--------------- "<<endl;
+        aux.Mostrar();
+        cout<<"--------------- "<<endl;
+        cout<<endl<<endl;
         return 1;
         }
         pos++;
