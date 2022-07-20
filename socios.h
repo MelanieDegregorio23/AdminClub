@@ -332,7 +332,7 @@ int buscarporDNI( int DNI){
     socio aux;
 
     int pos=0;
-    while(aux.LeerEnDisco(pos))
+    while(aux.LeerEnDisco(pos)==1)
     {
         if(aux.getDNI()==DNI)
         {
