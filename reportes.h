@@ -80,22 +80,26 @@ void importePorVentas(){
     locate(POSMENUX+10,POSMENUY+1);
     cout<<"SE REGISTRAN VENTAS A PARTIR DEL 2018 "<<endl;
     cout<<endl<<endl;
-    int n[5]={0}, pos=0;
+    int vec[5]={0}, pos=0;
     Venta aux;
-    while(aux.leerEnDisco(pos))
-    {
-        if(n[aux.getFechadeVenta().getAnio()-2018]+= aux.getImporte());
+    while(aux.leerEnDisco(pos)){
+        int anio = aux.getFechadeVenta().getAnio();
+        if(vec[anio-2018]+= aux.getImporte());
         pos++;
     }
     for(int i=0; i<5 ; i++)
     {
-        if(n[i]>0)
+        if(vec[i]>0){
+            cout<<"IMPORTE ACUMULADO EN EL  "<<i+2018<<" :     "<<vec[i]<<endl;
+        }
+
+        /*if(n[i]>0)
         {
             locate(POSMENUX+10,POSMENUY+4);
             cout<<"IMPORTE ACUMULADO EN EL  "<<i+2018<<" :"<<endl;
             locate(POSMENUX+10,POSMENUY+5);
             cout<<n[i]<<endl;
-        }
+        }*/
     }
 
 }
