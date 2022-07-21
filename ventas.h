@@ -62,7 +62,7 @@ int modificarEnDisco(int pos){
 
 }
 void cargar(){
-
+    system("cls");
     const int ANCHO_MENU = 50;
     const int ALTO_MENU = 20;
     const int POSMENUX = 33;
@@ -162,7 +162,7 @@ int AgregarVentas(Venta aux){
         aux.cargar();
         cantV = aux.getCant();
         float importe=generarImpor(cantV, posArt);
-        locate(POSMENUX+16,POSMENUY+8);
+        locate(POSMENUX+16,POSMENUY+9);
         cout<<"IMPORTE: "<<importe<<endl;
         aux.setImporte(importe);
         actualizarStockVendido(cantV, posArt);

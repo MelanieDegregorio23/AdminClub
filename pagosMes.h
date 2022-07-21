@@ -49,7 +49,6 @@ public:
 
 };
 void Mostrar(){
-
         cout<<"ID DE PAGOS: "<<idpagos<<endl;
         cout<<"DNI DE SOCIO: "<<dni<<endl;
         cout<<"FECHA DE PAGO: ";
@@ -166,6 +165,7 @@ int agregarPagos(pagos aux){
 }
 int listarPagoporDNI(){
     pagos aux;
+    persona obj;
     int dni,pos=0;
     cout<<"INGRESE DNI DE SOCIO : "<<endl;
     cin>>dni;
