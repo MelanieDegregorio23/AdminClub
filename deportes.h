@@ -70,11 +70,12 @@ public:
     {
         if (Estado==true)
         {
-            cout<<"CODIGO DE DEPORTE: "<<endl<<CodDep<<endl;
-            cout<<"DEPORTE: "<<endl<<Descripcion<<endl;
-            cout<<"CANTIDAD DE CUPOS: "<<endl<<CantCupos<<endl;
-            cout<<"VALOR DE LA CUOTA: "<<endl<<ValorCuota<<endl;
-            cout<<"HORARIO DE CLASES: "<<endl<<Horario<<endl;
+            cout<<"CODIGO DE DEPORTE: "<<CodDep<<endl;
+            cout<<"DEPORTE: "<<Descripcion<<endl;
+            cout<<"CANTIDAD DE CUPOS: "<<CantCupos<<endl;
+            cout<<"VALOR DE LA CUOTA: "<<"$"<<ValorCuota<<endl;
+            cout<<"HORARIO DE CLASES: "<<Horario<<endl;
+
             ///mostrar
 
         }

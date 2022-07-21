@@ -218,6 +218,8 @@ int ListarID(){
     int id, pos;
     cout<<"INGRESE ID : "<<endl;
     cin>>id;
+
+    system("cls");
     pos=buscarporid(id);
     while(aux.leerEnDisco(pos)==1)
     {
@@ -435,7 +437,7 @@ Venta aux;
         case 1:
             system("cls");
             submenuListarVentas();
-            system("pause");
+
 
             break;
 
