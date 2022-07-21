@@ -312,25 +312,38 @@ int buscarporCod( int cod){
 
     return -1;
 }
+
 int listarPorInstructor(){
     instructor aux;
-    int pos=0, id, codep;
+    deporte obj;
+    int pos=0, id, codep=0, pos2;
     cout<<"INGRESE ID DEL INSTRUCTOR : "<<endl;
     cin>>id;
     pos = buscarID(id);
-    while(aux.leerEnDisco(pos)==1)
-    {
-        if(aux.getEstado()==true)
+     if(pos>=0){
+    if(aux.leerEnDisco(pos)==1){
+        codep=aux.getCodigoDep();
+       while(obj.LeerEnDisco(pos2)==1){
+
+        if(obj.getEstado()==true && obj.getCodDep()==codep)
         {
-            codep=aux.getCodigoDep();
-            listarPorcod(codep);
+
+            obj.Mostrar();
+            return pos;
             cout<<endl<<endl;
 
         }
-        pos++;
+            pos2++;
+           }
 
 
 
+
+    }
+
+    else{
+        cout<<"NO HAY DEPORTES CON ESE INSTRUCTOR"<<endl;
+    }
     }
     return -1;
 
@@ -338,6 +351,7 @@ int listarPorInstructor(){
 
 
 }
+
 void submenuListarDeporte(){
 
     system("cls");

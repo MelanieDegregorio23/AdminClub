@@ -82,8 +82,9 @@ void cargar(){
     locate(POSMENUX+16,POSMENUY+7);
     cout<<"INGRESE FECHA DE VENTA: "<<endl;
     locate(POSMENUX+16,POSMENUY+8);
-    FechadeVenta.fechaHoy();
-    FechadeVenta.Mostrar();
+    FechadeVenta.Cargar();
+    //FechadeVenta.fechaHoy();
+    //FechadeVenta.Mostrar();
 
 }
 void Mostrar(){
