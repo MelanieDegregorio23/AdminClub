@@ -80,9 +80,6 @@ void informarMayorS(){
 void importePorVentas(){
     const int ANCHO_MENU = 50;
     const int ALTO_MENU = 8;
-    recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
-    separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
-    locate(POSMENUX+10,POSMENUY+1);
     cout<<"SE REGISTRAN VENTAS A PARTIR DEL 2018 "<<endl;
     cout<<endl<<endl;
     int vec[5]={0}, pos=0;
@@ -99,13 +96,6 @@ void importePorVentas(){
             cout<<"                                        IMPORTE ACUMULADO EN EL  "<<i+2018<<" :     "<<vec[i]<<endl;
         }
 
-        /*if(n[i]>0)
-        {
-            locate(POSMENUX+10,POSMENUY+4);
-            cout<<"IMPORTE ACUMULADO EN EL  "<<i+2018<<" :"<<endl;
-            locate(POSMENUX+10,POSMENUY+5);
-            cout<<n[i]<<endl;
-        }*/
     }
 
 }
@@ -129,11 +119,6 @@ int contarS(int cod)
 void CantSociosPorD(){
     int cant, pos =0;
     deporte aux;
-    const int ANCHO_MENU = 50;
-    const int ALTO_MENU = 8;
-    recuadro(POSMENUX,POSMENUY, ANCHO_MENU,ALTO_MENU,LETRA,FONDO);
-    separadorH(POSMENUX,POSMENUY+2,ANCHO_MENU,LETRA,FONDO);
-    locate(POSMENUX+10,POSMENUY+1);
     cout<<"CANTIDAD DE SOCIOS POR DEPORTE "<<endl;
     cout<<endl;
 
@@ -143,9 +128,9 @@ void CantSociosPorD(){
         int cant = contarS(id);
         if(cant>0 && aux.getEstado()==true)
         {
-            //locate(POSMENUX+10,POSMENUY+4);
-            cout<<"                                       CANTIDAD DE SOCIOS EN "<<aux.getDescripcion()<<": "<<cant<<endl;
-           // locate(POSMENUX+10,POSMENUY+5);
+
+            cout<<"CANTIDAD DE SOCIOS EN "<<aux.getDescripcion()<<": "<<cant<<endl;
+
 
         }
         pos++;
@@ -281,13 +266,13 @@ void menuReportes(){
         case 1:
             system("cls");
             importePorVentas();
-            locate(POSMENUX+6,POSMENUY+7);
+
             system("pause");
             break;
         case 2:
             system("cls");
             CantSociosPorD();
-            locate(POSMENUX+6,POSMENUY+7);
+
             system("pause");
             break;
         case 3:
