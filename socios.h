@@ -365,12 +365,15 @@ void listarSocio(){
 
     while(aux.LeerEnDisco(pos)==1)
     {
+        if(aux.getEstado()==true){
         cout<<"SOCIO N"<<(char)186<<contador+1<<endl;
         cout<<"--------------- "<<endl;
         aux.MostrarSocio();
         cout<<"--------------- "<<endl;
         cout<<endl;
         contador++;
+        }
+
 
         pos++;
     }

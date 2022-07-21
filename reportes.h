@@ -15,7 +15,12 @@ void informarMayorS();
 void informarMenorS();
 
 
+
 ///DESARROLLO
+
+
+
+
 
 
 void informarMenorS(){
@@ -67,7 +72,7 @@ void informarMayorS(){
     locate(POSMENUX+20,POSMENUY+1);
     cout<<"REPORTES"<<endl;
     locate(POSMENUX+6,POSMENUY+4);
-    cout<<"  EL DEPORTE CON MAYOR CANTIDAD DE SOCIOS ES "<<endl;
+    cout<<"EL DEPORTE CON MAYOR CANTIDAD DE SOCIOS ES "<<endl;
     locate(POSMENUX+6,POSMENUY+5);
     cout<<dep;
 }
@@ -90,7 +95,8 @@ void importePorVentas(){
     for(int i=0; i<5 ; i++)
     {
         if(vec[i]>0){
-            cout<<"IMPORTE ACUMULADO EN EL  "<<i+2018<<" :     "<<vec[i]<<endl;
+
+            cout<<"                                        IMPORTE ACUMULADO EN EL  "<<i+2018<<" :     "<<vec[i]<<endl;
         }
 
         /*if(n[i]>0)
@@ -135,12 +141,12 @@ void CantSociosPorD(){
     {
         int id = aux.getCodDep();
         int cant = contarS(id);
-        if(cant>0)
+        if(cant>0 && aux.getEstado()==true)
         {
-            locate(POSMENUX+10,POSMENUY+4);
-            cout<<"CANTIDAD DE SOCIOS EN "<<aux.getDescripcion()<<": "<<endl;
-            locate(POSMENUX+10,POSMENUY+5);
-            cout<<cant<<endl;
+            //locate(POSMENUX+10,POSMENUY+4);
+            cout<<"                                       CANTIDAD DE SOCIOS EN "<<aux.getDescripcion()<<": "<<cant<<endl;
+           // locate(POSMENUX+10,POSMENUY+5);
+
         }
         pos++;
     }
@@ -209,16 +215,14 @@ void menuReportes(){
         locate(POSMENUX+12,POSMENUY+5);
         cout<<" IMPORTE ANUAL ACUMULADO POR VENTAS."<<endl;
         locate(POSMENUX+12,POSMENUY+6);
-        cout<<" IMPORTE ACUMULADO POR MES SEGUN EL DEPORTE."<<endl;
-        locate(POSMENUX+12,POSMENUY+7);
         cout<<" CANTIDAD DE SOCIOS POR DEPORTE."<<endl;
-        locate(POSMENUX+12,POSMENUY+8);
+        locate(POSMENUX+12,POSMENUY+7);
         cout<<" INFORMAR EL DEPORTE CON MAYOR NUMERO DE SOCIOS."<<endl;
-        locate(POSMENUX+12,POSMENUY+9);
+        locate(POSMENUX+12,POSMENUY+8);
         cout<<" INFORMAR EL DEPORTE CON MENOR NUMERO DE SOCIOS."<<endl;
-        locate(POSMENUX+12,POSMENUY+10);
+        locate(POSMENUX+12,POSMENUY+9);
         cout<<" VOLVER AL MENU PRINCIPAL"<<endl;
-        locate(POSMENUX+8,POSMENUY+11);
+        locate(POSMENUX+8,POSMENUY+10);
 
         hidecursor();
         locate(cursorX,cursorY);
@@ -272,9 +276,6 @@ void menuReportes(){
         case 0:
             system("cls");
             ArtMes();
-
-
-
             system("pause");
             break;
         case 1:
@@ -284,27 +285,24 @@ void menuReportes(){
             system("pause");
             break;
         case 2:
-            ///a desarrollar
-            break;
-        case 3:
             system("cls");
             CantSociosPorD();
             locate(POSMENUX+6,POSMENUY+7);
             system("pause");
             break;
-        case 4:
+        case 3:
             system("cls");
             informarMayorS();
             locate(POSMENUX+6,POSMENUY+7);
             system("pause");
             break;
-        case 5:
+        case 4:
             system("cls");
             informarMenorS();
             locate(POSMENUX+6,POSMENUY+7);
             system("pause");
             break;
-        case 6:
+        case 5:
             estado=false;
             break;
         }
